@@ -7,16 +7,43 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!firstName || !lastName || !email || !password) {
       alert("Veuillez remplir tous les champs !");
       return;
     }
-    console.log("Prénom:", firstName);
-    console.log("Nom:", lastName);
-    console.log("Email:", email);
-    console.log("Mot de passe:", password);
+
+    try {
+      const response = await fetch("/api/createUser", {
+        // adapte ce chemin selon ton backend
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prenom: firstName,
+          nom: lastName,
+          courriel: email,
+          password: password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Erreur lors de la création");
+      }
+
+      alert("Utilisateur créé avec succès !");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      alert("Erreur : " + error.message);
+    }
   };
 
   return (

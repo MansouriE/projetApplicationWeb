@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Pour le moment, juste afficher les valeurs dans la console
-    console.log("Email:", email);
-    console.log("Mot de passe:", password);
 
-    // Plus tard : envoyer les infos à un backend via fetch ou axios
+    try {
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Erreur lors de la connexion");
+      } else {
+        login(data.token, data.user.id);
+        alert("Connexion réussie !");
+        navigate("/profile");
+      }
+    } catch (error) {
+      alert("Erreur serveur : " + error.message);
+    }
   };
 
   return (
