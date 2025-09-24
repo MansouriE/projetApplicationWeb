@@ -72,6 +72,35 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/api/users/me", async (req, res) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Token manquant" });
+
+  // Vérifie le token
+  try {
+    const decoded = jwt.verify(token, "cleSuperSecrete!");
+    const userId = decoded.userId;
+
+    const { data, error } = await supabase
+      .from("user")
+      .select("*")
+      .eq("id", userId)
+      .single();
+
+    if (error || !data) {
+      return res.status(404).json({ error: "Utilisateur introuvable" });
+    }
+
+    // Supprime le mot de passe pour la sécurité
+    const { password, ...safeUser } = data;
+
+    res.json({ user: safeUser });
+  } catch (err) {
+    res.status(403).json({ error: "Token invalide ou expiré" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
