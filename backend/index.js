@@ -1,17 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
 const { createClient } = require("@supabase/supabase-js");
 
-const supabaseURL = "https://qwnvawfjlnguyzzwksme.supabase.co";
-const supabaseServiceKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3bnZhd2ZqbG5ndXl6endrc21lIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODIxNzYwNiwiZXhwIjoyMDczNzkzNjA2fQ.rdzQ1VFMdu2NDu00fCLPCL0ziADnSfcaTeXH2NQC4pU";
+const supabaseURL = process.env.SUPABASE_URL;
+const supabaseServiceKey = process.env.SUBASE_SERVICE_KEY;
+const jwtSecret = process.env.JWT_SECRET;
 
 const supabase = createClient(supabaseURL, supabaseServiceKey);
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -62,7 +63,7 @@ app.post("/api/login", async (req, res) => {
 
     const token = jwt.sign(
       { userId: data.id, email: data.courriel },
-      "cleSuperSecrete!",
+      jwtSecret,
       { expiresIn: "1h" }
     );
 
@@ -79,7 +80,7 @@ app.get("/api/users/me", async (req, res) => {
 
   // Vérifie le token
   try {
-    const decoded = jwt.verify(token, "cleSuperSecrete!");
+    const decoded = jwt.verify(token, jwtSecret);
     const userId = decoded.userId;
 
     const { data, error } = await supabase
