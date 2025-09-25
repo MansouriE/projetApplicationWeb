@@ -102,6 +102,38 @@ app.get("/api/users/me", async (req, res) => {
   }
 });
 
+app.patch("/api/users/me", async (req, res) => {
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Token manquant" });
+
+  try {
+    const decoded = jwt.verify(token, "cleSuperSecrete!");
+    // champs autorisés à la mise à jour
+    const { prenom, nom, adresse, code_postal, courriel } = req.body;
+
+    const update = {};
+    if (prenom !== undefined) update.prenom = prenom;
+    if (nom !== undefined) update.nom = nom;
+    if (adresse !== undefined) update.adresse = adresse;
+    if (code_postal !== undefined) update.code_postal = code_postal;
+    if (courriel !== undefined) update.courriel = courriel;
+
+    const { data, error } = await supabase
+      .from("user")
+      .update(update)
+      .eq("id", decoded.userId)
+      .select("*")
+      .single();
+
+    if (error) return res.status(400).json({ error: error.message });
+    const { password, ...safeUser } = data;
+    res.json({ user: safeUser });
+  } catch (e) {
+    res.status(403).json({ error: "Token invalide ou expiré" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });

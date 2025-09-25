@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // <-- importe useNavigate
 import "./Profile.css";
 
 function Profile() {
   const { token, isLoggedIn } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -69,9 +71,15 @@ function Profile() {
       <p>
         <strong>Email :</strong> {user.courriel}
       </p>
-      <p>
-        <strong>Téléphone :</strong> {user.phoneNumber || "?"}
-      </p>
+
+      <div className="profile-actions">
+        <button
+          className="profile-edit-btn"
+          onClick={() => navigate("/profile/edit")}
+        >
+          Modifier mon compte
+        </button>
+      </div>
     </div>
   );
 }
