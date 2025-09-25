@@ -11,7 +11,7 @@ function Profile() {
     const fetchProfile = async () => {
       try {
         const response = await fetch(
-          "https://backend-projet-web.onrender.com/api/user/me",
+          "https://projetapplicationweb-1.onrender.com/api/user/me",
           {
             headers: {
               "Content-Type": "application/json",
