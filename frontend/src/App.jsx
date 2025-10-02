@@ -11,7 +11,8 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ marginTop: "100px", textAlign: "center" }}>
+      
+      <div className="mt-24 text-center">
         <Routes>
           <Route path="/" element={<PageHome />} />
           <Route path="/login" element={<Login />} />
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile/edit" element={<UpdateProfile />} />
         </Routes>
       </div>
+      
     </Router>
   );
 }
