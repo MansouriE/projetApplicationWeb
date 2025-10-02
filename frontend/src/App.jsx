@@ -10,14 +10,17 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div style={{ marginTop: "100px", textAlign: "center" }}>
+      
+      <div className="mt-24 text-center">
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <h1>Bienvenue sur la page d’accueil</h1>
-                <p>
+                <h1 className="text-4xl font-bold text-blue-600 mb-4">
+                  Bienvenue sur la page d'accueil
+                </h1>
+                <p className="text-lg text-gray-700">
                   Ceci est une app React avec une barre de navigation en haut.
                 </p>
               </>
@@ -29,6 +32,7 @@ function App() {
           <Route path="/profile/edit" element={<UpdateProfile />} />
         </Routes>
       </div>
+      
     </Router>
   );
 }
