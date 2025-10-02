@@ -5,6 +5,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Profile from "./components/profile/Profile";
 import UpdateProfile from "./components/updateProfile/UpdateProfile";
+import PageHome from "./components/home/PageHome";
 
 function App() {
   return (
@@ -12,17 +13,7 @@ function App() {
       <Navbar />
       <div style={{ marginTop: "100px", textAlign: "center" }}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <h1>Bienvenue sur la page d’accueil</h1>
-                <p>
-                  Ceci est une app React avec une barre de navigation en haut.
-                </p>
-              </>
-            }
-          />
+          <Route path="/" element={<PageHome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
