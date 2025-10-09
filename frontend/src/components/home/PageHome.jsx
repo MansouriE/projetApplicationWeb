@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Article from "./Article";
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,6 @@ function HomePage() {
 
     fetchArticles();
   }, []);
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
