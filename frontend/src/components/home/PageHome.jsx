@@ -1,5 +1,6 @@
 import React from "react";
 import Article from "./Article";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const articles = [
@@ -26,6 +27,11 @@ function HomePage() {
   return (
     <div>
       <h1>Liste des articles</h1>
+      <div className="toolbar">
+        <Link to="/createArticle">
+          <button>Ajouter un article</button>
+        </Link>
+      </div>
       {articles.map((article, index) => (
         <Article
           key={index}
