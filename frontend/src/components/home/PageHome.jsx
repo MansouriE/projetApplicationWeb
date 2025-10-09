@@ -10,7 +10,9 @@ function HomePage() {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await fetch("/api/getArticles");
+        const response = await fetch(
+          "https://projetapplicationweb-1.onrender.com/api/getArticles"
+        );
         if (!response.ok)
           throw new Error("Erreur lors du chargement des articles");
 
