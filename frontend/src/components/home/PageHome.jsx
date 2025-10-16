@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Article from "./Article";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -7,7 +7,7 @@ function HomePage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchArticles() {
