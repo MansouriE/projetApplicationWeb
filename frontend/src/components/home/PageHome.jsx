@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Article from "./Article";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function HomePage() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isLoggedIn, logout } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchArticles() {
@@ -31,11 +33,13 @@ function HomePage() {
   return (
     <div>
       <h1>Liste des articles</h1>
-      <div className="toolbar">
-        <Link to="/createArticle">
-          <button>Ajouter un article</button>
-        </Link>
-      </div>
+      {isLoggedIn && (
+        <div className="toolbar">
+          <Link to="/createArticle">
+            <button>Ajouter un article</button>
+          </Link>
+        </div>
+      )}
 
       {loading && <p>Chargement...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
