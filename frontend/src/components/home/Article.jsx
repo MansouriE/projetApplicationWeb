@@ -6,18 +6,23 @@ function Article({ nom, description, prix, etat }) {
       <p className="text-gray-600 mb-4 line-clamp-3">{description}</p>
       <div className="flex justify-between items-center mb-3">
         <span className="text-lg font-semibold text-green-600">{prix} $</span>
-        <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-          etat === "Neuf" 
-            ? "bg-green-100 text-green-800" 
-            : etat === "Bon état" 
-            ? "bg-blue-100 text-blue-800" 
-            : "bg-red-100 text-red-800"
-        }`}>
+        <span
+          className={`px-3 py-1 rounded-full text-sm font-medium ${
+            etat === "Neuf"
+              ? "bg-green-100 text-green-800"
+              : etat === "Bon état"
+              ? "bg-blue-100 text-blue-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
           {etat}
         </span>
       </div>
       <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
         Voir détails
+      </button>
+      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+        Bids
       </button>
     </div>
   );
