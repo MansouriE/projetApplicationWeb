@@ -31,10 +31,8 @@ function AddArticle() {
       return;
     }
 
-    // (optionnel) Valider l’enum côté front
     const etatsAutorises = ["Neuf", "Bon", "Usagé", "Disponible"];
     if (!etatsAutorises.includes(etat)) {
-      // adapte à tes vraies valeurs d’enum
       alert(`L'état doit être parmi: ${etatsAutorises.join(", ")}`);
       return;
     }
@@ -47,18 +45,17 @@ function AddArticle() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // utile si ton API le requiert
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
             nom,
             description,
-            prix: prixNum, // envoie un nombre
+            prix: prixNum,
             etat,
           }),
         }
       );
 
-      // Lis TOUJOURS le corps en texte, puis parse si c'est JSON
       const contentType = response.headers.get("content-type") || "";
       const rawText = await response.text();
       const data = contentType.includes("application/json")
@@ -76,7 +73,6 @@ function AddArticle() {
       setPrix("");
       setEtat("");
 
-      // Redirection (ajuste la route selon ton app)
       navigate("/profile");
     } catch (error) {
       console.error(error);
@@ -87,39 +83,63 @@ function AddArticle() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Nom"
-        value={nom}
-        onChange={(e) => setNom(e.target.value)}
-      />
-      <br />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <br />
-      <input
-        type="number"
-        placeholder="Prix"
-        value={prix}
-        onChange={(e) => setPrix(e.target.value)}
-      />
-      <br />
-      {/* Idéalement un <select> pour un enum */}
-      <input
-        type="text"
-        placeholder="État (ex: Neuf)"
-        value={etat}
-        onChange={(e) => setEtat(e.target.value)}
-      />
-      <br />
-      <button type="submit" disabled={submitting}>
-        {submitting ? "Création..." : "Créer l’article"}
-      </button>
-    </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md space-y-4"
+      >
+        <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
+          Ajouter un article
+        </h2>
+
+        <input
+          type="text"
+          placeholder="Nom"
+          value={nom}
+          onChange={(e) => setNom(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none h-28 resize-none"
+        />
+
+        <input
+          type="number"
+          placeholder="Prix"
+          value={prix}
+          onChange={(e) => setPrix(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        />
+
+        <select
+          value={etat}
+          onChange={(e) => setEtat(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+        >
+          <option value="">Sélectionner l’état</option>
+          <option value="Neuf">Neuf</option>
+          <option value="Bon">Bon</option>
+          <option value="Usagé">Usagé</option>
+          <option value="Disponible">Disponible</option>
+        </select>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className={`w-full py-3 rounded-lg text-white font-semibold transition-all duration-300 ${
+            submitting
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
+        >
+          {submitting ? "Création..." : "Créer l’article"}
+        </button>
+      </form>
+    </div>
   );
 }
 
