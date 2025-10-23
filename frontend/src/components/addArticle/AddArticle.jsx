@@ -120,7 +120,7 @@ function AddArticle() {
           onChange={(e) => setEtat(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
         >
-          <option value="">Sélectionner l’état</option>
+          <option value="">Sélectionner l'état</option>
           <option value="Neuf">Neuf</option>
           <option value="Bon">Bon</option>
           <option value="Usagé">Usagé</option>
@@ -136,7 +136,7 @@ function AddArticle() {
               : "bg-blue-600 hover:bg-blue-700"
           }`}
         >
-          {submitting ? "Création..." : "Créer l’article"}
+          {submitting ? "Création..." : "Créer l'article"}
         </button>
       </form>
     </div>
