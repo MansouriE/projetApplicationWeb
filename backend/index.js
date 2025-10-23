@@ -157,6 +157,7 @@ app.patch("/api/users/me", async (req, res) => {
 });
 
 // Route pour récupérer les articles d'un utilisateur
+/*
 app.get("/api/users/me/articles", async (req, res) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -184,6 +185,7 @@ app.get("/api/users/me/articles", async (req, res) => {
     res.status(500).json({ error: "Erreur lors de la récupération des articles" });
   }
 });
+*/
 
 app.get("/api/getArticles", async (req, res) => {
   try {
@@ -208,7 +210,6 @@ app.post("/api/createArticle", async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, jwtSecret);
-    const userId = decoded.userId;
 
     const { nom, description, prix, etat } = req.body;
 
@@ -234,13 +235,16 @@ app.post("/api/createArticle", async (req, res) => {
         nom, 
         description, 
         prix: prixNum, 
-        etat, 
-        user_id: userId
+        etat
+
       }])
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
+    }
 
     return res.status(201).json({ message: "Article créé", data });
   } catch (err) {
