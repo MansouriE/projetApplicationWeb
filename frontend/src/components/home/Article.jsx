@@ -28,9 +28,6 @@ function Article({ id, nom, description, prix, etat }) {
           {etat}
         </span>
       </div>
-      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
-        Voir détails
-      </button>
       <button
         onClick={bidClic}
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
