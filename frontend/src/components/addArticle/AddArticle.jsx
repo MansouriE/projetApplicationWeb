@@ -7,6 +7,9 @@ function AddArticle() {
   const [description, setDescription] = useState("");
   const [prix, setPrix] = useState("");
   const [etat, setEtat] = useState("");
+  const [acceptsBids, setAcceptsBids] = useState(false);
+  const [startingBid, setStartingBid] = useState("");
+  const [bidDuration, setBidDuration] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -31,6 +34,23 @@ function AddArticle() {
       return;
     }
 
+    if (acceptsBids) {
+      if (!startingBid) {
+        alert("Veuillez entrer un prix de départ pour les bids !");
+        return;
+      }
+      const startingBidNum = Number(startingBid);
+      if (Number.isNaN(startingBidNum) || startingBidNum <= 0) {
+        alert("Le prix de départ doit être un nombre positif !");
+        return;
+      }
+
+      if (!bidDuration) {
+        alert("Veuillez sélectionner une durée pour le bid !");
+        return;
+      }
+    }
+
     const etatsAutorises = ["Neuf", "Bon", "Usagé", "Disponible"];
     if (!etatsAutorises.includes(etat)) {
       alert(`L'état doit être parmi: ${etatsAutorises.join(", ")}`);
@@ -52,6 +72,9 @@ function AddArticle() {
             description,
             prix: prixNum,
             etat,
+            bid: acceptsBids,
+            bidPrixDepart: acceptsBids ? Number(startingBid) : null,
+            durerBid: acceptsBids ? bidDuration : null,
           }),
         }
       );
@@ -72,6 +95,9 @@ function AddArticle() {
       setDescription("");
       setPrix("");
       setEtat("");
+      setAcceptsBids(false);
+      setStartingBid("");
+      setBidDuration("");
 
       navigate("/profile");
     } catch (error) {
@@ -126,6 +152,44 @@ function AddArticle() {
           <option value="Usagé">Usagé</option>
           <option value="Disponible">Disponible</option>
         </select>
+
+        <label className="flex items-center space-x-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={acceptsBids}
+            onChange={(e) => setAcceptsBids(e.target.checked)}
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span className="text-gray-700">
+            Autoriser les bids pour cet article
+          </span>
+        </label>
+
+        {acceptsBids && (
+          <>
+            <input
+              type="number"
+              placeholder="Prix de départ des bids"
+              value={startingBid}
+              onChange={(e) => setStartingBid(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+
+            <select
+              value={bidDuration}
+              onChange={(e) => setBidDuration(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="">Durée du bid</option>
+              <option value="12h">12 heures</option>
+              <option value="1d">1 jour</option>
+              <option value="2d">2 jours</option>
+              <option value="7d">7 jours</option>
+              <option value="14d">14 jours</option>
+              <option value="30d">30 jours</option>
+            </select>
+          </>
+        )}
 
         <button
           type="submit"

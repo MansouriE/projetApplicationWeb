@@ -129,10 +129,10 @@ app.patch("/api/users/me", async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, jwtSecret);
-    
+
     const { prenom, nom, adresse, code_postal, courriel } = req.body;
     const update = {};
-    
+
     if (prenom !== undefined) update.prenom = prenom;
     if (nom !== undefined) update.nom = nom;
     if (adresse !== undefined) update.adresse = adresse;
@@ -147,7 +147,7 @@ app.patch("/api/users/me", async (req, res) => {
       .single();
 
     if (error) return res.status(400).json({ error: error.message });
-    
+
     const { password, ...safeUser } = data;
     res.json({ user: safeUser });
   } catch (e) {
@@ -203,7 +203,7 @@ app.get("/api/getArticles", async (req, res) => {
 app.post("/api/createArticle", async (req, res) => {
   const authHeader = req.headers.authorization || "";
   const token = authHeader.split(" ")[1];
-  
+
   if (!token) {
     return res.status(401).json({ error: "Token manquant" });
   }
@@ -211,7 +211,7 @@ app.post("/api/createArticle", async (req, res) => {
   try {
     const decoded = jwt.verify(token, jwtSecret);
 
-    const { nom, description, prix, etat } = req.body;
+    const { nom, description, prix, etat, bidPrixDepart, durerBid } = req.body;
 
     if (!nom || !description || prix == null || !etat) {
       return res.status(400).json({ error: "Champs manquants" });
@@ -229,24 +229,74 @@ app.post("/api/createArticle", async (req, res) => {
         .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
     }
 
-    const { data, error } = await supabase
-      .from("articles")
-      .insert([{ 
-        nom, 
-        description, 
-        prix: prixNum, 
-        etat
+    if (bid) {
+      if (!starting_bid || Number(starting_bid) <= 0) {
+        return res
+          .status(400)
+          .json({ error: "Prix de départ du bid invalide" });
+      }
 
-      }])
-      .select()
-      .single();
-
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
+      const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
+      if (!dureesAutorisees.includes(bid_duration)) {
+        return res
+          .status(400)
+          .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
+      }
     }
 
-    return res.status(201).json({ message: "Article créé", data });
+    let bid_end_date = null;
+    if (bid) {
+      const now = new Date();
+      switch (bid_duration) {
+        case "12h":
+          bid_end_date = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+          break;
+        case "1d":
+          bid_end_date = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+          break;
+        case "2d":
+          bid_end_date = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
+          break;
+        case "7d":
+          bid_end_date = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+          break;
+        case "14d":
+          bid_end_date = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+          break;
+        case "30d":
+          bid_end_date = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+          break;
+      }
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("articles")
+        .insert([
+          {
+            nom,
+            description,
+            prix: prixNum,
+            etat,
+            bid,
+            starting_bid: bid ? Number(starting_bid) : null,
+            bid_duration: bid ? bid_duration : null,
+            bid_end_date,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+
+      return res.status(201).json({ message: "Article créé", data });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err.message });
+    }
   } catch (err) {
     console.error("Create article error:", err);
     return res.status(500).json({ error: err.message });
