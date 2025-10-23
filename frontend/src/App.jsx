@@ -6,6 +6,7 @@ import Register from "./components/register/Register";
 import Profile from "./components/profile/Profile";
 import UpdateProfile from "./components/updateProfile/UpdateProfile";
 import PageHome from "./components/home/PageHome";
+import PageBid from "./components/bids/PageBid";
 import CreateArticle from "./components/addArticle/AddArticle";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<UpdateProfile />} />
           <Route path="/createArticle" element={<CreateArticle />} />
+          <Route path="/bid/:id" element={<PageBid />} />
         </Routes>
       </div>
     </Router>

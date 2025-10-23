@@ -1,5 +1,15 @@
 import React from "react";
-function Article({ nom, description, prix, etat }) {
+import { useNavigate } from "react-router-dom";
+
+function Article({ id, nom, description, prix, etat }) {
+  const navigate = useNavigate();
+
+  const bidClic = () => {
+    navigate(`/bid/${id}`, {
+      state: { id, nom, description, prix, etat },
+    });
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl">
       <h2 className="text-2xl font-bold text-gray-800 mb-3 truncate">{nom}</h2>
@@ -21,7 +31,10 @@ function Article({ nom, description, prix, etat }) {
       <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
         Voir détails
       </button>
-      <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+      <button
+        onClick={bidClic}
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+      >
         Bids
       </button>
     </div>
