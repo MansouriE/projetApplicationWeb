@@ -84,6 +84,7 @@ function HomePage() {
             articles.map((article, index) => (
               <div key={index} className="flex justify-center">
                 <Article
+                  id={article.id_articles}
                   nom={article.nom}
                   description={article.description}
                   prix={article.prix}
