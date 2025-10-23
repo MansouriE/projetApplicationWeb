@@ -33,7 +33,7 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/createUser", async (req, res) => {
-  const { prenom, nom, courriel, password, pseudo, adresse, codePostal } =
+  const { prenom, nom, courriel, password, pseudo, adresse, code_postal } =
     req.body;
 
   if (
@@ -43,7 +43,7 @@ app.post("/api/createUser", async (req, res) => {
     !password ||
     !pseudo ||
     !adresse ||
-    !codePostal
+    !code_postal
   ) {
     return res.status(400).json({ error: "Champs manquants" });
   }
@@ -51,7 +51,7 @@ app.post("/api/createUser", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("user")
-      .insert({ prenom, nom, courriel, password, pseudo, adresse, codePostal })
+      .insert({ prenom, nom, courriel, password, pseudo, adresse, code_postal })
       .single();
 
     if (error) throw error;

@@ -42,7 +42,7 @@ function Register() {
             password: password,
             pseudo: pseudo,
             adresse: adresse,
-            codePostal: codePostal,
+            code_postal: codePostal,
           }),
         }
       );
