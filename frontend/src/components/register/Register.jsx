@@ -6,11 +6,22 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pseudo, setPseudo] = useState("");
+  const [adresse, setAdresse] = useState("");
+  const [codePostal, setCodePostal] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !password) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !pseudo ||
+      !adresse ||
+      !codePostal
+    ) {
       alert("Veuillez remplir tous les champs !");
       return;
     }
@@ -29,6 +40,9 @@ function Register() {
             nom: lastName,
             courriel: email,
             password: password,
+            pseudo: pseudo,
+            adresse: adresse,
+            code_postal: codePostal,
           }),
         }
       );
@@ -44,6 +58,9 @@ function Register() {
       setLastName("");
       setEmail("");
       setPassword("");
+      setPseudo("");
+      setAdresse("");
+      setCodePostal("");
     } catch (error) {
       alert("Erreur : " + error.message);
     }
@@ -68,6 +85,33 @@ function Register() {
           placeholder="Entrez votre nom"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+
+        <label>Pseudo</label>
+        <input
+          type="text"
+          placeholder="Entrez votre Pseudo"
+          value={pseudo}
+          onChange={(e) => setPseudo(e.target.value)}
+          required
+        />
+
+        <label>Adresse</label>
+        <input
+          type="text"
+          placeholder="Entrez votre Adresse"
+          value={adresse}
+          onChange={(e) => setAdresse(e.target.value)}
+          required
+        />
+
+        <label>Code Postal</label>
+        <input
+          type="text"
+          placeholder="Entrez votre Code Postal"
+          value={codePostal}
+          onChange={(e) => setCodePostal(e.target.value)}
           required
         />
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Article from "./Article";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
   const [articles, setArticles] = useState([]);
@@ -32,7 +32,6 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
-
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-800 mb-3">
@@ -51,44 +50,65 @@ function HomePage() {
               Trouvez ce qui vous correspond
             </p>
           </div>
-          <Link to="/createArticle" className="w-full sm:w-auto">
-            <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-              </svg>
-              Ajouter un article
-            </button>
-          </Link>
+          {isLoggedIn && (
+            <Link to="/createArticle" className="w-full sm:w-auto">
+              <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Ajouter un article
+              </button>
+            </Link>
+          )}
         </div>
         {loading && <p>Chargement...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {!loading && !error && articles.length === 0 && (
-        <p>Aucun article trouvé.</p>
-      )}
-      
+        {!loading && !error && articles.length === 0 && (
+          <p>Aucun article trouvé.</p>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          
-            {!loading &&
-        !error && 
-        articles.map((article, index) => (
-            <div key={index} className="flex justify-center">
-
-              <Article
-                nom={article.nom}
-                description={article.description}
-                prix={article.prix}
-                etat={article.etat}
-              />
-            </div>
-          ))}
+          {!loading &&
+            !error &&
+            articles.map((article, index) => (
+              <div key={index} className="flex justify-center">
+                <Article
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                />
+              </div>
+            ))}
         </div>
         {articles.length === 0 && (
           <div className="text-center py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20 p-12 max-w-md mx-auto">
               <div className="w-20 h-20 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2" />
+                <svg
+                  className="w-10 h-10 text-purple-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2"
+                  />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-3">

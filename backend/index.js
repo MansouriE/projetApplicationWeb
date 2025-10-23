@@ -14,7 +14,18 @@ const supabase = createClient(supabaseURL, supabaseServiceKey);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "https://projet-application-web.vercel.app",
+  ],
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.get("/api/hello", (req, res) => {
@@ -22,16 +33,25 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/createUser", async (req, res) => {
-  const { prenom, nom, courriel, password } = req.body;
+  const { prenom, nom, courriel, password, pseudo, adresse, code_postal } =
+    req.body;
 
-  if (!prenom || !nom || !courriel || !password) {
+  if (
+    !prenom ||
+    !nom ||
+    !courriel ||
+    !password ||
+    !pseudo ||
+    !adresse ||
+    !code_postal
+  ) {
     return res.status(400).json({ error: "Champs manquants" });
   }
 
   try {
     const { data, error } = await supabase
       .from("user")
-      .insert({ prenom, nom, courriel, password })
+      .insert({ prenom, nom, courriel, password, pseudo, adresse, code_postal })
       .single();
 
     if (error) throw error;
@@ -145,6 +165,43 @@ app.get("/api/getArticles", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch articles" });
   }
 });
+
+app.post("/api/createArticle", async (req, res) => {
+  const { nom, description, prix, etat } = req.body;
+
+  if (!nom || !description || prix == null || !etat) {
+    return res.status(400).json({ error: "Champs manquants" });
+  }
+
+  const prixNum = Number(prix);
+  if (Number.isNaN(prixNum) || prixNum <= 0) {
+    return res.status(400).json({ error: "Prix invalide" });
+  }
+
+  // Valider enum si besoin (optionnel)
+  const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
+  if (!etatsAutorises.includes(etat)) {
+    return res
+      .status(400)
+      .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .insert([{ nom, description, prix: prixNum, etat }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return res.status(201).json({ message: "Article créé", data });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
