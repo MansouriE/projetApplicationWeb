@@ -33,16 +33,25 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/createUser", async (req, res) => {
-  const { prenom, nom, courriel, password } = req.body;
+  const { prenom, nom, courriel, password, pseudo, adresse, codePostal } =
+    req.body;
 
-  if (!prenom || !nom || !courriel || !password) {
+  if (
+    !prenom ||
+    !nom ||
+    !courriel ||
+    !password ||
+    !pseudo ||
+    !adresse ||
+    !codePostal
+  ) {
     return res.status(400).json({ error: "Champs manquants" });
   }
 
   try {
     const { data, error } = await supabase
       .from("user")
-      .insert({ prenom, nom, courriel, password })
+      .insert({ prenom, nom, courriel, password, pseudo, adresse, codePostal })
       .single();
 
     if (error) throw error;
