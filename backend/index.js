@@ -230,14 +230,14 @@ app.post("/api/createArticle", async (req, res) => {
     }
 
     let bid_end_date = null;
-    let starting_bid = null;
+    let bidPrixDeDepart = null;
     let bid_duration = null;
 
     if (bid) {
-      starting_bid = Number(bidPrixDepart);
+      bidPrixDeDepart = Number(bidPrixDepart);
       bid_duration = durerBid;
 
-      if (!starting_bid || starting_bid <= 0) {
+      if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
         return res
           .status(400)
           .json({ error: "Prix de départ du bid invalide" });
@@ -271,7 +271,7 @@ app.post("/api/createArticle", async (req, res) => {
           prix: prixNum,
           etat,
           bid,
-          starting_bid,
+          bidPrixDeDepart,
           bid_duration,
           bid_end_date,
           user_id: decoded.userId, // Optionnel mais utile
