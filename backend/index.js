@@ -7,7 +7,7 @@ const { createClient } = require("@supabase/supabase-js");
 
 const supabaseURL = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUBASE_SERVICE_KEY;
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret = process.env.JWT_SECRET || "cleSuperSecrete!";
 
 const supabase = createClient(supabaseURL, supabaseServiceKey);
 
@@ -33,22 +33,32 @@ app.get("/api/hello", (req, res) => {
 });
 
 app.post("/api/createUser", async (req, res) => {
-  const { prenom, nom, courriel, password } = req.body;
+  const { prenom, nom, courriel, password, pseudo, adresse, code_postal } =
+    req.body;
 
-  if (!prenom || !nom || !courriel || !password) {
+  if (
+    !prenom ||
+    !nom ||
+    !courriel ||
+    !password ||
+    !pseudo ||
+    !adresse ||
+    !code_postal
+  ) {
     return res.status(400).json({ error: "Champs manquants" });
   }
 
   try {
     const { data, error } = await supabase
       .from("user")
-      .insert({ prenom, nom, courriel, password })
+      .insert({ prenom, nom, courriel, password, pseudo, adresse, code_postal })
       .single();
 
     if (error) throw error;
 
     res.status(200).json({ message: "Utilisateur créé", data });
   } catch (error) {
+    console.error("Create user error:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -80,6 +90,7 @@ app.post("/api/login", async (req, res) => {
 
     res.status(200).json({ message: "Connexion réussie", token, user: data });
   } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ error: error.message });
   }
 });
@@ -89,7 +100,6 @@ app.get("/api/users/me", async (req, res) => {
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Token manquant" });
 
-  // Vérifie le token
   try {
     const decoded = jwt.verify(token, jwtSecret);
     const userId = decoded.userId;
@@ -104,11 +114,10 @@ app.get("/api/users/me", async (req, res) => {
       return res.status(404).json({ error: "Utilisateur introuvable" });
     }
 
-    // Supprime le mot de passe pour la sécurité
     const { password, ...safeUser } = data;
-
     res.json({ user: safeUser });
   } catch (err) {
+    console.error("Get user error:", err);
     res.status(403).json({ error: "Token invalide ou expiré" });
   }
 });
@@ -119,11 +128,11 @@ app.patch("/api/users/me", async (req, res) => {
   if (!token) return res.status(401).json({ error: "Token manquant" });
 
   try {
-    const decoded = jwt.verify(token, "cleSuperSecrete!");
-    // champs autorisés à la mise à jour
-    const { prenom, nom, adresse, code_postal, courriel } = req.body;
+    const decoded = jwt.verify(token, jwtSecret);
 
+    const { prenom, nom, adresse, code_postal, courriel } = req.body;
     const update = {};
+
     if (prenom !== undefined) update.prenom = prenom;
     if (nom !== undefined) update.nom = nom;
     if (adresse !== undefined) update.adresse = adresse;
@@ -138,19 +147,53 @@ app.patch("/api/users/me", async (req, res) => {
       .single();
 
     if (error) return res.status(400).json({ error: error.message });
+
     const { password, ...safeUser } = data;
     res.json({ user: safeUser });
   } catch (e) {
+    console.error("Update user error:", e);
     res.status(403).json({ error: "Token invalide ou expiré" });
   }
 });
+
+// Route pour récupérer les articles d'un utilisateur
+/*
+app.get("/api/users/me/articles", async (req, res) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  
+  if (!token) return res.status(401).json({ error: "Token manquant" });
+
+  try {
+    const decoded = jwt.verify(token, jwtSecret);
+    const userId = decoded.userId;
+
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
+    }
+
+    res.json({ articles: data || [] });
+  } catch (err) {
+    console.error("Get user articles error:", err);
+    res.status(500).json({ error: "Erreur lors de la récupération des articles" });
+  }
+});
+*/
+
 app.get("/api/getArticles", async (req, res) => {
   try {
     const { data, error } = await supabase.from("articles").select("*");
 
     if (error) throw error;
 
-    res.status(200).json(data);
+    res.status(200).json(data || []);
   } catch (error) {
     console.error("Error fetching articles:", error.message);
     res.status(500).json({ error: "Failed to fetch articles" });
@@ -158,37 +201,104 @@ app.get("/api/getArticles", async (req, res) => {
 });
 
 app.post("/api/createArticle", async (req, res) => {
-  const { nom, description, prix, etat } = req.body;
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.split(" ")[1];
 
-  if (!nom || !description || prix == null || !etat) {
-    return res.status(400).json({ error: "Champs manquants" });
-  }
-
-  const prixNum = Number(prix);
-  if (Number.isNaN(prixNum) || prixNum <= 0) {
-    return res.status(400).json({ error: "Prix invalide" });
-  }
-
-  // Valider enum si besoin (optionnel)
-  const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
-  if (!etatsAutorises.includes(etat)) {
-    return res
-      .status(400)
-      .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
+  if (!token) {
+    return res.status(401).json({ error: "Token manquant" });
   }
 
   try {
-    const { data, error } = await supabase
-      .from("articles")
-      .insert([{ nom, description, prix: prixNum, etat }])
-      .select()
-      .single();
+    const decoded = jwt.verify(token, jwtSecret);
 
-    if (error) throw error;
+    const { nom, description, prix, etat, bidPrixDepart, durerBid } = req.body;
 
-    return res.status(201).json({ message: "Article créé", data });
+    if (!nom || !description || prix == null || !etat) {
+      return res.status(400).json({ error: "Champs manquants" });
+    }
+
+    const prixNum = Number(prix);
+    if (Number.isNaN(prixNum) || prixNum <= 0) {
+      return res.status(400).json({ error: "Prix invalide" });
+    }
+
+    const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
+    if (!etatsAutorises.includes(etat)) {
+      return res
+        .status(400)
+        .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
+    }
+
+    if (bid) {
+      if (!starting_bid || Number(starting_bid) <= 0) {
+        return res
+          .status(400)
+          .json({ error: "Prix de départ du bid invalide" });
+      }
+
+      const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
+      if (!dureesAutorisees.includes(bid_duration)) {
+        return res
+          .status(400)
+          .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
+      }
+    }
+
+    let bid_end_date = null;
+    if (bid) {
+      const now = new Date();
+      switch (bid_duration) {
+        case "12h":
+          bid_end_date = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+          break;
+        case "1d":
+          bid_end_date = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+          break;
+        case "2d":
+          bid_end_date = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
+          break;
+        case "7d":
+          bid_end_date = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+          break;
+        case "14d":
+          bid_end_date = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+          break;
+        case "30d":
+          bid_end_date = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+          break;
+      }
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from("articles")
+        .insert([
+          {
+            nom,
+            description,
+            prix: prixNum,
+            etat,
+            bid,
+            starting_bid: bid ? Number(starting_bid) : null,
+            bid_duration: bid ? bid_duration : null,
+            bid_end_date,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+
+      return res.status(201).json({ message: "Article créé", data });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: err.message });
+    }
   } catch (err) {
-    console.error(err);
+    console.error("Create article error:", err);
     return res.status(500).json({ error: err.message });
   }
 });
