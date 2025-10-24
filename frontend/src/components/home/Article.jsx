@@ -46,7 +46,7 @@ function Article({ id, nom, description, prix, etat, bid }) {
       </div>
 
       <button
-        onClick={bidClic}
+        onClick={() => {}}
         className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
       >
         Acheter
@@ -62,7 +62,7 @@ function Article({ id, nom, description, prix, etat, bid }) {
       )}
 
       <button
-        onClick={bidClic}
+        onClick={() => {}}
         className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
       >
         Favori
