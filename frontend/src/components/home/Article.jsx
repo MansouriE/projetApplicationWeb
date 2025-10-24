@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Article({ id, nom, description, prix, etat }) {
+function Article({ id, nom, description, prix, etat, bid }) {
   const navigate = useNavigate();
 
   const bidClic = () => {
@@ -46,7 +46,7 @@ function Article({ id, nom, description, prix, etat }) {
       </div>
 
       <button
-        onClick={acheterClic}
+        onClick={bidClic}
         className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
       >
         Acheter
@@ -62,7 +62,7 @@ function Article({ id, nom, description, prix, etat }) {
       )}
 
       <button
-        onClick={acheterClic}
+        onClick={bidClic}
         className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
       >
         Favori
