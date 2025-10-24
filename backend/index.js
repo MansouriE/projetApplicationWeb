@@ -210,8 +210,8 @@ app.post("/api/createArticle", async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, jwtSecret);
-
-    const { nom, description, prix, etat, bidPrixDepart, durerBid } = req.body;
+    const { nom, description, prix, etat, bid, bidPrixDepart, durerBid } =
+      req.body;
 
     if (!nom || !description || prix == null || !etat) {
       return res.status(400).json({ error: "Champs manquants" });
@@ -229,8 +229,15 @@ app.post("/api/createArticle", async (req, res) => {
         .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
     }
 
+    let bid_end_date = null;
+    let starting_bid = null;
+    let bid_duration = null;
+
     if (bid) {
-      if (!starting_bid || Number(starting_bid) <= 0) {
+      starting_bid = Number(bidPrixDepart);
+      bid_duration = durerBid;
+
+      if (!starting_bid || starting_bid <= 0) {
         return res
           .status(400)
           .json({ error: "Prix de départ du bid invalide" });
@@ -242,61 +249,43 @@ app.post("/api/createArticle", async (req, res) => {
           .status(400)
           .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
       }
-    }
 
-    let bid_end_date = null;
-    if (bid) {
       const now = new Date();
-      switch (bid_duration) {
-        case "12h":
-          bid_end_date = new Date(now.getTime() + 12 * 60 * 60 * 1000);
-          break;
-        case "1d":
-          bid_end_date = new Date(now.getTime() + 24 * 60 * 60 * 1000);
-          break;
-        case "2d":
-          bid_end_date = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
-          break;
-        case "7d":
-          bid_end_date = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-          break;
-        case "14d":
-          bid_end_date = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
-          break;
-        case "30d":
-          bid_end_date = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-          break;
-      }
+      const dureesMap = {
+        "12h": 12 * 60 * 60 * 1000,
+        "1d": 24 * 60 * 60 * 1000,
+        "2d": 2 * 24 * 60 * 60 * 1000,
+        "7d": 7 * 24 * 60 * 60 * 1000,
+        "14d": 14 * 24 * 60 * 60 * 1000,
+        "30d": 30 * 24 * 60 * 60 * 1000,
+      };
+      bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
     }
 
-    try {
-      const { data, error } = await supabase
-        .from("articles")
-        .insert([
-          {
-            nom,
-            description,
-            prix: prixNum,
-            etat,
-            bid,
-            starting_bid: bid ? Number(starting_bid) : null,
-            bid_duration: bid ? bid_duration : null,
-            bid_end_date,
-          },
-        ])
-        .select()
-        .single();
+    const { data, error } = await supabase
+      .from("articles")
+      .insert([
+        {
+          nom,
+          description,
+          prix: prixNum,
+          etat,
+          bid,
+          starting_bid,
+          bid_duration,
+          bid_end_date,
+          user_id: decoded.userId, // Optionnel mais utile
+        },
+      ])
+      .select()
+      .single();
 
-      if (error) {
-        console.error("Supabase error:", error);
-        throw error;
-      }
-
-      return res.status(201).json({ message: "Article créé", data });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: err.message });
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
     }
+
+    return res.status(201).json({ message: "Article créé", data });
   } catch (err) {
     console.error("Create article error:", err);
     return res.status(500).json({ error: err.message });
