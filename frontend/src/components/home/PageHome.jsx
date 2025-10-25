@@ -89,6 +89,7 @@ function HomePage() {
                   description={article.description}
                   prix={article.prix}
                   etat={article.etat}
+                  bid={article.bid}
                 />
               </div>
             ))}
