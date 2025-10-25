@@ -18,6 +18,33 @@ function PageBid() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // ---- Compte à rebours ----
+  const [timeLeft, setTimeLeft] = useState("");
+
+  function formatTimeLeft(endDate) {
+    if (!endDate) return "Aucune durée";
+    const end = new Date(endDate);
+    const now = new Date();
+    const diff = end - now;
+    if (diff <= 0) return "⛔ Enchère terminée";
+
+    const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    return `${jours}j ${heures}h ${minutes}m restants`;
+  }
+
+  useEffect(() => {
+    if (!article?.bid_end_date) return;
+    // calcul immédiat
+    setTimeLeft(formatTimeLeft(article.bid_end_date));
+    // mise à jour chaque minute
+    const timer = setInterval(() => {
+      setTimeLeft(formatTimeLeft(article.bid_end_date));
+    }, 60_000);
+    return () => clearInterval(timer);
+  }, [article?.bid_end_date]);
+
   const prixDepart = Number(
     (article && (article.bidPrixDeDepart ?? article.prix)) || 0
   );
@@ -28,6 +55,10 @@ function PageBid() {
       : 0;
     return Math.max(prixDepart, maxBid);
   }, [bids, prixDepart]);
+
+  const isEnded =
+    article?.bid_end_date &&
+    new Date(article.bid_end_date).getTime() <= Date.now();
 
   // --- util: fetch des bids pour l'article
   const fetchBids = async () => {
@@ -62,6 +93,7 @@ function PageBid() {
     e.preventDefault();
     setMessage("");
 
+    if (isEnded) return setMessage("⛔ Enchère terminée.");
     const montant = Number(bidMontant);
     if (!Number.isFinite(montant))
       return setMessage("Entrez un nombre valide.");
@@ -116,7 +148,7 @@ function PageBid() {
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{article.nom}</h1>
       <p className="text-gray-600 mb-6">{article.description}</p>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         <span className="text-xl font-semibold text-green-700">
           Prix de départ : {prixDepart} $
         </span>
@@ -136,7 +168,18 @@ function PageBid() {
         </span>
       </div>
 
-      <div className="mb-8">
+      {/* Durée / temps restant */}
+      {article.bid_end_date && (
+        <p
+          className={`text-sm mt-1 ${
+            isEnded ? "text-red-600" : "text-gray-600"
+          } italic`}
+        >
+          ⏳ {timeLeft}
+        </p>
+      )}
+
+      <div className="mt-6 mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-3">Bids</h2>
         {loading ? (
           <p className="text-gray-500">Chargement…</p>
@@ -173,16 +216,19 @@ function PageBid() {
           onChange={(e) => setBidMontant(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder={`> ${prixCourant}`}
+          disabled={isEnded}
         />
         <button
           type="submit"
           disabled={
+            isEnded ||
             !bidMontant ||
             Number(bidMontant) <= prixCourant ||
             !Number.isFinite(Number(bidMontant))
           }
           className={`w-full text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200
             ${
+              isEnded ||
               !bidMontant ||
               Number(bidMontant) <= prixCourant ||
               !Number.isFinite(Number(bidMontant))
@@ -190,7 +236,7 @@ function PageBid() {
                 : "bg-blue-500 hover:bg-blue-600"
             }`}
         >
-          Placer le bid
+          {isEnded ? "Enchère terminée" : "Placer le bid"}
         </button>
       </form>
 
