@@ -6,7 +6,7 @@ function Article({ id, nom, description, prix, etat, bid }) {
 
   const bidClic = () => {
     navigate(`/bid/${id}`, {
-      state: { id, nom, description, prix, etat },
+      state: { ...props }, // <-- Envoie toutes les infos au frontend
     });
   };
 
