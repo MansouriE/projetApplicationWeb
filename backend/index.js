@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const { createClient } = require("@supabase/supabase-js");
 
 const supabaseURL = process.env.SUPABASE_URL;
-const supabaseServiceKey = process.env.SUBASE_SERVICE_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 const jwtSecret = process.env.JWT_SECRET || "cleSuperSecrete!";
 
 const supabase = createClient(supabaseURL, supabaseServiceKey);
@@ -200,118 +200,93 @@ app.get("/api/getArticles", async (req, res) => {
   }
 });
 
-app.post("/api/createArticle", async (req, res) => {
-  const authHeader = req.headers.authorization || "";
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ error: "Token manquant" });
-  }
-
+app.post("/api/bids", async (req, res) => {
   try {
-    const decoded = jwt.verify(token, jwtSecret);
-    const { nom, description, prix, etat, bid, bidPrixDepart, durerBid } =
-      req.body;
+    // --- Auth (usr_id vient du token)
+    const authHeader = req.headers.authorization || "";
+    const token = authHeader.split(" ")[1];
+    if (!token) return res.status(401).json({ error: "Token manquant" });
 
-    if (!nom || !description || prix == null || !etat) {
-      return res.status(400).json({ error: "Champs manquants" });
+    let decoded;
+    try {
+      decoded = jwt.verify(token, jwtSecret);
+    } catch {
+      return res.status(403).json({ error: "Token invalide ou expiré" });
     }
+    const usrId = decoded.userId;
 
-    const prixNum = Number(prix);
-    if (Number.isNaN(prixNum) || prixNum <= 0) {
-      return res.status(400).json({ error: "Prix invalide" });
-    }
+    // --- Inputs
+    const article_id = Number(req.body.article_id);
+    const amount = Number(req.body.amount);
 
-    const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
-    if (!etatsAutorises.includes(etat)) {
+    if (
+      !Number.isFinite(article_id) ||
+      !Number.isFinite(amount) ||
+      amount <= 0
+    ) {
       return res
         .status(400)
-        .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
+        .json({ error: "Paramètres invalides (article_id, amount)" });
     }
 
-    let bid_end_date = null;
-    let bidPrixDeDepart = null;
-    let bid_duration = null;
-
-    if (bid) {
-      bidPrixDeDepart = Number(bidPrixDepart);
-      bid_duration = durerBid;
-
-      if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
-        return res
-          .status(400)
-          .json({ error: "Prix de départ du bid invalide" });
-      }
-
-      const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
-      if (!dureesAutorisees.includes(bid_duration)) {
-        return res
-          .status(400)
-          .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
-      }
-
-      const now = new Date();
-      const dureesMap = {
-        "12h": 12 * 60 * 60 * 1000,
-        "1d": 24 * 60 * 60 * 1000,
-        "2d": 2 * 24 * 60 * 60 * 1000,
-        "7d": 7 * 24 * 60 * 60 * 1000,
-        "14d": 14 * 24 * 60 * 60 * 1000,
-        "30d": 30 * 24 * 60 * 60 * 1000,
-      };
-      bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
-    }
-
-    const { data, error } = await supabase
+    // --- Récupère l'article
+    const { data: article, error: artErr } = await supabase
       .from("articles")
-      .insert([
-        {
-          nom,
-          description,
-          prix: prixNum,
-          etat,
-          bid,
-          bidPrixDeDepart,
-          bid_duration,
-          bid_end_date,
-          user_id: decoded.userId, // Optionnel mais utile
-        },
-      ])
-      .select()
+      .select("id_articles, prix, bid, bidPrixDeDepart, bid_end_date")
+      .eq("id_articles", article_id)
       .single();
 
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
+    if (artErr || !article)
+      return res.status(404).json({ error: "Article introuvable" });
+    if (!article.bid)
+      return res
+        .status(400)
+        .json({ error: "Les enchères ne sont pas activées pour cet article" });
+    if (
+      article.bid_end_date &&
+      new Date(article.bid_end_date).getTime() <= Date.now()
+    ) {
+      return res.status(400).json({ error: "Enchère terminée" });
     }
 
-    return res.status(201).json({ message: "Article créé", data });
-  } catch (err) {
-    console.error("Create article error:", err);
-    return res.status(500).json({ error: err.message });
-  }
-});
+    const prixDepart = Number(article.bidPrixDeDepart ?? article.prix) || 0;
 
-app.get("/api/bids", async (req, res) => {
-  try {
-    const articleId = req.query.article_id;
-
-    if (!articleId) {
-      return res.status(400).json({ error: "article_id est requis" });
-    }
-
-    const { data, error } = await supabase
+    // --- Max courant
+    const { data: topBid, error: topErr } = await supabase
       .from("bids")
-      .select("*")
-      .eq("article_id", Number(articleId))
-      .order("amount", { ascending: false }); // tri du plus grand au plus petit
+      .select("amount")
+      .eq("article_id", article_id)
+      .order("amount", { ascending: false })
+      .limit(1)
+      .maybeSingle();
 
-    if (error) throw error;
+    if (topErr) {
+      console.error("Top bid error:", topErr);
+      return res
+        .status(500)
+        .json({ error: "Erreur vérification du prix courant" });
+    }
 
-    res.status(200).json(data || []);
-  } catch (error) {
-    console.error("Error fetching bids:", error.message);
-    res.status(500).json({ error: "Failed to fetch bids" });
+    const currentMax = Math.max(prixDepart, Number(topBid?.amount ?? 0));
+    if (amount <= currentMax) {
+      return res
+        .status(400)
+        .json({ error: `Le bid doit être > ${currentMax}` });
+    }
+
+    // --- Insertion
+    const { data: inserted, error: insErr } = await supabase
+      .from("bids")
+      .insert([{ article_id, usr_id: usrId, amount }])
+      .select("id, article_id, usr_id, amount, created_at")
+      .single();
+
+    if (insErr) throw insErr;
+
+    return res.status(201).json({ message: "Bid créé", bid: inserted });
+  } catch (e) {
+    console.error("POST /api/bids error:", e);
+    return res.status(500).json({ error: "Erreur interne" });
   }
 });
 
