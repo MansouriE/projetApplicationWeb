@@ -3,12 +3,11 @@ import { useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const API_BASE =
-  import.meta?.env?.VITE_API_URL ||
-  "https://projetapplicationweb-1.onrender.com";
+  import.meta.env.VITE_API_URL || "https://projetapplicationweb-1.onrender.com";
 
 function PageBid() {
-  const { id } = useParams(); // id de l'article
-  const { state } = useLocation(); // { id, nom, description, prix, etat, ... }
+  const { id } = useParams();
+  const { state } = useLocation();
   const article = state;
 
   const { token: ctxToken } = useContext(AuthContext) || {};
@@ -19,12 +18,10 @@ function PageBid() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // prix de départ affiché (si tu stockes bidPrixDeDepart, on le prend sinon prix)
   const prixDepart = Number(
     (article && (article.bidPrixDeDepart ?? article.prix)) || 0
   );
 
-  // prix courant = max(prix de départ, plus gros bid)
   const prixCourant = useMemo(() => {
     const maxBid = bids.length
       ? Math.max(...bids.map((b) => Number(b.amount)))
@@ -32,31 +29,25 @@ function PageBid() {
     return Math.max(prixDepart, maxBid);
   }, [bids, prixDepart]);
 
-  // Charger les bids au mount
   useEffect(() => {
-    let cancelled = false;
-
-    async function fetchBids() {
+    let cancel = false;
+    (async () => {
       try {
         setLoading(true);
         const res = await fetch(`${API_BASE}/api/bids?article_id=${id}`, {
-          headers: { Accept: "application/json" },
           cache: "no-store",
         });
-        const raw = await res.text();
-        if (!res.ok) throw new Error(`HTTP ${res.status} – ${raw}`);
-        const data = JSON.parse(raw);
-        if (!cancelled) setBids(Array.isArray(data) ? data : []);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
+        if (!cancel) setBids(Array.isArray(data) ? data : []);
       } catch (e) {
-        if (!cancelled) setMessage(e.message || "Erreur chargement des bids");
+        if (!cancel) setMessage(e.message);
       } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancel) setLoading(false);
       }
-    }
-
-    fetchBids();
+    })();
     return () => {
-      cancelled = true;
+      cancel = true;
     };
   }, [id]);
 
@@ -65,67 +56,45 @@ function PageBid() {
     setMessage("");
 
     const montant = Number(bidMontant);
-    if (!Number.isFinite(montant)) {
-      setMessage("Entrez un nombre valide.");
-      return;
-    }
-    if (montant <= prixCourant) {
-      setMessage(`💡 Le bid doit être > ${prixCourant}.`);
-      return;
-    }
-    if (!token) {
-      setMessage("⛔ Vous devez être connecté pour enchérir.");
-      return;
-    }
+    if (!Number.isFinite(montant))
+      return setMessage("Entrez un nombre valide.");
+    if (montant <= prixCourant)
+      return setMessage(`💡 Le bid doit être > ${prixCourant}.`);
+    if (!token) return setMessage("⛔ Vous devez être connecté.");
 
     try {
       const res = await fetch(`${API_BASE}/api/bids`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // le backend récupère usr_id depuis le token
+          Authorization: `Bearer ${token}`, // ✅ usr_id sera déduit du token côté backend
         },
-        body: JSON.stringify({
-          article_id: Number(id),
-          amount: montant,
-        }),
+        body: JSON.stringify({ article_id: Number(id), amount: montant }),
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Erreur lors du bid");
 
-      const raw = await res.text();
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        throw new Error("Réponse invalide: " + raw?.slice(0, 200));
-      }
-
-      if (!res.ok) {
-        throw new Error(data?.error || "Erreur lors de la création du bid");
-      }
-
-      // MAJ optimiste (le backend renvoie { bid: {...} })
-      const inserted = data?.bid || data?.data || null;
-      if (inserted) {
-        setBids((prev) => [...prev, inserted]);
-      } else {
-        // fallback si le backend ne renvoie pas la ligne
-        setBids((prev) => [
-          ...prev,
-          { id: Date.now(), article_id: Number(id), amount: montant },
-        ]);
-      }
-
+      const inserted = data?.bid || data?.data;
+      setBids((prev) => [
+        ...prev,
+        inserted ?? {
+          id: Date.now(),
+          article_id: Number(id),
+          usr_id: "moi",
+          amount: montant,
+        },
+      ]);
       setBidMontant("");
       setMessage(`✅ Bid de ${montant} $ placé.`);
     } catch (e) {
-      setMessage(e.message || "Erreur réseau lors du bid.");
+      setMessage(e.message || "Erreur réseau");
     }
   };
 
   if (!article) {
     return (
       <p className="text-center mt-10 text-gray-600">
-        Aucun article trouvé. Ouvrez la page depuis la liste d’articles.
+        Aucun article trouvé. Ouvrez la page depuis la liste.
       </p>
     );
   }
@@ -155,12 +124,11 @@ function PageBid() {
         </span>
       </div>
 
-      {/* Liste des bids */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-3">Bids</h2>
         {loading ? (
           <p className="text-gray-500">Chargement…</p>
-        ) : bids.length > 0 ? (
+        ) : bids.length ? (
           <ul className="space-y-2">
             {[...bids]
               .sort((a, b) => Number(b.amount) - Number(a.amount))
@@ -183,7 +151,6 @@ function PageBid() {
         )}
       </div>
 
-      {/* Placer un bid */}
       <form onSubmit={faireUnBid} className="space-y-3">
         <label className="block text-gray-700 font-medium">Nouveau bid :</label>
         <input
