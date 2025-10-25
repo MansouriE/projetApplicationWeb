@@ -29,26 +29,33 @@ function PageBid() {
     return Math.max(prixDepart, maxBid);
   }, [bids, prixDepart]);
 
-  useEffect(() => {
-    let cancel = false;
-    (async () => {
+  // --- util: fetch des bids pour l'article
+  const fetchBids = async () => {
+    setLoading(true);
+    setMessage("");
+    try {
+      const res = await fetch(`${API_BASE}/api/bids?article_id=${id}`, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      const raw = await res.text();
+      let data;
       try {
-        setLoading(true);
-        const res = await fetch(`${API_BASE}/api/bids?article_id=${id}`, {
-          cache: "no-store",
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
-        if (!cancel) setBids(Array.isArray(data) ? data : []);
-      } catch (e) {
-        if (!cancel) setMessage(e.message);
-      } finally {
-        if (!cancel) setLoading(false);
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
       }
-    })();
-    return () => {
-      cancel = true;
-    };
+      if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
+      setBids(Array.isArray(data) ? data : []);
+    } catch (e) {
+      setMessage(e.message || "Erreur chargement bids");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBids(); /* au mount et quand id change */
   }, [id]);
 
   const faireUnBid = async (e) => {
@@ -67,23 +74,28 @@ function PageBid() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ✅ usr_id sera déduit du token côté backend
+          Authorization: `Bearer ${token}`, // usr_id déduit du token côté backend
         },
         body: JSON.stringify({ article_id: Number(id), amount: montant }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || "Erreur lors du bid");
 
-      const inserted = data?.bid || data?.data;
-      setBids((prev) => [
-        ...prev,
-        inserted ?? {
-          id: Date.now(),
-          article_id: Number(id),
-          usr_id: "moi",
-          amount: montant,
-        },
-      ]);
+      const raw = await res.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
+      }
+
+      if (res.status === 401 || res.status === 403) {
+        throw new Error("⛔ Session expirée. Veuillez vous reconnecter.");
+      }
+      if (!res.ok) {
+        throw new Error(data?.error || "Erreur lors du bid");
+      }
+
+      // ✅ re-fetch pour afficher la vraie liste triée par le serveur
+      await fetchBids();
       setBidMontant("");
       setMessage(`✅ Bid de ${montant} $ placé.`);
     } catch (e) {
