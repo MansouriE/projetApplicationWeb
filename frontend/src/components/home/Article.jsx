@@ -1,13 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Article({ id, nom, description, prix, etat, bid }) {
+function Article(props) {
+  const {
+    id,
+    nom,
+    description,
+    prix,
+    etat,
+    bid,
+    bidPrixDeDepart,
+    bid_duration,
+    bid_end_date,
+  } = props;
+
   const navigate = useNavigate();
 
   const bidClic = () => {
-    navigate(`/bid/${id}`, {
-      state: { ...props }, // <-- Envoie toutes les infos au frontend
-    });
+    navigate(`/bid/${id}`, { state: { ...props } }); // OK : props existe
   };
 
   return (
