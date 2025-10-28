@@ -53,7 +53,6 @@ function Register() {
         throw new Error(result.error || "Erreur lors de la création");
       }
 
-      alert("Utilisateur créé avec succès !");
       setFirstName("");
       setLastName("");
       setEmail("");

@@ -28,7 +28,6 @@ function Login() {
         alert(data.error || "Erreur lors de la connexion");
       } else {
         login(data.token, data.user.id);
-        alert("Connexion réussie !");
         navigate("/profile");
       }
     } catch (error) {

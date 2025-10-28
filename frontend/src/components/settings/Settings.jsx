@@ -198,6 +198,13 @@ function Settings() {
                   <p className="text-gray-900 font-medium">{user.code_postal || "Non renseigné"}</p>
                 </div>
               </div>
+
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-500">Pseudo</label>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <p className="text-gray-900 font-medium">{user.pseudo || "Non renseigné"}</p>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
