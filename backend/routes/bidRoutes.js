@@ -3,6 +3,28 @@ const router = express.Router();
 const supabase = require("../config/supabaseClient");
 const { verifyToken } = require("../config/jwt");
 
+router.get("/bids", async (req, res) => {
+  const articleId = Number(req.query.article_id);
+  if (!Number.isFinite(articleId)) {
+    return res.status(400).json({ error: "Paramètre 'article_id' invalide" });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("bids")
+      .select("id, article_id, usr_id, amount, created_at")
+      .eq("article_id", articleId)
+      .order("amount", { ascending: false });
+
+    if (error) throw error;
+
+    return res.status(200).json(data || []);
+  } catch (e) {
+    console.error("GET /api/bids error:", e);
+    return res.status(500).json({ error: "Erreur lors du chargement des bids" });
+  }
+});
+
 // 💰 POST /api/bids
 router.post("/bids", async (req, res) => {
   try {
