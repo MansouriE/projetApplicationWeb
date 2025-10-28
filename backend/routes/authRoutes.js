@@ -3,7 +3,7 @@ const router = express.Router();
 const supabase = require("../config/supabaseClient");
 const { signToken } = require("../config/jwt");
 
-app.post("/api/createUser", async (req, res) => {
+app.post("/createUser", async (req, res) => {
   const { prenom, nom, courriel, password, pseudo, adresse, code_postal } =
     req.body;
 
@@ -34,7 +34,7 @@ app.post("/api/createUser", async (req, res) => {
   }
 });
 
-app.post("/api/login", async (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
