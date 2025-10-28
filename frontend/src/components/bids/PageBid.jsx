@@ -1,56 +1,160 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+
+const API_BASE = "https://projetapplicationweb-1.onrender.com";
 
 function PageBid() {
   const { id } = useParams();
   const { state } = useLocation();
   const article = state;
 
+  const { token: ctxToken } = useContext(AuthContext) || {};
+  const token = ctxToken || localStorage.getItem("token") || "";
+
   const [bids, setBids] = useState([]);
   const [bidMontant, setBidMontant] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const faireUnBid = (e) => {
+  // ---- Compte à rebours ----
+  const [timeLeft, setTimeLeft] = useState("");
+
+  function formatTimeLeft(endDate) {
+    if (!endDate) return "Aucune durée";
+    const end = new Date(endDate);
+    const now = new Date();
+    const diff = end - now;
+    if (diff <= 0) return "⛔ Enchère terminée";
+
+    const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    return `${jours}j ${heures}h ${minutes}m restants`;
+  }
+
+  useEffect(() => {
+    if (!article?.bid_end_date) return;
+    // calcul immédiat
+    setTimeLeft(formatTimeLeft(article.bid_end_date));
+    // mise à jour chaque minute
+    const timer = setInterval(() => {
+      setTimeLeft(formatTimeLeft(article.bid_end_date));
+    }, 60_000);
+    return () => clearInterval(timer);
+  }, [article?.bid_end_date]);
+
+  const prixDepart = Number(
+    (article && (article.bidPrixDeDepart ?? article.prix)) || 0
+  );
+
+  const prixCourant = useMemo(() => {
+    const maxBid = bids.length
+      ? Math.max(...bids.map((b) => Number(b.amount)))
+      : 0;
+    return Math.max(prixDepart, maxBid);
+  }, [bids, prixDepart]);
+
+  const isEnded =
+    article?.bid_end_date &&
+    new Date(article.bid_end_date).getTime() <= Date.now();
+
+  // --- util: fetch des bids pour l'article
+  const fetchBids = async () => {
+    setLoading(true);
+    setMessage("");
+    try {
+      const res = await fetch(`${API_BASE}/api/bids?article_id=${id}`, {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      const raw = await res.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
+      }
+      if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
+      setBids(Array.isArray(data) ? data : []);
+    } catch (e) {
+      setMessage(e.message || "Erreur chargement bids");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBids(); /* au mount et quand id change */
+  }, [id]);
+
+  const faireUnBid = async (e) => {
     e.preventDefault();
+    setMessage("");
 
-    if (!bidMontant || isNaN(bidMontant)) {
-      setMessage("Entrez un nombre valide");
-      return;
+    if (isEnded) return setMessage("⛔ Enchère terminée.");
+    const montant = Number(bidMontant);
+    if (!Number.isFinite(montant))
+      return setMessage("Entrez un nombre valide.");
+    if (montant <= prixCourant)
+      return setMessage(`💡 Le bid doit être > ${prixCourant}.`);
+    if (!token) return setMessage("⛔ Vous devez être connecté.");
+
+    try {
+
+      const articleId = Number(id);
+      const res = await fetch(`${API_BASE}/api/bids`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // usr_id déduit du token côté backend
+        },
+        body: JSON.stringify({ article_id: articleId, amount: montant }),
+      });
+
+      const raw = await res.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
+      }
+
+      if (res.status === 401 || res.status === 403) {
+        throw new Error("⛔ Session expirée. Veuillez vous reconnecter.");
+      }
+      if (!res.ok) {
+        throw new Error(data?.error || "Erreur lors du bid");
+      }
+
+      // ✅ re-fetch pour afficher la vraie liste triée par le serveur
+      await fetchBids();
+      setBidMontant("");
+      setMessage(`✅ Bid de ${montant} $ placé.`);
+    } catch (e) {
+      setMessage(e.message || "Erreur réseau");
     }
-
-    const currentMax = Math.max(article.prix, ...bids.map((b) => b.amount));
-
-    if (Number(bidMontant) <= currentMax) {
-      setMessage("💡 Le bid doit être plus grand que le prix actuel");
-      return;
-    }
-
-    const newBid = {
-      id: bids.length + 1,
-      itemId: id,
-      bidder: "Vous",
-      amount: Number(bidMontant),
-    };
-
-    setBids((prev) => [...prev, newBid]);
-    setMessage(`✅ Bid de $${bidMontant} placé avec succès`);
-    setBidMontant("");
   };
 
   if (!article) {
     return (
-      <p className="text-center mt-10 text-gray-600">Aucun article trouvé.</p>
+      <p className="text-center mt-10 text-gray-600">
+        Aucun article trouvé. Ouvrez la page depuis la liste.
+      </p>
     );
   }
 
   return (
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">{article.nom}</h1>
-      <p className="text-gray-600 mb-4">{article.description}</p>
+      <h1 className="text-3xl font-bold text-gray-800 mb-2">{article.nom}</h1>
+      <p className="text-gray-600 mb-6">{article.description}</p>
 
-      <div className="flex justify-between items-center mb-6">
-        <span className="text-2xl font-semibold text-green-600">
-          Prix de départ : {article.prix} $
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+        <span className="text-xl font-semibold text-green-700">
+          Prix de départ : {prixDepart} $
+        </span>
+        <span className="text-lg font-semibold">
+          Prix actuel : {prixCourant} $
         </span>
         <span
           className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -65,23 +169,35 @@ function PageBid() {
         </span>
       </div>
 
-      {/* Liste des bids */}
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-3">Bids:</h2>
-        {bids.length > 0 ? (
+      {/* Durée / temps restant */}
+      {article.bid_end_date && (
+        <p
+          className={`text-sm mt-1 ${
+            isEnded ? "text-red-600" : "text-gray-600"
+          } italic`}
+        >
+          ⏳ {timeLeft}
+        </p>
+      )}
+
+      <div className="mt-6 mb-8">
+        <h2 className="text-xl font-semibold text-gray-800 mb-3">Bids</h2>
+        {loading ? (
+          <p className="text-gray-500">Chargement…</p>
+        ) : bids.length ? (
           <ul className="space-y-2">
-            {bids
-              .sort((a, b) => b.amount - a.amount)
+            {[...bids]
+              .sort((a, b) => Number(b.amount) - Number(a.amount))
               .map((bid) => (
                 <li
                   key={bid.id}
                   className="flex justify-between bg-gray-50 p-3 rounded-lg border border-gray-200"
                 >
                   <span className="font-medium text-gray-700">
-                    {bid.bidder}
+                    Utilisateur #{bid.usr_id ?? "?"}
                   </span>
-                  <span className="text-green-600 font-semibold">
-                    {bid.amount} $
+                  <span className="text-green-700 font-semibold">
+                    {Number(bid.amount)} $
                   </span>
                 </li>
               ))}
@@ -91,23 +207,37 @@ function PageBid() {
         )}
       </div>
 
-      {/* Placer un bid */}
-      <form onSubmit={faireUnBid} className="space-y-4">
-        <label className="block text-gray-700 font-medium">
-          Faire un nouveau bid :
-        </label>
+      <form onSubmit={faireUnBid} className="space-y-3">
+        <label className="block text-gray-700 font-medium">Nouveau bid :</label>
         <input
           type="number"
+          step="0.01"
+          min={0}
           value={bidMontant}
           onChange={(e) => setBidMontant(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Entrez un montant supérieur"
+          placeholder={`> ${prixCourant}`}
+          disabled={isEnded}
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          disabled={
+            isEnded ||
+            !bidMontant ||
+            Number(bidMontant) <= prixCourant ||
+            !Number.isFinite(Number(bidMontant))
+          }
+          className={`w-full text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200
+            ${
+              isEnded ||
+              !bidMontant ||
+              Number(bidMontant) <= prixCourant ||
+              !Number.isFinite(Number(bidMontant))
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
         >
-          Placer le bid
+          {isEnded ? "Enchère terminée" : "Placer le bid"}
         </button>
       </form>
 
