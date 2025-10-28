@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+
 
 function Article(props) {
   const {
@@ -15,6 +17,9 @@ function Article(props) {
   } = props;
 
   const navigate = useNavigate();
+
+  const { isLoggedIn } = useContext(AuthContext);
+  
 
   const bidClic = () => {
     navigate(`/bid/${id}`, { state: { ...props } }); // OK : props existe
@@ -55,28 +60,32 @@ function Article(props) {
         </span>
       </div>
 
-      <button
-        onClick={() => {}}
-        className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
-      >
-        Acheter
-      </button>
+      {isLoggedIn && (
+        <>
+          {bid && (
+            <button
+              onClick={bidClic}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+            >
+              Bids
+            </button>
+          )}
 
-      {bid && (
-        <button
-          onClick={bidClic}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-        >
-          Bids
-        </button>
+          <button
+            onClick={() => {}}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+          >
+            Acheter
+          </button>
+
+          <button
+            onClick={() => {}}
+            className="w-full bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Favori
+          </button>
+        </>
       )}
-
-      <button
-        onClick={() => {}}
-        className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
-      >
-        Favori
-      </button>
     </div>
   );
 }
