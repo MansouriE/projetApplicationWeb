@@ -91,7 +91,14 @@ router.get("/bids", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("bids")
-      .select("id, article_id, usr_id, amount, created_at")
+      .select(`
+        id,
+        article_id,
+        usr_id,
+        amount,
+        created_at,
+        user:user_id ( pseudo )
+      `)
       .eq("article_id", articleId)
       .order("amount", { ascending: false });
 
