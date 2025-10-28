@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useState, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-const API_BASE =
-  import.meta.env.VITE_API_URL || "https://projetapplicationweb-1.onrender.com";
+const API_BASE = "https://projetapplicationweb-1.onrender.com";
 
 function PageBid() {
   const { id } = useParams();
@@ -102,13 +101,15 @@ function PageBid() {
     if (!token) return setMessage("⛔ Vous devez être connecté.");
 
     try {
+
+      const articleId = Number(id);
       const res = await fetch(`${API_BASE}/api/bids`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`, // usr_id déduit du token côté backend
         },
-        body: JSON.stringify({ article_id: Number(id), amount: montant }),
+        body: JSON.stringify({ article_id: articleId, amount: montant }),
       });
 
       const raw = await res.text();
