@@ -63,6 +63,12 @@ function Navbar() {
                 >
                   Profil
                 </Link>
+                <Link 
+                  to="/settings" 
+                  className="text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60"
+                >
+                  Settings
+                </Link>
                 <button 
                   onClick={handleLogout}
                   className="text-purple-100 hover:text-rose-200 font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60 border border-purple-500 hover:border-rose-400"
