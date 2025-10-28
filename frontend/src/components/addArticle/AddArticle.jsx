@@ -90,7 +90,6 @@ function AddArticle() {
         throw new Error(msg);
       }
 
-      alert("✅ Article créé avec succès !");
       setNom("");
       setDescription("");
       setPrix("");
