@@ -29,7 +29,7 @@ router.patch("/me", authMiddleware, async (req, res) => {
 
 // Route pour récupérer les articles d'un utilisateur
 /*
-app.get("/me/articles", async (req, res) => {
+router.get("/me/articles", async (req, res) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
