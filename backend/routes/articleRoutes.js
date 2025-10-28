@@ -14,3 +14,5 @@ router.get("/getArticles", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch articles" });
   }
 });
+
+module.exports = router;
