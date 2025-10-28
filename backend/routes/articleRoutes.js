@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const supabase = require("../config/supabaseClient");
 
-app.get("/getArticles", async (req, res) => {
+router.get("/getArticles", async (req, res) => {
   try {
     const { data, error } = await supabase.from("articles").select("*");
 
