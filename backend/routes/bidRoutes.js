@@ -5,7 +5,7 @@ const { verifyToken } = require("../config/jwt");
 
 
 // 💰 POST /api/bids
-router.post("/api/bids", async (req, res) => {
+router.post("/bids", async (req, res) => {
   try {
     // --- Auth
     const authHeader = req.headers.authorization || "";
@@ -81,7 +81,7 @@ router.post("/api/bids", async (req, res) => {
   }
 });
 
-router.get("/api/bids", async (req, res) => {
+router.get("/bids", async (req, res) => {
   const articleId = Number(req.query.article_id);
   if (!Number.isFinite(articleId)) {
     return res.status(400).json({ error: "Paramètre 'article_id' invalide" });
