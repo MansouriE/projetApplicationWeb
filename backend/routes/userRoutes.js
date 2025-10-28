@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const supabase = require("../config/supabaseClient");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/check-auth");
 
 router.get("/me", authMiddleware, async (req, res) => {
   const { userId } = req.user;
