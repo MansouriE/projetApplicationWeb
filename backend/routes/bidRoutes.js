@@ -97,7 +97,7 @@ router.get("/bids", async (req, res) => {
         usr_id,
         amount,
         created_at,
-        user:user_id ( pseudo )
+        user:usr_id ( pseudo )
       `)
       .eq("article_id", articleId)
       .order("amount", { ascending: false });
