@@ -8,6 +8,7 @@ import UpdateProfile from "./components/updateProfile/UpdateProfile";
 import PageHome from "./components/home/PageHome";
 import PageBid from "./components/bids/PageBid";
 import CreateArticle from "./components/addArticle/AddArticle";
+import Settings from "./components/settings/Settings";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile/edit" element={<UpdateProfile />} />
           <Route path="/createArticle" element={<CreateArticle />} />
           <Route path="/bid/:id" element={<PageBid />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </Router>
