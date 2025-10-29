@@ -19,7 +19,6 @@ router.get("/getArticles", async (req, res) => {
   }
 });
 
-
 router.post("/createArticle", authMiddleware, async (req, res) => {
   try {
     const decoded = jwt.verify(token, jwtSecret);
@@ -153,6 +152,33 @@ router.get("/getMesArticlesFavori", authMiddleware, async (req, res) => {
     console.error("Error fetching user's favorite articles:", err.message);
     res.status(500).json({ error: "Failed to fetch user's favorite articles" });
   }
+});
+
+// DELETE /api/articles/:id
+router.delete("/articles/:id", async (req, res) => {
+  const auth = req.headers.authorization || "";
+  const token = auth.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Token manquant" });
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, jwtSecret);
+  } catch {
+    return res.status(403).json({ error: "Token invalide ou expiré" });
+  }
+
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id))
+    return res.status(400).json({ error: "Id invalide" });
+
+  const { error } = await supabase
+    .from("articles")
+    .delete()
+    .eq("id_articles", id)
+    .eq("user_id", decoded.userId); // sécurité : seulement propriétaire
+
+  if (error) return res.status(400).json({ error: error.message });
+  res.json({ ok: true });
 });
 
 module.exports = router;
