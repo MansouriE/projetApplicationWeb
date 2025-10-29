@@ -7,6 +7,7 @@ function Profile() {
   const { token, isLoggedIn } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [allArticles, setAllArticles] = useState([]);
+  const [allArticlesFavoris, setAllArticlesFavoris] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -52,6 +53,24 @@ function Profile() {
         } else {
           setAllArticles([]);
         }
+        // Fetch favorite articles
+        const favorisResponse = await fetch(
+          "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const favorisData = await favorisResponse.json();
+
+        if (favorisResponse.ok) {
+          setAllArticlesFavoris(favorisData || []);
+        } else {
+          setAllArticlesFavoris([]);
+        }
+
       } catch (err) {
         console.error("Erreur:", err);
         setError(err.message);
@@ -83,6 +102,23 @@ function Profile() {
       if (articlesResponse.ok) {
         setAllArticles(articlesData || []);
       }
+
+      const favorisResponse = await fetch(
+        "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const favorisData = await favorisResponse.json();
+      if (favorisResponse.ok) {
+        setAllArticlesFavoris(favorisData || []);
+      } else {
+        setAllArticlesFavoris([]);
+      }
+
     } catch (err) {
       console.error("Erreur rechargement:", err);
     }
@@ -187,7 +223,7 @@ function Profile() {
           </div>
         </div>
 
-        {/* Articles Grid */}
+      {/* Articles Grid */}
        <div className="mt-8">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes Articles</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -197,6 +233,31 @@ function Profile() {
               </p>
             ) : (
               allArticles.map((article) => (
+                <Article
+                  key={article.id_articles}
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                />
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Favorite Articles */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes Favoris</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allArticlesFavoris.length === 0 ? (
+              <p className="text-gray-500 col-span-full text-center">Aucun favori.</p>
+            ) : (
+              allArticlesFavoris.map((article) => (
                 <Article
                   key={article.id_articles}
                   id={article.id_articles}

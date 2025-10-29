@@ -124,5 +124,35 @@ router.get("/getMesArticles", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/getMesArticlesFavori", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const { data: favoriData, error: favoriError } = await supabase
+      .from("favori")
+      .select("article_id")
+      .eq("user_id", userId);
+
+    if (favoriError) throw favoriError;
+
+    const favoriIds = favoriData.map((f) => f.article_id);
+
+    if (favoriIds.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const { data: articlesData, error: articlesError } = await supabase
+      .from("articles")
+      .select("*")
+      .in("id_articles", favoriIds);
+
+    if (articlesError) throw articlesError;
+
+    res.status(200).json(articlesData || []);
+  } catch (err) {
+    console.error("Error fetching user's favorite articles:", err.message);
+    res.status(500).json({ error: "Failed to fetch user's favorite articles" });
+  }
+});
 
 module.exports = router;
