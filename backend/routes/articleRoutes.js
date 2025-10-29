@@ -249,7 +249,6 @@ router.put("/articles/:id", authMiddleware, async (req, res) => {
       description: description.trim(),
       prix: prixNum,
       etat,
-      updated_at: new Date().toISOString(),
     })
     .eq("id_articles", id)
     .select("*")
