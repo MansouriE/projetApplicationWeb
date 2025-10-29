@@ -37,7 +37,13 @@ function Profile() {
 
         // Fetch all articles
         const articlesResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getMesArticles"
+          "https://projetapplicationweb-1.onrender.com/api/getMesArticles",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         const articlesData = await articlesResponse.json();
 
@@ -182,14 +188,30 @@ function Profile() {
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allArticles.length === 0 ? (
-            <p className="text-gray-500 col-span-full text-center">Aucun article disponible.</p>
-          ) : (
-            allArticles.map((article) => (
-              <Article key={article.id} {...article} />
-            ))
-          )}
+       <div className="mt-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes Articles</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allArticles.length === 0 ? (
+              <p className="text-gray-500 col-span-full text-center">
+                Aucun article disponible.
+              </p>
+            ) : (
+              allArticles.map((article) => (
+                <Article
+                  key={article.id_articles}
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>
