@@ -181,4 +181,110 @@ router.delete("/articles/:id", async (req, res) => {
   res.json({ ok: true });
 });
 
+router.get("/articles/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ error: "Paramètre 'id' invalide" });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .select(
+        "id_articles, user_id, nom, description, prix, etat, bid, bidPrixDeDepart, bid_duration, bid_end_date, created_at, updated_at"
+      )
+      .eq("id_articles", id)
+      .maybeSingle();
+
+    if (error) throw error;
+    if (!data) return res.status(404).json({ error: "Article introuvable" });
+
+    return res.status(200).json(data);
+  } catch (e) {
+    console.error("GET /api/articles/:id error:", e);
+    return res.status(500).json({ error: "Erreur interne" });
+  }
+});
+
+router.put("/articles/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ error: "Paramètre 'id' invalide" });
+  }
+
+  // --- Auth
+  const authHeader = req.headers.authorization || "";
+  const token = authHeader.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Token manquant" });
+
+  let decoded;
+  try {
+    decoded = verifyToken(token); // -> { userId }
+  } catch {
+    return res.status(403).json({ error: "Token invalide ou expiré" });
+  }
+  const userId = decoded.userId;
+
+  // --- Validation des champs
+  const { nom, description, prix, etat } = req.body || {};
+
+  if (!nom || !description || prix == null || !etat) {
+    return res
+      .status(400)
+      .json({ error: "Champs manquants (nom, description, prix, etat)" });
+  }
+
+  const prixNum = Number(prix);
+  if (!Number.isFinite(prixNum) || prixNum <= 0) {
+    return res.status(400).json({ error: "Prix invalide" });
+  }
+
+  const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
+  if (!etatsAutorises.includes(etat)) {
+    return res
+      .status(400)
+      .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
+  }
+
+  try {
+    // 1) Vérifier que l'article existe et appartient au user
+    const { data: article, error: artErr } = await supabase
+      .from("articles")
+      .select("id_articles, user_id")
+      .eq("id_articles", id)
+      .maybeSingle();
+
+    if (artErr) throw artErr;
+    if (!article) return res.status(404).json({ error: "Article introuvable" });
+    if (article.user_id !== userId) {
+      return res
+        .status(403)
+        .json({ error: "Accès refusé (pas propriétaire de l'article)" });
+    }
+
+    // 2) Mettre à jour
+    const { data: updated, error: updErr } = await supabase
+      .from("articles")
+      .update({
+        nom: String(nom).trim(),
+        description: String(description).trim(),
+        prix: prixNum,
+        etat,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id_articles", id)
+      .select("id_articles, user_id, nom, description, prix, etat, updated_at")
+      .maybeSingle();
+
+    if (updErr) throw updErr;
+
+    return res
+      .status(200)
+      .json({ message: "Article mis à jour", article: updated });
+  } catch (e) {
+    console.error("PUT /api/articles/:id error:", e);
+    return res.status(500).json({ error: "Erreur interne" });
+  }
+});
+
 module.exports = router;
