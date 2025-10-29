@@ -70,7 +70,6 @@ function Profile() {
         } else {
           setAllArticlesFavoris([]);
         }
-
       } catch (err) {
         console.error("Erreur:", err);
         setError(err.message);
@@ -118,9 +117,28 @@ function Profile() {
       } else {
         setAllArticlesFavoris([]);
       }
-
     } catch (err) {
       console.error("Erreur rechargement:", err);
+    }
+  };
+  // --- Handlers pour Modifier / Supprimer ---
+  const handleEdit = (article) => {
+    // à toi de créer la page d’édition si besoin
+    navigate(`/articles/${article.id_articles}/edit`, { state: article });
+  };
+
+  const handleDelete = async (idArticles) => {
+    if (!confirm("Supprimer cet article ?")) return;
+    try {
+      const res = await fetch(`${API_BASE}/api/articles/${idArticles}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Suppression échouée");
+      await reloadArticles();
+    } catch (e) {
+      alert(e.message);
     }
   };
 
@@ -143,7 +161,9 @@ function Profile() {
               />
             </svg>
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Accès non autorisé</h3>
+          <h3 className="text-xl font-bold text-gray-800 mb-2">
+            Accès non autorisé
+          </h3>
           <p className="text-gray-600">
             Vous devez être connecté pour accéder à cette page.
           </p>
@@ -206,12 +226,16 @@ function Profile() {
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-xl">
-                  {user.prenom?.[0]?.toUpperCase() || user.nom?.[0]?.toUpperCase() || "U"}
+                  {user.prenom?.[0]?.toUpperCase() ||
+                    user.nom?.[0]?.toUpperCase() ||
+                    "U"}
                 </span>
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-white">Profile</h1>
-                <p className="text-white/80">{user.prenom} {user.nom}</p>
+                <p className="text-white/80">
+                  {user.prenom} {user.nom}
+                </p>
                 <button
                   onClick={reloadArticles}
                   className="mt-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-1 px-3 rounded-lg transition-colors duration-200"
@@ -223,9 +247,11 @@ function Profile() {
           </div>
         </div>
 
-      {/* Articles Grid */}
-       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes Articles</h2>
+        {/* Articles Grid */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            Mes Articles
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {allArticles.length === 0 ? (
               <p className="text-gray-500 col-span-full text-center">
@@ -233,18 +259,33 @@ function Profile() {
               </p>
             ) : (
               allArticles.map((article) => (
-                <Article
-                  key={article.id_articles}
-                  id={article.id_articles}
-                  nom={article.nom}
-                  description={article.description}
-                  prix={article.prix}
-                  etat={article.etat}
-                  bid={article.bid}
-                  bidPrixDeDepart={article.bidPrixDeDepart}
-                  bid_duration={article.bid_duration}
-                  bid_end_date={article.bid_end_date}
-                />
+                <div key={article.id_articles} className="space-y-3">
+                  <Article
+                    id={article.id_articles}
+                    nom={article.nom}
+                    description={article.description}
+                    prix={article.prix}
+                    etat={article.etat}
+                    bid={article.bid}
+                    bidPrixDeDepart={article.bidPrixDeDepart}
+                    bid_duration={article.bid_duration}
+                    bid_end_date={article.bid_end_date}
+                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => handleEdit(article)}
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg"
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      onClick={() => handleDelete(article.id_articles)}
+                      className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg"
+                    >
+                      Supprimer
+                    </button>
+                  </div>
+                </div>
               ))
             )}
           </div>
@@ -255,7 +296,9 @@ function Profile() {
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Mes Favoris</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {allArticlesFavoris.length === 0 ? (
-              <p className="text-gray-500 col-span-full text-center">Aucun favori.</p>
+              <p className="text-gray-500 col-span-full text-center">
+                Aucun favori.
+              </p>
             ) : (
               allArticlesFavoris.map((article) => (
                 <Article
