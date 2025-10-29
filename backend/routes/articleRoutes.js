@@ -213,17 +213,29 @@ router.put("/articles/:id", async (req, res) => {
   }
 
   // --- Auth
-  const authHeader = req.headers.authorization || "";
-  const token = authHeader.split(" ")[1];
-  if (!token) return res.status(401).json({ error: "Token manquant" });
+  const authHeader = (req.headers.authorization || "").trim();
+  if (!authHeader.toLowerCase().startsWith("bearer ")) {
+    return res.status(401).json({ error: "Token manquant" });
+  }
+  const token = authHeader.slice(7).trim();
+
+  // ⚠️ Empêcher "null"/"undefined" en chaîne
+  if (!token || token === "null" || token === "undefined") {
+    return res.status(401).json({ error: "Token manquant" });
+  }
 
   let decoded;
   try {
-    decoded = verifyToken(token); // -> { userId }
-  } catch {
+    decoded = verifyToken(token); // jwt.verify(...)
+  } catch (err) {
+    console.error("JWT verify error:", err.name, err.message);
     return res.status(403).json({ error: "Token invalide ou expiré" });
   }
-  const userId = decoded.userId;
+
+  const userId = decoded.userId; // <-- vérifie que ce champ existe bien !
+  if (!userId) {
+    return res.status(403).json({ error: "Token invalide (userId absent)" });
+  }
 
   // --- Validation des champs
   const { nom, description, prix, etat } = req.body || {};
