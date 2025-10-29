@@ -155,7 +155,7 @@ function Settings() {
                 </span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">Mon Profil</h1>
+                <h1 className="text-2xl font-bold text-white">Mes paramètres</h1>
                 <p className="text-purple-200">Gérez vos informations personnelles</p>
               </div>
             </div>

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const supabase = require("../config/supabaseClient");
+const authMiddleware = require("../middleware/check-auth");
 
 const jwtSecret = process.env.JWT_SECRET || "cleSuperSecrete!";
 
@@ -19,18 +20,12 @@ router.get("/getArticles", async (req, res) => {
 });
 
 
-router.post("/createArticle", async (req, res) => {
-  const authHeader = req.headers.authorization || "";
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ error: "Token manquant" });
-  }
-
+router.post("/createArticle", authMiddleware, async (req, res) => {
   try {
     const decoded = jwt.verify(token, jwtSecret);
     const { nom, description, prix, etat, bid, bidPrixDepart, durerBid } =
       req.body;
+    const userId = req.user.userId;
 
     if (!nom || !description || prix == null || !etat) {
       return res.status(400).json({ error: "Champs manquants" });
@@ -93,7 +88,7 @@ router.post("/createArticle", async (req, res) => {
           bidPrixDeDepart,
           bid_duration,
           bid_end_date,
-          user_id: decoded.userId, // Optionnel mais utile
+          user_id: userId, // Optionnel mais utile
         },
       ])
       .select()
@@ -111,6 +106,27 @@ router.post("/createArticle", async (req, res) => {
   }
 });
 
+router.get("/getMesArticles", authMiddleware, async (req, res) => {
+  if (!token) {
+    return res.status(401).json({ error: "Token manquant" });
+  }
+
+  try {
+    const userId = req.user.userId;
+
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("user_id", userId);
+
+    if (error) throw error;
+
+    res.status(200).json(data || []);
+  } catch (err) {
+    console.error("Error fetching user's articles:", err.message);
+    res.status(500).json({ error: "Failed to fetch user's articles" });
+  }
+});
 
 
 module.exports = router;
