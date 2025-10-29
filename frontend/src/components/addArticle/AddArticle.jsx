@@ -13,53 +13,56 @@ function AddArticle() {
   const [bidDuration, setBidDuration] = useState("");
   const [offreReduction, setOffreReduction] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const { token, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (!isLoggedIn || !token) {
-      alert("Vous devez être connecté.");
+      setError("Vous devez être connecté.");
       return;
     }
 
     if (!nom || !description || !prix || !etat) {
-      alert("Veuillez remplir tous les champs !");
+      setError("Veuillez remplir tous les champs !");
       return;
     }
 
     const prixNum = Number(prix);
     if (Number.isNaN(prixNum) || prixNum <= 0) {
-      alert("Le prix doit être un nombre positif.");
+      setError("Le prix doit être un nombre positif.");
       return;
     }
 
     if (acceptsBids) {
       if (!startingBid) {
-        alert("Veuillez entrer un prix de départ pour les bids !");
+        setError("Veuillez entrer un prix de départ pour les bids !");
         return;
       }
       const startingBidNum = Number(startingBid);
       if (Number.isNaN(startingBidNum) || startingBidNum <= 0) {
-        alert("Le prix de départ doit être un nombre positif !");
+        setError("Le prix de départ doit être un nombre positif !");
         return;
       }
 
       if (!bidDuration) {
-        alert("Veuillez sélectionner une durée pour le bid !");
+        setError("Veuillez sélectionner une durée pour le bid !");
         return;
       }
     }
 
     const etatsAutorises = ["Neuf", "Bon", "Usagé", "Disponible"];
     if (!etatsAutorises.includes(etat)) {
-      alert(`L'état doit être parmi: ${etatsAutorises.join(", ")}`);
+      setError(`L'état doit être parmi: ${etatsAutorises.join(", ")}`);
       return;
     }
 
     setSubmitting(true);
+
     try {
       const response = await fetch(
         "https://projetapplicationweb-1.onrender.com/api/createArticle",
@@ -105,13 +108,24 @@ function AddArticle() {
       setAcceptsOffers(false);
 
       navigate("/profile");
-    } catch (error) {
-      console.error(error);
-      alert("❌ Erreur : " + error.message);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "Erreur lors de la création de l'article");
     } finally {
       setSubmitting(false);
     }
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">
+          <h3 className="text-xl font-bold text-gray-800 mb-2">Accès non autorisé</h3>
+          <p className="text-gray-600">Vous devez être connecté pour ajouter un article.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -122,6 +136,10 @@ function AddArticle() {
         <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
           Ajouter un article
         </h2>
+
+        {error && (
+          <div className="p-3 bg-red-100 text-red-700 rounded">{error}</div>
+        )}
 
         <input
           type="text"
@@ -164,7 +182,10 @@ function AddArticle() {
             checked={acceptsBids}
             onChange={(e) => {
               setAcceptsBids(e.target.checked);
-              if (e.target.checked) setAcceptsOffers(false), setOffreReduction("");
+              if (e.target.checked) {
+                setAcceptsOffers(false);
+                setOffreReduction("");
+              }
             }}
             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
@@ -177,7 +198,11 @@ function AddArticle() {
             checked={acceptsOffers}
             onChange={(e) => {
               setAcceptsOffers(e.target.checked);
-              if (e.target.checked) setAcceptsBids(false), setBidDuration(""), setStartingBid("");
+              if (e.target.checked) {
+                setAcceptsBids(false);
+                setBidDuration("");
+                setStartingBid("");
+              }
             }}
             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
@@ -193,7 +218,6 @@ function AddArticle() {
               onChange={(e) => setStartingBid(e.target.value)}
               className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
-
             <select
               value={bidDuration}
               onChange={(e) => setBidDuration(e.target.value)}
@@ -211,21 +235,19 @@ function AddArticle() {
         )}
 
         {acceptsOffers && (
-          <>
-            <select
-              value={offreReduction}
-              onChange={(e) => setOffreReduction(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            >
-              <option value="">Réduction %</option>
-              <option value="2.5">2.5 %</option>
-              <option value="5">5 %</option>
-              <option value="10">10 %</option>
-              <option value="15">15 %</option>
-              <option value="20">20 %</option>
-              <option value="25">25 %</option>
-            </select>
-          </>
+          <select
+            value={offreReduction}
+            onChange={(e) => setOffreReduction(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          >
+            <option value="">Réduction %</option>
+            <option value="2.5">2.5 %</option>
+            <option value="5">5 %</option>
+            <option value="10">10 %</option>
+            <option value="15">15 %</option>
+            <option value="20">20 %</option>
+            <option value="25">25 %</option>
+          </select>
         )}
 
         <button
