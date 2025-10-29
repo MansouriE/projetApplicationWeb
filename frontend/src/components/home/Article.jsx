@@ -1,33 +1,89 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-
 function Article(props) {
-  const {
-    id,
-    nom,
-    description,
-    prix,
-    etat,
-    bid,
-    bidPrixDeDepart,
-    bid_duration,
-    bid_end_date,
-  } = props;
+  const { id, nom, description, prix, etat, bid } = props;
 
   const navigate = useNavigate();
-
   const { isLoggedIn } = useContext(AuthContext);
-  
+  const [isFavori, setIsFavori] = useState(false);
+  const [loadingFav, setLoadingFav] = useState(false);
 
-  const bidClic = () => {
-    navigate(`/bid/${id}`, { state: { ...props } }); // OK : props existe
+  useEffect(() => {
+  if (!isLoggedIn) return;
+
+  const fetchFavoriteStatus = async () => {
+    try {
+      const res = await fetch(`https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`);
+      const data = await res.json();
+      setIsFavori(data.isFavori);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
+  fetchFavoriteStatus();
+}, [id, isLoggedIn]);
+
+  const bidClic = () => {
+    navigate(`/bid/${id}`, { state: { ...props } });
+  };
+
+const toggleFavori = async () => {
+  if (!isLoggedIn || loadingFav) return;
+  setLoadingFav(true);
+
+  const newState = !isFavori;
+  setIsFavori(newState);
+
+  try {
+    const res = await fetch("https://projetapplicationweb-1.onrender.com/api/favori", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ articleId: id, favorite: newState }),
+    });
+    const data = await res.json();
+    if (!data.success) setIsFavori(!newState);
+  } catch (err) {
+    setIsFavori(!newState);
+    console.error(err);
+  } finally {
+    setLoadingFav(false);
+  }
+};
+
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-      <div className="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+    <div className="relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+
+      {isLoggedIn && (
+        <button
+          onClick={toggleFavori}
+          className="absolute -top-0 right-0 p-1 transition-transform duration-200 hover:scale-110 z-20"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill={isFavori ? "red" : "none"}
+            stroke={isFavori ? "red" : "gray"}
+            strokeWidth="2"
+            className="w-6 h-7"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
+                2.09C13.09 3.81 14.76 3 16.5
+                3 19.58 3 22 5.42 22 8.5c0
+                3.78-3.4 6.86-8.55 11.54L12
+                21.35z"
+            />
+          </svg>
+        </button>
+      )}
+
+      <div className="relative w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
         <svg
           className="w-16 h-16 text-gray-400"
           fill="none"
@@ -45,6 +101,7 @@ function Article(props) {
 
       <h2 className="text-2xl font-bold text-gray-800 mb-3 truncate">{nom}</h2>
       <p className="text-gray-600 mb-4 line-clamp-3">{description}</p>
+
       <div className="flex justify-between items-center mb-3">
         <span className="text-lg font-semibold text-green-600">{prix} $</span>
         <span
@@ -73,16 +130,9 @@ function Article(props) {
 
           <button
             onClick={() => {}}
-            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
           >
             Acheter
-          </button>
-
-          <button
-            onClick={() => {}}
-            className="w-full bg-gray-700 hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-          >
-            Favori
           </button>
         </>
       )}
