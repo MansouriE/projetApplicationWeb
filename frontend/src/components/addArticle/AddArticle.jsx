@@ -8,8 +8,10 @@ function AddArticle() {
   const [prix, setPrix] = useState("");
   const [etat, setEtat] = useState("");
   const [acceptsBids, setAcceptsBids] = useState(false);
+  const [acceptsOffers, setAcceptsOffers] = useState(false);
   const [startingBid, setStartingBid] = useState("");
   const [bidDuration, setBidDuration] = useState("");
+  const [offreReduction, setOffreReduction] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -73,6 +75,8 @@ function AddArticle() {
             prix: prixNum,
             etat,
             bid: acceptsBids,
+            offre: acceptsOffers,
+            offreReduction: acceptsOffers ? Number(offreReduction) : null,
             bidPrixDepart: acceptsBids ? Number(startingBid) : null,
             durerBid: acceptsBids ? bidDuration : null,
           }),
@@ -97,6 +101,8 @@ function AddArticle() {
       setAcceptsBids(false);
       setStartingBid("");
       setBidDuration("");
+      setOffreReduction("");
+      setAcceptsOffers(false);
 
       navigate("/profile");
     } catch (error) {
@@ -156,12 +162,26 @@ function AddArticle() {
           <input
             type="checkbox"
             checked={acceptsBids}
-            onChange={(e) => setAcceptsBids(e.target.checked)}
+            onChange={(e) => {
+              setAcceptsBids(e.target.checked);
+              if (e.target.checked) setAcceptsOffers(false), setOffreReduction("");
+            }}
             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
-          <span className="text-gray-700">
-            Autoriser les bids pour cet article
-          </span>
+          <span className="text-gray-700">Autoriser les bids pour cet article</span>
+        </label>
+
+        <label className="flex items-center space-x-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={acceptsOffers}
+            onChange={(e) => {
+              setAcceptsOffers(e.target.checked);
+              if (e.target.checked) setAcceptsBids(false), setBidDuration(""), setStartingBid("");
+            }}
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span className="text-gray-700">Autoriser les offres pour cet article</span>
         </label>
 
         {acceptsBids && (
@@ -186,6 +206,24 @@ function AddArticle() {
               <option value="7d">7 jours</option>
               <option value="14d">14 jours</option>
               <option value="30d">30 jours</option>
+            </select>
+          </>
+        )}
+
+        {acceptsOffers && (
+          <>
+            <select
+              value={offreReduction}
+              onChange={(e) => setOffreReduction(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="">Réduction %</option>
+              <option value="2.5">2.5 %</option>
+              <option value="5">5 %</option>
+              <option value="10">10 %</option>
+              <option value="15">15 %</option>
+              <option value="20">20 %</option>
+              <option value="25">25 %</option>
             </select>
           </>
         )}

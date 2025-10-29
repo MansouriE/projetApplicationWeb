@@ -21,9 +21,18 @@ router.get("/getArticles", async (req, res) => {
 
 router.post("/createArticle", authMiddleware, async (req, res) => {
   try {
-    const decoded = jwt.verify(token, jwtSecret);
-    const { nom, description, prix, etat, bid, bidPrixDepart, durerBid } =
-      req.body;
+    const { 
+      nom,
+      description,
+      prix,
+      etat,
+      bid,
+      bidPrixDepart,
+      durerBid,
+      offre,
+      offreReduction
+    } = req.body;
+
     const userId = req.user.userId;
 
     if (!nom || !description || prix == null || !etat) {
@@ -51,9 +60,7 @@ router.post("/createArticle", authMiddleware, async (req, res) => {
       bid_duration = durerBid;
 
       if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
-        return res
-          .status(400)
-          .json({ error: "Prix de départ du bid invalide" });
+        return res.status(400).json({ error: "Prix de départ du bid invalide" });
       }
 
       const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
@@ -75,6 +82,23 @@ router.post("/createArticle", authMiddleware, async (req, res) => {
       bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
     }
 
+    let offre_reduction_value = null;
+    if (offre) {
+      const reductionsAutorisees = ["2.5", "5", "10", "15", "20", "25"];
+      if (!reductionsAutorisees.includes(String(offreReduction))) {
+        return res
+          .status(400)
+          .json({ error: `Réduction invalide (${reductionsAutorisees.join(", ")})` });
+      }
+      offre_reduction_value = Number(offreReduction);
+    }
+
+    if (bid && offre) {
+      return res
+        .status(400)
+        .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
+    }
+
     const { data, error } = await supabase
       .from("articles")
       .insert([
@@ -84,10 +108,12 @@ router.post("/createArticle", authMiddleware, async (req, res) => {
           prix: prixNum,
           etat,
           bid,
+          offre,
+          offre_reduction: offre_reduction_value,
           bidPrixDeDepart,
           bid_duration,
           bid_end_date,
-          user_id: userId, // Optionnel mais utile
+          user_id: userId,
         },
       ])
       .select()
