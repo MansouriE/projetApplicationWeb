@@ -191,7 +191,7 @@ router.get("/articles/:id", async (req, res) => {
     const { data, error } = await supabase
       .from("articles")
       .select(
-        "id_articles, user_id, nom, description, prix, etat, bid, bidPrixDeDepart, bid_duration, bid_end_date, created_at, updated_at"
+        "id_articles, user_id, nom, description, prix, etat, bid, bidPrixDeDepart, bid_duration, bid_end_date"
       )
       .eq("id_articles", id)
       .maybeSingle();
