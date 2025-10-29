@@ -6,7 +6,8 @@ import { AuthContext } from "../../context/AuthContext";
 const API_BASE = "https://projetapplicationweb-1.onrender.com";
 
 export default function EditArticle() {
-  const { token, isLoggedIn } = useContext(AuthContext);
+  const { token: ctxToken, isLoggedIn } = useContext(AuthContext) || {};
+  const token = ctxToken || localStorage.getItem("token") || "";
   const { id } = useParams();
   const { state } = useLocation(); // article passé depuis Profile via navigate(..., { state: article })
   const navigate = useNavigate();
