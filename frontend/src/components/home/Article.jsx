@@ -3,28 +3,35 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Article(props) {
+  
   const { id, nom, description, prix, etat, bid } = props;
 
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
+  const { token, isLoggedIn } = useContext(AuthContext);
   const [isFavori, setIsFavori] = useState(false);
   const [loadingFav, setLoadingFav] = useState(false);
 
   useEffect(() => {
-  if (!isLoggedIn) return;
+    if (!isLoggedIn) return;
 
-  const fetchFavoriteStatus = async () => {
-    try {
-      const res = await fetch(`https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`);
-      const data = await res.json();
-      setIsFavori(data.isFavori);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    const fetchFavoriteStatus = async () => {
+      try {
+        const res = await fetch(`https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        setIsFavori(data.isFavori);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  fetchFavoriteStatus();
-}, [id, isLoggedIn]);
+    fetchFavoriteStatus();
+  }, [id, isLoggedIn]);
 
   const bidClic = () => {
     navigate(`/bid/${id}`, { state: { ...props } });
@@ -40,7 +47,10 @@ const toggleFavori = async () => {
   try {
     const res = await fetch("https://projetapplicationweb-1.onrender.com/api/favori", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ articleId: id, favorite: newState }),
     });
     const data = await res.json();
