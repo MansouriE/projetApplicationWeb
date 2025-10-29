@@ -11,6 +11,7 @@ export default function EditArticle() {
   const { id } = useParams();
   const { state } = useLocation(); // article passé depuis Profile via navigate(..., { state: article })
   const navigate = useNavigate();
+  const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
 
   const [form, setForm] = useState({
     nom: "",
@@ -44,7 +45,10 @@ export default function EditArticle() {
 
         // Sinon on charge l’article par l’id
         const res = await fetch(`${API_BASE}/api/articles/${id}`, {
-          headers: { Accept: "application/json" },
+          headers: {
+            Accept: "application/json",
+            ...authHeaders,
+          },
         });
         const data = await res.json();
         if (!res.ok)
