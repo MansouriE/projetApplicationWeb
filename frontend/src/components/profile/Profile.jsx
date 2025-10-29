@@ -130,10 +130,13 @@ function Profile() {
   const handleDelete = async (idArticles) => {
     if (!confirm("Supprimer cet article ?")) return;
     try {
-      const res = await fetch(`${API_BASE}/api/articles/${idArticles}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        "https://projetapplicationweb-1.onrender.com/api/articles/:id",
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Suppression échouée");
       await reloadArticles();
@@ -259,33 +262,18 @@ function Profile() {
               </p>
             ) : (
               allArticles.map((article) => (
-                <div key={article.id_articles} className="space-y-3">
-                  <Article
-                    id={article.id_articles}
-                    nom={article.nom}
-                    description={article.description}
-                    prix={article.prix}
-                    etat={article.etat}
-                    bid={article.bid}
-                    bidPrixDeDepart={article.bidPrixDeDepart}
-                    bid_duration={article.bid_duration}
-                    bid_end_date={article.bid_end_date}
-                  />
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => handleEdit(article)}
-                      className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg"
-                    >
-                      Modifier
-                    </button>
-                    <button
-                      onClick={() => handleDelete(article.id_articles)}
-                      className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg"
-                    >
-                      Supprimer
-                    </button>
-                  </div>
-                </div>
+                <Article
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                  isProfilePage={true}
+                />
               ))
             )}
           </div>

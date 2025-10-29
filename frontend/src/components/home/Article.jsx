@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Article(props) {
-  
-  const { id, nom, description, prix, etat, bid } = props;
+  const { id, nom, description, prix, etat, bid, isProfilePage } = props;
 
   const navigate = useNavigate();
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -16,7 +15,8 @@ function Article(props) {
 
     const fetchFavoriteStatus = async () => {
       try {
-        const res = await fetch(`https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
+        const res = await fetch(
+          `https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -37,35 +37,37 @@ function Article(props) {
     navigate(`/bid/${id}`, { state: { ...props } });
   };
 
-const toggleFavori = async () => {
-  if (!isLoggedIn || loadingFav) return;
-  setLoadingFav(true);
+  const toggleFavori = async () => {
+    if (!isLoggedIn || loadingFav) return;
+    setLoadingFav(true);
 
-  const newState = !isFavori;
-  setIsFavori(newState);
+    const newState = !isFavori;
+    setIsFavori(newState);
 
-  try {
-    const res = await fetch("https://projetapplicationweb-1.onrender.com/api/favori", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ articleId: id, favorite: newState }),
-    });
-    const data = await res.json();
-    if (!data.success) setIsFavori(!newState);
-  } catch (err) {
-    setIsFavori(!newState);
-    console.error(err);
-  } finally {
-    setLoadingFav(false);
-  }
-};
+    try {
+      const res = await fetch(
+        "https://projetapplicationweb-1.onrender.com/api/favori",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ articleId: id, favorite: newState }),
+        }
+      );
+      const data = await res.json();
+      if (!data.success) setIsFavori(!newState);
+    } catch (err) {
+      setIsFavori(!newState);
+      console.error(err);
+    } finally {
+      setLoadingFav(false);
+    }
+  };
 
   return (
     <div className="relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-
       {isLoggedIn && (
         <button
           onClick={toggleFavori}
@@ -83,11 +85,11 @@ const toggleFavori = async () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
-                2.09C13.09 3.81 14.76 3 16.5
-                3 19.58 3 22 5.42 22 8.5c0
-                3.78-3.4 6.86-8.55 11.54L12
-                21.35z"
+              2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
+              2.09C13.09 3.81 14.76 3 16.5
+              3 19.58 3 22 5.42 22 8.5c0
+              3.78-3.4 6.86-8.55 11.54L12
+              21.35z"
             />
           </svg>
         </button>
@@ -144,6 +146,23 @@ const toggleFavori = async () => {
           >
             Acheter
           </button>
+
+          {isProfilePage && (
+            <>
+              <button
+                onClick={onEdit}
+                className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+              >
+                Modifier
+              </button>
+              <button
+                onClick={onDelete}
+                className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+              >
+                Supprimer
+              </button>
+            </>
+          )}
         </>
       )}
     </div>
