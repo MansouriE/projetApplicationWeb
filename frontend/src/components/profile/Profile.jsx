@@ -37,7 +37,7 @@ function Profile() {
 
         // Fetch all articles
         const articlesResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getArticles"
+          "https://projetapplicationweb-1.onrender.com/api/getMesArticles"
         );
         const articlesData = await articlesResponse.json();
 

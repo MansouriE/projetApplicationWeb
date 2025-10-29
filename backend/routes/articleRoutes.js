@@ -107,10 +107,6 @@ router.post("/createArticle", authMiddleware, async (req, res) => {
 });
 
 router.get("/getMesArticles", authMiddleware, async (req, res) => {
-  if (!token) {
-    return res.status(401).json({ error: "Token manquant" });
-  }
-
   try {
     const userId = req.user.userId;
 
