@@ -3,7 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 function Article(props) {
-  const { id, nom, description, prix, etat, bid, isProfilePage } = props;
+  const {
+    id,
+    nom,
+    description,
+    prix,
+    etat,
+    bid,
+    onEdit,
+    onDelete,
+    isProfilePage,
+  } = props;
 
   const navigate = useNavigate();
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -149,18 +159,22 @@ function Article(props) {
 
           {isProfilePage && (
             <>
-              <button
-                onClick={onEdit}
-                className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-              >
-                Modifier
-              </button>
-              <button
-                onClick={onDelete}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-              >
-                Supprimer
-              </button>
+              {onEdit && (
+                <button
+                  onClick={onEdit}
+                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Modifier
+                </button>
+              )}
+              {onDelete && (
+                <button
+                  onClick={onDelete}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  Supprimer
+                </button>
+              )}
             </>
           )}
         </>

@@ -131,10 +131,13 @@ function Profile() {
     if (!confirm("Supprimer cet article ?")) return;
     try {
       const res = await fetch(
-        "https://projetapplicationweb-1.onrender.com/api/articles/:id",
+        `https://projetapplicationweb-1.onrender.com/api/articles/${idArticles}`,
         {
           method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       const data = await res.json().catch(() => ({}));
@@ -273,6 +276,8 @@ function Profile() {
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}
                   isProfilePage={true}
+                  onEdit={() => handleEdit(article)}
+                  onDelete={() => handleDelete(article.id_articles)}
                 />
               ))
             )}
