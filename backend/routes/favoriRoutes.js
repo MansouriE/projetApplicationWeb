@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/check-auth");
 
 router.post("/favori", authMiddleware, async (req, res) => {
   const { articleId, favorite } = req.body;
-  const userId = req.user.id;
+  const userId = req.user.userId;
 
   try {
     if (favorite) {
@@ -25,7 +25,7 @@ router.post("/favori", authMiddleware, async (req, res) => {
 });
 
 router.get("/favori/status", authMiddleware, async (req, res) => {
-  const userId = req.user.id;
+  const userId = req.user.userId;
   const articleId = req.query.articleId;
 
   try {
