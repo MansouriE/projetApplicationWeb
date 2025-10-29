@@ -206,97 +206,57 @@ router.get("/articles/:id", async (req, res) => {
   }
 });
 
-router.put("/articles/:id", async (req, res) => {
+router.put("/articles/:id", authMiddleware, async (req, res) => {
+  const { userId } = req.user; // injecté par ton middleware JWT
   const id = Number(req.params.id);
-  if (!Number.isFinite(id)) {
-    return res.status(400).json({ error: "Paramètre 'id' invalide" });
-  }
+  const { nom, description, prix, etat } = req.body;
 
-  // --- Auth
-  const authHeader = (req.headers.authorization || "").trim();
-  if (!authHeader.toLowerCase().startsWith("bearer ")) {
-    return res.status(401).json({ error: "Token manquant" });
-  }
-  const token = authHeader.slice(7).trim();
-
-  // ⚠️ Empêcher "null"/"undefined" en chaîne
-  if (!token || token === "null" || token === "undefined") {
-    return res.status(401).json({ error: "Token manquant" });
-  }
-
-  let decoded;
-  try {
-    decoded = verifyToken(token); // jwt.verify(...)
-  } catch (err) {
-    console.error("JWT verify error:", err.name, err.message);
-    return res.status(403).json({ error: "Token invalide ou expiré" });
-  }
-
-  const userId = decoded.userId; // <-- vérifie que ce champ existe bien !
-  if (!userId) {
-    return res.status(403).json({ error: "Token invalide (userId absent)" });
-  }
-
-  // --- Validation des champs
-  const { nom, description, prix, etat } = req.body || {};
-
-  if (!nom || !description || prix == null || !etat) {
+  // Validation simple
+  if (!nom || !description || prix == null || !etat)
     return res
       .status(400)
       .json({ error: "Champs manquants (nom, description, prix, etat)" });
-  }
 
   const prixNum = Number(prix);
-  if (!Number.isFinite(prixNum) || prixNum <= 0) {
+  if (!Number.isFinite(prixNum) || prixNum <= 0)
     return res.status(400).json({ error: "Prix invalide" });
-  }
 
   const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
-  if (!etatsAutorises.includes(etat)) {
+  if (!etatsAutorises.includes(etat))
     return res
       .status(400)
       .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
-  }
 
-  try {
-    // 1) Vérifier que l'article existe et appartient au user
-    const { data: article, error: artErr } = await supabase
-      .from("articles")
-      .select("id_articles, user_id")
-      .eq("id_articles", id)
-      .maybeSingle();
+  // Vérifie que l’article appartient au user
+  const { data: article, error: artErr } = await supabase
+    .from("articles")
+    .select("id_articles, user_id")
+    .eq("id_articles", id)
+    .maybeSingle();
 
-    if (artErr) throw artErr;
-    if (!article) return res.status(404).json({ error: "Article introuvable" });
-    if (article.user_id !== userId) {
-      return res
-        .status(403)
-        .json({ error: "Accès refusé (pas propriétaire de l'article)" });
-    }
-
-    // 2) Mettre à jour
-    const { data: updated, error: updErr } = await supabase
-      .from("articles")
-      .update({
-        nom: String(nom).trim(),
-        description: String(description).trim(),
-        prix: prixNum,
-        etat,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id_articles", id)
-      .select("id_articles, user_id, nom, description, prix, etat, updated_at")
-      .maybeSingle();
-
-    if (updErr) throw updErr;
-
+  if (artErr) return res.status(400).json({ error: artErr.message });
+  if (!article) return res.status(404).json({ error: "Article introuvable" });
+  if (String(article.user_id) !== String(userId))
     return res
-      .status(200)
-      .json({ message: "Article mis à jour", article: updated });
-  } catch (e) {
-    console.error("PUT /api/articles/:id error:", e);
-    return res.status(500).json({ error: "Erreur interne" });
-  }
+      .status(403)
+      .json({ error: "Accès refusé (pas propriétaire de l'article)" });
+
+  // Met à jour l’article
+  const { data: updated, error: updErr } = await supabase
+    .from("articles")
+    .update({
+      nom: nom.trim(),
+      description: description.trim(),
+      prix: prixNum,
+      etat,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id_articles", id)
+    .select("*")
+    .single();
+
+  if (updErr) return res.status(400).json({ error: updErr.message });
+  res.json({ message: "Article mis à jour", article: updated });
 });
 
 module.exports = router;
