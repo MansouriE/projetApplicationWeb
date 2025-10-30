@@ -16,6 +16,7 @@ function Article(props) {
     onDelete,
     isProfilePage,
     image_url,
+    user_id
   } = props;
 
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Article(props) {
   const [loadingFav, setLoadingFav] = useState(false);
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
-  const isOwner = isLoggedIn && user && article.user_id === user.id;
+  const isOwner = isLoggedIn && user && user_id === user.id;
   
 
   useEffect(() => {

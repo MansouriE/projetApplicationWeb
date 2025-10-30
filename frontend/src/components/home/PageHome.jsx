@@ -113,6 +113,7 @@ function HomePage() {
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}
                   image_url={article.image_url}
+                  user_id={article.user_id}
                 />
               </div>
             ))}
