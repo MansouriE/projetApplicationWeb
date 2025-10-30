@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/check-auth");
 
 router.post("/offer", authMiddleware, async (req, res) => {
   try {
-    const sender_id = req.user.id;
+    const sender_id = req.user.userId;
     const { article_id, amount } = req.body;
 
     if (!article_id || amount === undefined) {
