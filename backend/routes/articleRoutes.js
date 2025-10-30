@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const supabase = require("../config/supabaseClient");
 const authMiddleware = require("../middleware/check-auth");
 
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+
 const jwtSecret = process.env.JWT_SECRET || "cleSuperSecrete!";
 
 router.get("/getArticles", async (req, res) => {
@@ -19,117 +22,149 @@ router.get("/getArticles", async (req, res) => {
   }
 });
 
-router.post("/createArticle", authMiddleware, async (req, res) => {
-  try {
-    const { 
-      nom,
-      description,
-      prix,
-      etat,
-      bid,
-      bidPrixDepart,
-      durerBid,
-      offre,
-      offreReduction
-    } = req.body;
+router.post("/createArticle", authMiddleware, upload.single("image"),
+  async (req, res) => {
+    try {
+      const {
+        nom,
+        description,
+        prix,
+        etat,
+        bid,
+        bidPrixDepart,
+        durerBid,
+        offre,
+        offreReduction,
+      } = req.body;
 
-    const userId = req.user.userId;
+      const userId = req.user.userId;
 
-    if (!nom || !description || prix == null || !etat) {
-      return res.status(400).json({ error: "Champs manquants" });
-    }
-
-    const prixNum = Number(prix);
-    if (Number.isNaN(prixNum) || prixNum <= 0) {
-      return res.status(400).json({ error: "Prix invalide" });
-    }
-
-    const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
-    if (!etatsAutorises.includes(etat)) {
-      return res
-        .status(400)
-        .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
-    }
-
-    let bid_end_date = null;
-    let bidPrixDeDepart = null;
-    let bid_duration = null;
-
-    if (bid) {
-      bidPrixDeDepart = Number(bidPrixDepart);
-      bid_duration = durerBid;
-
-      if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
-        return res.status(400).json({ error: "Prix de départ du bid invalide" });
+      if (!nom || !description || prix == null || !etat) {
+        return res.status(400).json({ error: "Champs manquants" });
       }
 
-      const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
-      if (!dureesAutorisees.includes(bid_duration)) {
+      const prixNum = Number(prix);
+      if (Number.isNaN(prixNum) || prixNum <= 0) {
+        return res.status(400).json({ error: "Prix invalide" });
+      }
+
+      const etatsAutorises = ["Neuf", "Disponible", "Bon", "Usagé"];
+      if (!etatsAutorises.includes(etat)) {
         return res
           .status(400)
-          .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
+          .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
       }
 
-      const now = new Date();
-      const dureesMap = {
-        "12h": 12 * 60 * 60 * 1000,
-        "1d": 24 * 60 * 60 * 1000,
-        "2d": 2 * 24 * 60 * 60 * 1000,
-        "7d": 7 * 24 * 60 * 60 * 1000,
-        "14d": 14 * 24 * 60 * 60 * 1000,
-        "30d": 30 * 24 * 60 * 60 * 1000,
-      };
-      bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
-    }
+      let bid_end_date = null;
+      let bidPrixDeDepart = null;
+      let bid_duration = null;
 
-    let offre_reduction_value = null;
-    if (offre) {
-      const reductionsAutorisees = ["2.5", "5", "10", "15", "20", "25"];
-      if (!reductionsAutorisees.includes(String(offreReduction))) {
+      if (bid) {
+        bidPrixDeDepart = Number(bidPrixDepart);
+        bid_duration = durerBid;
+
+        if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
+          return res.status(400).json({ error: "Prix de départ du bid invalide" });
+        }
+
+        const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
+        if (!dureesAutorisees.includes(bid_duration)) {
+          return res
+            .status(400)
+            .json({ error: `Durée invalide (${dureesAutorisees.join(", ")})` });
+        }
+
+        const now = new Date();
+        const dureesMap = {
+          "12h": 12 * 60 * 60 * 1000,
+          "1d": 24 * 60 * 60 * 1000,
+          "2d": 2 * 24 * 60 * 60 * 1000,
+          "7d": 7 * 24 * 60 * 60 * 1000,
+          "14d": 14 * 24 * 60 * 60 * 1000,
+          "30d": 30 * 24 * 60 * 60 * 1000,
+        };
+        bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
+      }
+
+      let offre_reduction_value = null;
+      if (offre) {
+        const reductionsAutorisees = ["2.5", "5", "10", "15", "20", "25"];
+        if (!reductionsAutorisees.includes(String(offreReduction))) {
+          return res
+            .status(400)
+            .json({ error: `Réduction invalide (${reductionsAutorisees.join(", ")})` });
+        }
+        offre_reduction_value = Number(offreReduction);
+      }
+
+      if (bid && offre) {
         return res
           .status(400)
-          .json({ error: `Réduction invalide (${reductionsAutorisees.join(", ")})` });
+          .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
       }
-      offre_reduction_value = Number(offreReduction);
+
+      // Gestion image si présente
+      let imageUrl = null;
+      if (req.file) {
+        const fileName = `${Date.now()}-${req.file.originalname}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from("articles-images")
+          .upload(fileName, req.file.buffer, {
+            cacheControl: "3600",
+            upsert: false,
+            contentType: req.file.mimetype,
+          });
+
+        if (uploadError) {
+          console.error("Upload image error:", uploadError);
+          return res.status(500).json({ error: "Erreur lors de l'upload de l'image" });
+        }
+
+        // URL publique
+        const { publicURL, error: urlError } = supabase.storage
+          .from("articles-images")
+          .getPublicUrl(fileName);
+
+        if (urlError) {
+          console.error("Get public URL error:", urlError);
+        } else {
+          imageUrl = publicURL;
+        }
+      }
+
+      const { data, error } = await supabase
+        .from("articles")
+        .insert([
+          {
+            nom,
+            description,
+            prix: prixNum,
+            etat,
+            bid,
+            offre,
+            offre_reduction: offre_reduction_value,
+            bidPrixDeDepart,
+            bid_duration,
+            bid_end_date,
+            user_id: userId,
+            image_url: imageUrl,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Supabase error:", error);
+        throw error;
+      }
+
+      return res.status(201).json({ message: "Article créé", data });
+    } catch (err) {
+      console.error("Create article error:", err);
+      return res.status(500).json({ error: err.message });
     }
-
-    if (bid && offre) {
-      return res
-        .status(400)
-        .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
-    }
-
-    const { data, error } = await supabase
-      .from("articles")
-      .insert([
-        {
-          nom,
-          description,
-          prix: prixNum,
-          etat,
-          bid,
-          offre,
-          offre_reduction: offre_reduction_value,
-          bidPrixDeDepart,
-          bid_duration,
-          bid_end_date,
-          user_id: userId,
-        },
-      ])
-      .select()
-      .single();
-
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
-    }
-
-    return res.status(201).json({ message: "Article créé", data });
-  } catch (err) {
-    console.error("Create article error:", err);
-    return res.status(500).json({ error: err.message });
   }
-});
+);
 
 router.get("/getMesArticles", authMiddleware, async (req, res) => {
   try {
