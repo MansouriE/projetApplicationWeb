@@ -20,7 +20,7 @@ router.post("/offer", authMiddleware, async (req, res) => {
     const { data: article, error } = await supabase
       .from("articles")
       .select("user_id, prix, offre_reduction")
-      .eq("id", article_id)
+      .eq("id_articles", article_id)
       .single();
 
     if (error) {
