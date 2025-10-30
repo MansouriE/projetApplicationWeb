@@ -25,7 +25,7 @@ function Article(props) {
   const [loadingFav, setLoadingFav] = useState(false);
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
-  const isOwner = isLoggedIn && user && user_id === userId;
+  const isOwner = isLoggedIn && userId && user_id === userId;
 
   console.log(user_id);
   console.log(userId);
