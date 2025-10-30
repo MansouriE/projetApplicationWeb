@@ -56,7 +56,7 @@ function AddArticle() {
       }
     }
 
-    const etatsAutorises = ["Neuf", "Bon", "Usagé", "Disponible"];
+    const etatsAutorises = ["Neuf", "Usagé"];
     if (!etatsAutorises.includes(etat)) {
       setError(`L'état doit être parmi: ${etatsAutorises.join(", ")}`);
       return;
@@ -181,9 +181,7 @@ function AddArticle() {
         >
           <option value="">Sélectionner l'état</option>
           <option value="Neuf">Neuf</option>
-          <option value="Bon">Bon</option>
           <option value="Usagé">Usagé</option>
-          <option value="Disponible">Disponible</option>
         </select>
 
         <label className="flex items-center space-x-2 cursor-pointer">
