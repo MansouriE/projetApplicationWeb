@@ -24,7 +24,7 @@ app.use("/api/users", userRoutes);
 app.use("/api", articleRoutes);
 app.use("/api", bidRoutes);
 app.use("/api", favoriRoutes);
-app.use("/api", offreRoutes);
+app.use("/api/offers", offreRoutes);
 
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);

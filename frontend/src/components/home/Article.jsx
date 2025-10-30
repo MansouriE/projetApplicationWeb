@@ -89,7 +89,7 @@ function Article(props) {
 
     try {
       const res = await fetch(
-        `https://projetapplicationweb-1.onrender.com/api/offer`,
+        `https://projetapplicationweb-1.onrender.com/api/offers/offer`,
         {
           method: "POST",
           headers: {

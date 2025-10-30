@@ -10,6 +10,7 @@ import PageBid from "./components/bids/PageBid";
 import CreateArticle from "./components/addArticle/AddArticle";
 import Settings from "./components/settings/Settings";
 import UpdateArticle from "./components/updateArticle/UpdateArticle";
+import Offres from "./components/offre/Offre";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/bid/:id" element={<PageBid />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/articles/:id/edit" element={<UpdateArticle />} />
+          <Route path="/offres" element={<Offres />} />
         </Routes>
       </div>
     </Router>

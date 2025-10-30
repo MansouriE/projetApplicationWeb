@@ -54,4 +54,40 @@ router.post("/offer", authMiddleware, async (req, res) => {
   }
 });
 
+router.get("/received", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const { data: offers, error } = await supabase
+      .from("offers")
+      .select("*")
+      .eq("owner_id", userId);
+
+    if (error) return res.status(500).json({ error: "Erreur lors de la récupération" });
+
+    res.json(offers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/sent", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const { data: offers, error } = await supabase
+      .from("offers")
+      .select("*")
+      .eq("sender_id", userId);
+
+    if (error) return res.status(500).json({ error: "Erreur lors de la récupération" });
+
+    res.json(offers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;
