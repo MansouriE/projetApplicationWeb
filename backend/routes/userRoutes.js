@@ -27,35 +27,4 @@ router.patch("/me", authMiddleware, async (req, res) => {
   res.json({ user: safeUser });
 });
 
-// Route pour récupérer les articles d'un utilisateur
-/*
-router.get("/me/articles", async (req, res) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-
-  if (!token) return res.status(401).json({ error: "Token manquant" });
-
-  try {
-    const decoded = jwt.verify(token, jwtSecret);
-    const userId = decoded.userId;
-
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
-    }
-
-    res.json({ articles: data || [] });
-  } catch (err) {
-    console.error("Get user articles error:", err);
-    res.status(500).json({ error: "Erreur lors de la récupération des articles" });
-  }
-});
-*/
-
 module.exports = router;

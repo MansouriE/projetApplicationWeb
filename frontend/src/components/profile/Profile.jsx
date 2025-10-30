@@ -275,6 +275,8 @@ function Profile() {
                   bidPrixDeDepart={article.bidPrixDeDepart}
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
                   isProfilePage={true}
                   onEdit={() => handleEdit(article)}
                   onDelete={() => handleDelete(article.id_articles)}
@@ -305,6 +307,11 @@ function Profile() {
                   bidPrixDeDepart={article.bidPrixDeDepart}
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
+                  isProfilePage={false}
+                  onEdit={() => handleEdit(article)}
+                  onDelete={() => handleDelete(article.id_articles)}
                 />
               ))
             )}
