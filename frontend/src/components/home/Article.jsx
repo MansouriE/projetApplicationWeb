@@ -20,15 +20,15 @@ function Article(props) {
   } = props;
 
   const navigate = useNavigate();
-  const { token, isLoggedIn, user } = useContext(AuthContext);
+  const { token, isLoggedIn, userId } = useContext(AuthContext);
   const [isFavori, setIsFavori] = useState(false);
   const [loadingFav, setLoadingFav] = useState(false);
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
-  const isOwner = isLoggedIn && user && user_id === user.id;
+  const isOwner = isLoggedIn && user && user_id === userId;
 
   console.log(user_id);
-  console.log(user.id);
+  console.log(userId);
   console.log(isOwner)
 
   
