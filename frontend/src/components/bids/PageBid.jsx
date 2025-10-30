@@ -149,7 +149,7 @@ function PageBid() {
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200">
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{article.nom}</h1>
       <p className="text-gray-600 mb-6">{article.description}</p>
-
+       {/*changements visuels*/}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         <span className="text-xl font-semibold text-green-700">
           Prix de départ : {prixDepart} $

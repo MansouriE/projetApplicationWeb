@@ -64,7 +64,7 @@ function PageBid() {
           {article.etat}
         </span>
       </div>
-
+         
       {/* Liste des bids */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-3">Bids:</h2>
