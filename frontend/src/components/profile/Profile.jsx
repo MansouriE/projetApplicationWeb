@@ -280,6 +280,7 @@ function Profile() {
                   isProfilePage={true}
                   onEdit={() => handleEdit(article)}
                   onDelete={() => handleDelete(article.id_articles)}
+                  image_url={article.image_url}
                 />
               ))
             )}
@@ -312,6 +313,7 @@ function Profile() {
                   isProfilePage={false}
                   onEdit={() => handleEdit(article)}
                   onDelete={() => handleDelete(article.id_articles)}
+                  image_url={article.image_url}
                 />
               ))
             )}
