@@ -3,7 +3,6 @@ const router = express.Router();
 const supabase = require("../config/supabaseClient");
 const { verifyToken } = require("../config/jwt");
 
-
 // 💰 POST /api/bids
 router.post("/bids", async (req, res) => {
   try {
@@ -24,8 +23,14 @@ router.post("/bids", async (req, res) => {
     const article_id = Number(req.body.article_id);
     const amount = Number(req.body.amount);
 
-    if (!Number.isFinite(article_id) || !Number.isFinite(amount) || amount <= 0) {
-      return res.status(400).json({ error: "Paramètres invalides (article_id, amount)" });
+    if (
+      !Number.isFinite(article_id) ||
+      !Number.isFinite(amount) ||
+      amount <= 0
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Paramètres invalides (article_id, amount)" });
     }
 
     // --- Récupère l'article
@@ -38,9 +43,14 @@ router.post("/bids", async (req, res) => {
     if (artErr || !article)
       return res.status(404).json({ error: "Article introuvable" });
     if (!article.bid)
-      return res.status(400).json({ error: "Les enchères ne sont pas activées pour cet article" });
+      return res
+        .status(400)
+        .json({ error: "Les enchères ne sont pas activées pour cet article" });
 
-    if (article.bid_end_date && new Date(article.bid_end_date).getTime() <= Date.now()) {
+    if (
+      article.bid_end_date &&
+      new Date(article.bid_end_date).getTime() <= Date.now()
+    ) {
       return res.status(400).json({ error: "Enchère terminée" });
     }
 
@@ -57,12 +67,16 @@ router.post("/bids", async (req, res) => {
 
     if (topErr) {
       console.error("Top bid error:", topErr);
-      return res.status(500).json({ error: "Erreur vérification du prix courant" });
+      return res
+        .status(500)
+        .json({ error: "Erreur vérification du prix courant" });
     }
 
     const currentMax = Math.max(prixDepart, Number(topBid?.amount ?? 0));
     if (amount <= currentMax) {
-      return res.status(400).json({ error: `Le bid doit être > ${currentMax}` });
+      return res
+        .status(400)
+        .json({ error: `Le bid doit être > ${currentMax}` });
     }
 
     // --- Insertion du bid
@@ -87,18 +101,19 @@ router.get("/bids", async (req, res) => {
     return res.status(400).json({ error: "Paramètre 'article_id' invalide" });
   }
 
-  
   try {
     const { data, error } = await supabase
       .from("bids")
-      .select(`
+      .select(
+        `
         id,
         article_id,
         usr_id,
         amount,
         created_at,
         user:usr_id ( pseudo )
-      `)
+      `
+      )
       .eq("article_id", articleId)
       .order("amount", { ascending: false });
 
@@ -107,7 +122,9 @@ router.get("/bids", async (req, res) => {
     return res.status(200).json(data || []);
   } catch (e) {
     console.error("GET /api/bids error:", e);
-    return res.status(500).json({ error: "Erreur lors du chargement des bids" });
+    return res
+      .status(500)
+      .json({ error: "Erreur lors du chargement des bids" });
   }
 });
 

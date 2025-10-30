@@ -5,8 +5,13 @@ const authMiddleware = require("../middleware/check-auth");
 
 router.get("/me", authMiddleware, async (req, res) => {
   const { userId } = req.user;
-  const { data, error } = await supabase.from("user").select("*").eq("id", userId).single();
-  if (error || !data) return res.status(404).json({ error: "Utilisateur introuvable" });
+  const { data, error } = await supabase
+    .from("user")
+    .select("*")
+    .eq("id", userId)
+    .single();
+  if (error || !data)
+    return res.status(404).json({ error: "Utilisateur introuvable" });
   const { password, ...safeUser } = data;
   res.json({ user: safeUser });
 });

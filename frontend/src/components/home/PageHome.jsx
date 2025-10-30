@@ -9,12 +9,19 @@ function HomePage() {
   const [error, setError] = useState(null);
   const { isLoggedIn } = useContext(AuthContext);
 
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getArticles"
-        );
+        setLoading(true);
+        const url = search.trim()
+          ? `https://projetapplicationweb-1.onrender.com/api/getArticles?search=${encodeURIComponent(
+              search
+            )}`
+          : `https://projetapplicationweb-1.onrender.com/api/getArticles`;
+
+        const response = await fetch(url);
         if (!response.ok)
           throw new Error("Erreur lors du chargement des articles");
 
@@ -27,8 +34,9 @@ function HomePage() {
       }
     }
 
-    fetchArticles();
-  }, []);
+    const debounce = setTimeout(fetchArticles, 400);
+    return () => clearTimeout(debounce);
+  }, [search]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -71,6 +79,15 @@ function HomePage() {
             </Link>
           )}
         </div>
+
+        <input
+          type="text"
+          placeholder="Rechercher un article..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border p-2 rounded w-full mb-6"
+        />
+
         {loading && <p>Chargement...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 

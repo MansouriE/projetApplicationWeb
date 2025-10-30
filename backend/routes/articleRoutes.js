@@ -11,7 +11,15 @@ const jwtSecret = process.env.JWT_SECRET || "cleSuperSecrete!";
 
 router.get("/getArticles", async (req, res) => {
   try {
-    const { data, error } = await supabase.from("articles").select("*");
+    const { search } = req.query;
+
+    let query = supabase.from("articles").select("*");
+
+    if (search && search.trim() !== "") {
+      query = query.or(`nom.ilike.%${search}%,description.ilike.%${search}%`);
+    }
+
+    const { data, error } = await query;
 
     if (error) throw error;
 
@@ -22,7 +30,10 @@ router.get("/getArticles", async (req, res) => {
   }
 });
 
-router.post("/createArticle", authMiddleware, upload.single("image"),
+router.post(
+  "/createArticle",
+  authMiddleware,
+  upload.single("image"),
   async (req, res) => {
     try {
       const {
@@ -59,9 +70,9 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
       const offreBool = offre === true || offre === "true";
 
       if (bidBool && offreBool) {
-        return res
-          .status(400)
-          .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
+        return res.status(400).json({
+          error: "Un article ne peut pas accepter à la fois bids et offres.",
+        });
       }
 
       let bid_end_date = null;
@@ -73,7 +84,9 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
         bid_duration = durerBid;
 
         if (!bidPrixDeDepartNum || bidPrixDeDepartNum <= 0) {
-          return res.status(400).json({ error: "Prix de départ du bid invalide" });
+          return res
+            .status(400)
+            .json({ error: "Prix de départ du bid invalide" });
         }
 
         const dureesAutorisees = ["12h", "1d", "2d", "7d", "14d", "30d"];
@@ -99,9 +112,9 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
       if (offreBool) {
         const reductionsAutorisees = ["2.5", "5", "10", "15", "20", "25"];
         if (!reductionsAutorisees.includes(String(offreReduction))) {
-          return res
-            .status(400)
-            .json({ error: `Réduction invalide (${reductionsAutorisees.join(", ")})` });
+          return res.status(400).json({
+            error: `Réduction invalide (${reductionsAutorisees.join(", ")})`,
+          });
         }
         offre_reduction_value = Number(offreReduction);
       }
@@ -120,7 +133,9 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
 
         if (uploadError) {
           console.error("Upload image error:", uploadError);
-          return res.status(500).json({ error: "Erreur lors de l'upload de l'image" });
+          return res
+            .status(500)
+            .json({ error: "Erreur lors de l'upload de l'image" });
         }
 
         const { data: publicData } = supabase.storage

@@ -9,7 +9,9 @@ router.post("/favori", authMiddleware, async (req, res) => {
 
   try {
     if (favorite) {
-      await supabase.from("favori").insert({ user_id: userId, article_id: articleId });
+      await supabase
+        .from("favori")
+        .insert({ user_id: userId, article_id: articleId });
     } else {
       await supabase
         .from("favori")
