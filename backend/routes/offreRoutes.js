@@ -36,16 +36,14 @@ router.post("/offer", authMiddleware, async (req, res) => {
         .json({ error: `Offer must be at least ${minOffer}` });
     }
 
-    await supabase
-      .from("offers")
-      .insert([
-        {
-          owner_id: user_id,
-          sender_id,
-          article_id,
-          amount: parsedAmount,
-        },
-      ]);
+    await supabase.from("offers").insert([
+      {
+        owner_id: user_id,
+        sender_id,
+        article_id,
+        amount: parsedAmount,
+      },
+    ]);
 
     res.status(201).json({ success: true, message: "Offer submitted" });
   } catch (err) {
@@ -63,7 +61,8 @@ router.get("/received", authMiddleware, async (req, res) => {
       .select("*")
       .eq("owner_id", userId);
 
-    if (error) return res.status(500).json({ error: "Erreur lors de la récupération" });
+    if (error)
+      return res.status(500).json({ error: "Erreur lors de la récupération" });
 
     res.json(offers);
   } catch (err) {
@@ -81,7 +80,8 @@ router.get("/sent", authMiddleware, async (req, res) => {
       .select("*")
       .eq("sender_id", userId);
 
-    if (error) return res.status(500).json({ error: "Erreur lors de la récupération" });
+    if (error)
+      return res.status(500).json({ error: "Erreur lors de la récupération" });
 
     res.json(offers);
   } catch (err) {
@@ -95,11 +95,11 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     const userId = req.user.userId;
     const offerId = req.params.id;
 
-    const { data: offer, error, status } = await supabase
-      .from("offers")
-      .select("*")
-      .eq("id", offerId)
-      .single();
+    const {
+      data: offer,
+      error,
+      status,
+    } = await supabase.from("offers").select("*").eq("id", offerId).single();
 
     if (error && status !== 406) {
       return res.status(500).json({ error: "Erreur serveur" });
@@ -110,7 +110,12 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     }
 
     if (offer.sender_id !== userId && offer.owner_id !== userId) {
-      return res.status(403).json({ error: "Vous ne pouvez supprimer que vos offres ou celles reçues sur vos articles" });
+      return res
+        .status(403)
+        .json({
+          error:
+            "Vous ne pouvez supprimer que vos offres ou celles reçues sur vos articles",
+        });
     }
 
     const { error: deleteError } = await supabase
@@ -119,7 +124,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
       .eq("id", offerId);
 
     if (deleteError) {
-      return res.status(500).json({ error: "Erreur lors de la suppression de l'offre" });
+      return res
+        .status(500)
+        .json({ error: "Erreur lors de la suppression de l'offre" });
     }
 
     res.json({ success: true, message: "Offre supprimée avec succès" });

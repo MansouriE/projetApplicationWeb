@@ -53,10 +53,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Email ou mot de passe incorrect" });
     }
 
-    const token = signToken(
-      { userId: data.id, email: data.courriel },
-
-    );
+    const token = signToken({ userId: data.id, email: data.courriel });
 
     res.status(200).json({ message: "Connexion réussie", token, user: data });
   } catch (error) {
