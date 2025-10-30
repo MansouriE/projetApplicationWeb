@@ -19,11 +19,13 @@ function Article(props) {
   } = props;
 
   const navigate = useNavigate();
-  const { token, isLoggedIn } = useContext(AuthContext);
+  const { token, isLoggedIn, user } = useContext(AuthContext);
   const [isFavori, setIsFavori] = useState(false);
   const [loadingFav, setLoadingFav] = useState(false);
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
+  const isOwner = isLoggedIn && user && article.user_id === user.id;
+  
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -189,7 +191,7 @@ function Article(props) {
         </span>
       </div>
 
-      {isLoggedIn && !isProfilePage && (
+      {isLoggedIn && !isProfilePage && !isOwner &&(
         <>
           {bid && (
             <button

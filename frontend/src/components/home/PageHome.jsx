@@ -43,10 +43,10 @@ function HomePage() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-slate-800 mb-3">
-            Nos Articles
+            MARKETPLACE
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Découvrez notre sélection exclusive d'articles soigneusement choisis
+            Découvrez les sélections exclusive d'articles
           </p>
         </div>
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20">
