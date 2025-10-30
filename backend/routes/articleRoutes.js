@@ -235,20 +235,47 @@ router.get("/getMesArticlesFavori", authMiddleware, async (req, res) => {
 // DELETE /api/articles/:id
 router.delete("/articles/:id", authMiddleware, async (req, res) => {
   const id = Number(req.params.id);
-  if (!Number.isFinite(id))
+  if (!Number.isFinite(id)) {
     return res.status(400).json({ error: "Id invalide" });
+  }
 
   const userId = req.user.userId;
 
-  const { error } = await supabase
+  // 1) Vérifier que l’article existe et appartient au user
+  const { data: article, error: artErr } = await supabase
+    .from("articles")
+    .select("id_articles, user_id")
+    .eq("id_articles", id)
+    .single();
+
+  if (artErr) return res.status(400).json({ error: artErr.message });
+  if (!article) return res.status(404).json({ error: "Article introuvable" });
+  if (article.user_id !== userId) {
+    return res.status(403).json({ error: "Accès refusé" });
+  }
+
+  // 2) Effacer d’abord les dépendances (gérer les erreurs)
+  const delBids = await supabase.from("bids").delete().eq("article_id", id);
+  if (delBids.error) return res.status(400).json({ error: delBids.error.message });
+
+  const delOffers = await supabase.from("offers").delete().eq("article_id", id);
+  if (delOffers.error) return res.status(400).json({ error: delOffers.error.message });
+
+  const delFavori = await supabase.from("favori").delete().eq("article_id", id);
+  if (delFavori.error) return res.status(400).json({ error: delFavori.error.message });
+
+  // 3) Supprimer l’article
+  const { error: delArticleErr } = await supabase
     .from("articles")
     .delete()
     .eq("id_articles", id)
     .eq("user_id", userId);
 
-  if (error) return res.status(400).json({ error: error.message });
-  res.json({ ok: true });
+  if (delArticleErr) return res.status(400).json({ error: delArticleErr.message });
+
+  return res.json({ ok: true });
 });
+
 
 router.get("/articles/:id", async (req, res) => {
   const id = Number(req.params.id);
