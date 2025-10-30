@@ -90,4 +90,43 @@ router.get("/sent", authMiddleware, async (req, res) => {
   }
 });
 
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const offerId = req.params.id;
+
+    const { data: offer, error, status } = await supabase
+      .from("offers")
+      .select("*")
+      .eq("id", offerId)
+      .single();
+
+    if (error && status !== 406) {
+      return res.status(500).json({ error: "Erreur serveur" });
+    }
+
+    if (!offer) {
+      return res.status(404).json({ error: "Offre introuvable" });
+    }
+
+    if (offer.sender_id !== userId && offer.owner_id !== userId) {
+      return res.status(403).json({ error: "Vous ne pouvez supprimer que vos offres ou celles reçues sur vos articles" });
+    }
+
+    const { error: deleteError } = await supabase
+      .from("offers")
+      .delete()
+      .eq("id", offerId);
+
+    if (deleteError) {
+      return res.status(500).json({ error: "Erreur lors de la suppression de l'offre" });
+    }
+
+    res.json({ success: true, message: "Offre supprimée avec succès" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
 module.exports = router;
