@@ -15,6 +15,7 @@ function Article(props) {
     onEdit,
     onDelete,
     isProfilePage,
+    image_url,
   } = props;
 
   const navigate = useNavigate();
@@ -145,19 +146,27 @@ function Article(props) {
       )}
 
       <div className="relative w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-        <svg
-          className="w-16 h-16 text-gray-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2"
+        {image_url ? (
+          <img
+            src={image_url}
+            alt={nom}
+            className="absolute inset-0 w-full h-full object-cover"
           />
-        </svg>
+        ) : (
+          <svg
+            className="w-16 h-16 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2"
+            />
+          </svg>
+        )}
       </div>
 
       <h2 className="text-2xl font-bold text-gray-800 mb-3 truncate">{nom}</h2>

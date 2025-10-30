@@ -95,6 +95,7 @@ function HomePage() {
                   bidPrixDeDepart={article.bidPrixDeDepart}
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}
+                  image_url={article.image_url}
                 />
               </div>
             ))}
