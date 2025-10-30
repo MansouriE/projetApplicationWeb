@@ -123,15 +123,14 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
           return res.status(500).json({ error: "Erreur lors de l'upload de l'image" });
         }
 
-        // URL publique
-        const { publicURL, error: urlError } = supabase.storage
+        const { data: publicData } = supabase.storage
           .from("articles-images")
           .getPublicUrl(fileName);
 
-        if (urlError) {
-          console.error("Get public URL error:", urlError);
-        } else {
-          imageUrl = publicURL;
+        imageUrl = publicData?.publicUrl || null;
+
+        if (!imageUrl) {
+          console.warn("Impossible de récupérer l'URL publique de l'image");
         }
       }
 
