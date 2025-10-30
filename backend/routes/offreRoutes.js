@@ -54,7 +54,7 @@ router.post("/offer", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/offers/received", authMiddleware, async (req, res) => {
+router.get("/received", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.userId;
 
@@ -72,7 +72,7 @@ router.get("/offers/received", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/offers/sent", authMiddleware, async (req, res) => {
+router.get("/sent", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.userId;
 
