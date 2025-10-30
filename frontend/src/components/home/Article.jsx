@@ -96,7 +96,7 @@ function Article(props) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ articleId: id, amount: Number(offerAmount) }),
+          body: JSON.stringify({ article_id: id, amount: Number(offerAmount) }),
         }
       );
       const data = await res.json();
