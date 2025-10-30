@@ -90,6 +90,8 @@ function HomePage() {
                   prix={article.prix}
                   etat={article.etat}
                   bid={article.bid}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
                   bidPrixDeDepart={article.bidPrixDeDepart}
                   bid_duration={article.bid_duration}
                   bid_end_date={article.bid_end_date}

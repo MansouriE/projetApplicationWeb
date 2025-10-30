@@ -10,6 +10,8 @@ function Article(props) {
     prix,
     etat,
     bid,
+    offre,
+    offre_reduction,
     onEdit,
     onDelete,
     isProfilePage,
@@ -19,6 +21,8 @@ function Article(props) {
   const { token, isLoggedIn } = useContext(AuthContext);
   const [isFavori, setIsFavori] = useState(false);
   const [loadingFav, setLoadingFav] = useState(false);
+  const [showOfferModal, setShowOfferModal] = useState(false);
+  const [offerAmount, setOfferAmount] = useState("");
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -76,8 +80,43 @@ function Article(props) {
     }
   };
 
-  return (
-    <div className="relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+  const submitOffer = async () => {
+    const minOffer = prix - (offre_reduction / 100) * prix;
+    if (!offerAmount || Number(offerAmount) < minOffer) {
+      alert(`Le montant de l'offre doit être au moins ${minOffer}`);
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `https://projetapplicationweb-1.onrender.com/api/offer`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ articleId: id, amount: Number(offerAmount) }),
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || "Erreur lors de l'envoi de l'offre");
+
+      setShowOfferModal(false);
+      setOfferAmount("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+   return (
+    <div className="relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      onMouseLeave={() => {
+        setShowOfferModal(false);
+        setOfferAmount("");
+      }}
+    >
       {isLoggedIn && (
         <button
           onClick={toggleFavori}
@@ -95,11 +134,11 @@ function Article(props) {
               strokeLinecap="round"
               strokeLinejoin="round"
               d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-              2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
-              2.09C13.09 3.81 14.76 3 16.5
-              3 19.58 3 22 5.42 22 8.5c0
-              3.78-3.4 6.86-8.55 11.54L12
-              21.35z"
+                 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
+                 2.09C13.09 3.81 14.76 3 16.5
+                 3 19.58 3 22 5.42 22 8.5c0
+                 3.78-3.4 6.86-8.55 11.54L12
+                 21.35z"
             />
           </svg>
         </button>
@@ -139,49 +178,88 @@ function Article(props) {
         </span>
       </div>
 
-      {isLoggedIn && (
+      {isLoggedIn && !isProfilePage && (
         <>
-          {!isProfilePage && (
-            <>
-              {bid && (
-                <button
-                  onClick={bidClic}
-                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
-                >
-                  Bids
-                </button>
-              )}
-
-              <button
-                onClick={() => {}}
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-              >
-                Acheter
-              </button>
-            </>
+          {bid && (
+            <button
+              onClick={bidClic}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+            >
+              Bids
+            </button>
           )}
 
-          {isProfilePage && (
-            <>
-              {onEdit && (
-                <button
-                  onClick={onEdit}
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-                >
-                  Modifier
-                </button>
-              )}
-              {onDelete && (
-                <button
-                  onClick={onDelete}
-                  className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
-                >
-                  Supprimer
-                </button>
-              )}
-            </>
+          {offre && (
+            <button
+              onClick={() => setShowOfferModal(true)}
+              className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+            >
+              Faire une offre
+            </button>
+          )}
+
+          <button
+            onClick={() => {}}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Acheter
+          </button>
+        </>
+      )}
+
+      {isProfilePage && (
+        <>
+          {onEdit && (
+            <button
+              onClick={onEdit}
+              className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2"
+            >
+              Modifier
+            </button>
+          )}
+          {onDelete && (
+            <button
+              onClick={onDelete}
+              className="w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+            >
+              Supprimer
+            </button>
           )}
         </>
+      )}
+
+      {showOfferModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-80 shadow-lg border border-black">
+            <h3 className="text-lg font-bold mb-4">Entrez votre offre</h3>
+            <input
+              type="number"
+              placeholder={`Minimum: ${
+                prix - (offre_reduction / 100) * prix
+              }`}              
+              value={offerAmount}
+              onChange={(e) => setOfferAmount(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+            />
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => {
+                  setShowOfferModal(false);
+                  setOfferAmount("");
+                }}
+                className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={submitOffer}
+                className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
+              >
+                Envoyer
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
