@@ -58,7 +58,8 @@ export default function Offres() {
       if (!res.ok) throw new Error(data.error || "Erreur lors de la suppression");
 
       setReceivedOffers(receivedOffers.filter(o => o.id !== offerId));
-      alert("Offre supprimée !");
+      setSentOffers(prevOffers => prevOffers.filter(o => o.id !== offerId));
+
     } catch (err) {
       console.error(err);
     }
