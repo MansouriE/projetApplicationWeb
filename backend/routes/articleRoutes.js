@@ -55,15 +55,24 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
           .json({ error: `État invalide (${etatsAutorises.join(", ")})` });
       }
 
+      const bidBool = bid === true || bid === "true";
+      const offreBool = offre === true || offre === "true";
+
+      if (bidBool && offreBool) {
+        return res
+          .status(400)
+          .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
+      }
+
       let bid_end_date = null;
-      let bidPrixDeDepart = null;
+      let bidPrixDeDepartNum = null;
       let bid_duration = null;
 
-      if (bid) {
-        bidPrixDeDepart = Number(bidPrixDepart);
+      if (bidBool) {
+        bidPrixDeDepartNum = Number(bidPrixDepart);
         bid_duration = durerBid;
 
-        if (!bidPrixDeDepart || bidPrixDeDepart <= 0) {
+        if (!bidPrixDeDepartNum || bidPrixDeDepartNum <= 0) {
           return res.status(400).json({ error: "Prix de départ du bid invalide" });
         }
 
@@ -87,7 +96,7 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
       }
 
       let offre_reduction_value = null;
-      if (offre) {
+      if (offreBool) {
         const reductionsAutorisees = ["2.5", "5", "10", "15", "20", "25"];
         if (!reductionsAutorisees.includes(String(offreReduction))) {
           return res
@@ -95,12 +104,6 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
             .json({ error: `Réduction invalide (${reductionsAutorisees.join(", ")})` });
         }
         offre_reduction_value = Number(offreReduction);
-      }
-
-      if (bid && offre) {
-        return res
-          .status(400)
-          .json({ error: "Un article ne peut pas accepter à la fois bids et offres." });
       }
 
       // Gestion image si présente
@@ -140,12 +143,12 @@ router.post("/createArticle", authMiddleware, upload.single("image"),
             description,
             prix: prixNum,
             etat,
-            bid,
-            offre,
-            offre_reduction: offre_reduction_value,
-            bidPrixDeDepart,
-            bid_duration,
-            bid_end_date,
+            bid: bidBool,
+            offre: offreBool,
+            offre_reduction: offreBool ? offre_reduction_value : null,
+            bidPrixDeDepart: bidBool ? bidPrixDeDepartNum : null,
+            bid_duration: bidBool ? bid_duration : null,
+            bid_end_date: bidBool ? bid_end_date : null,
             user_id: userId,
             image_url: imageUrl,
           },
