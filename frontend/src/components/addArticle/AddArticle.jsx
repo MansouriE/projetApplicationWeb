@@ -14,6 +14,7 @@ function AddArticle() {
   const [offreReduction, setOffreReduction] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [imageFile, setImageFile] = useState(null);
 
   const { token, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -64,25 +65,24 @@ function AddArticle() {
     setSubmitting(true);
 
     try {
+      const formData = new FormData();
+      formData.append("nom", nom);
+      formData.append("description", description);
+      formData.append("prix", prixNum);
+      formData.append("etat", etat);
+      formData.append("bid", acceptsBids);
+      formData.append("offre", acceptsOffers);
+      formData.append("offreReduction", acceptsOffers ? offreReduction : "");
+      formData.append("bidPrixDepart", acceptsBids ? startingBid : "");
+      formData.append("durerBid", acceptsBids ? bidDuration : "");
+      if (imageFile) formData.append("image", imageFile);
+
       const response = await fetch(
         "https://projetapplicationweb-1.onrender.com/api/createArticle",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            nom,
-            description,
-            prix: prixNum,
-            etat,
-            bid: acceptsBids,
-            offre: acceptsOffers,
-            offreReduction: acceptsOffers ? Number(offreReduction) : null,
-            bidPrixDepart: acceptsBids ? Number(startingBid) : null,
-            durerBid: acceptsBids ? bidDuration : null,
-          }),
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
         }
       );
 
@@ -106,6 +106,7 @@ function AddArticle() {
       setBidDuration("");
       setOffreReduction("");
       setAcceptsOffers(false);
+      setImageFile(null);
 
       navigate("/profile");
     } catch (err) {
@@ -155,6 +156,15 @@ function AddArticle() {
           onChange={(e) => setDescription(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none h-28 resize-none"
         />
+
+        <label className="block">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageFile(e.target.files[0])}
+            className="mt-1 block w-full"
+          />
+        </label>
 
         <input
           type="number"
