@@ -120,6 +120,31 @@ function Article(props) {
     }
   };
 
+  const handleBuy = async () => {
+    if (!isLoggedIn) return;
+    try {
+      const res = await fetch(
+        "https://projetapplicationweb-1.onrender.com/api/payments/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ articleId: id, quantity: 1 }),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok || !data?.url) {
+        throw new Error(data?.error || "Erreur lors de la création du paiement");
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Erreur paiement");
+    }
+  };
+
   return (
     <div
       className="relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -218,7 +243,7 @@ function Article(props) {
           )}
 
           <button
-            onClick={() => {}}
+            onClick={handleBuy}
             className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
           >
             Acheter
