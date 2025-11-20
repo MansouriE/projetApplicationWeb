@@ -122,18 +122,20 @@ function Article(props) {
 
   const handleBuy = async () => {
     if (!isLoggedIn) return;
+    const API_BASE =
+      window.location.hostname === "localhost"
+        ? "http://localhost:3001"
+        : "https://projetapplicationweb-1.onrender.com";
+
     try {
-      const res = await fetch(
-        "https://projetapplicationweb-1.onrender.com/api/payments/create-checkout-session",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ articleId: id, quantity: 1 }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/payments/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ articleId: id, quantity: 1 }),
+      });
       const data = await res.json();
       if (!res.ok || !data?.url) {
         throw new Error(data?.error || "Erreur lors de la création du paiement");
