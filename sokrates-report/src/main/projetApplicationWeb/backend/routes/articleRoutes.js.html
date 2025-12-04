@@ -1,0 +1,383 @@
+<html>
+<head>
+    <title>projetApplicationWeb/backend/routes/articleRoutes.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/backend/routes/articleRoutes.js (<b>284</b> lines of code) (<a href="articleRoutes.js">raw</a>):</h3>
+<div id="editor">const express = require(&quot;express&quot;);
+const router = express.Router();
+const jwt = require(&quot;jsonwebtoken&quot;);
+const supabase = require(&quot;../config/supabaseClient&quot;);
+const authMiddleware = require(&quot;../middleware/check-auth&quot;);
+
+const multer = require(&quot;multer&quot;);
+const upload = multer({ storage: multer.memoryStorage() });
+
+const jwtSecret = process.env.JWT_SECRET || &quot;cleSuperSecrete!&quot;;
+
+router.get(&quot;/getArticles&quot;, async (req, res) =&gt; {
+  try {
+    const { search } = req.query;
+
+    let query = supabase.from(&quot;articles&quot;).select(&quot;*&quot;);
+
+    if (search &amp;&amp; search.trim() !== &quot;&quot;) {
+      query = query.or(`nom.ilike.%${search}%,description.ilike.%${search}%`);
+    }
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+
+    res.status(200).json(data || []);
+  } catch (error) {
+    console.error(&quot;Error fetching articles:&quot;, error.message);
+    res.status(500).json({ error: &quot;Failed to fetch articles&quot; });
+  }
+});
+
+router.post(
+  &quot;/createArticle&quot;,
+  authMiddleware,
+  upload.single(&quot;image&quot;),
+  async (req, res) =&gt; {
+    try {
+      const {
+        nom,
+        description,
+        prix,
+        etat,
+        bid,
+        bidPrixDepart,
+        durerBid,
+        offre,
+        offreReduction,
+      } = req.body;
+
+      const userId = req.user.userId;
+
+      if (!nom || !description || prix == null || !etat) {
+        return res.status(400).json({ error: &quot;Champs manquants&quot; });
+      }
+
+      const prixNum = Number(prix);
+      if (Number.isNaN(prixNum) || prixNum &lt;= 0) {
+        return res.status(400).json({ error: &quot;Prix invalide&quot; });
+      }
+
+      const etatsAutorises = [&quot;Neuf&quot;, &quot;Disponible&quot;, &quot;Bon&quot;, &quot;Usag&eacute;&quot;];
+      if (!etatsAutorises.includes(etat)) {
+        return res
+          .status(400)
+          .json({ error: `&Eacute;tat invalide (${etatsAutorises.join(&quot;, &quot;)})` });
+      }
+
+      const bidBool = bid === true || bid === &quot;true&quot;;
+      const offreBool = offre === true || offre === &quot;true&quot;;
+
+      if (bidBool &amp;&amp; offreBool) {
+        return res.status(400).json({
+          error: &quot;Un article ne peut pas accepter &agrave; la fois bids et offres.&quot;,
+        });
+      }
+
+      let bid_end_date = null;
+      let bidPrixDeDepartNum = null;
+      let bid_duration = null;
+
+      if (bidBool) {
+        bidPrixDeDepartNum = Number(bidPrixDepart);
+        bid_duration = durerBid;
+
+        if (!bidPrixDeDepartNum || bidPrixDeDepartNum &lt;= 0) {
+          return res
+            .status(400)
+            .json({ error: &quot;Prix de d&eacute;part du bid invalide&quot; });
+        }
+
+        const dureesAutorisees = [&quot;12h&quot;, &quot;1d&quot;, &quot;2d&quot;, &quot;7d&quot;, &quot;14d&quot;, &quot;30d&quot;];
+        if (!dureesAutorisees.includes(bid_duration)) {
+          return res
+            .status(400)
+            .json({ error: `Dur&eacute;e invalide (${dureesAutorisees.join(&quot;, &quot;)})` });
+        }
+
+        const now = new Date();
+        const dureesMap = {
+          &quot;12h&quot;: 12 * 60 * 60 * 1000,
+          &quot;1d&quot;: 24 * 60 * 60 * 1000,
+          &quot;2d&quot;: 2 * 24 * 60 * 60 * 1000,
+          &quot;7d&quot;: 7 * 24 * 60 * 60 * 1000,
+          &quot;14d&quot;: 14 * 24 * 60 * 60 * 1000,
+          &quot;30d&quot;: 30 * 24 * 60 * 60 * 1000,
+        };
+        bid_end_date = new Date(now.getTime() + dureesMap[bid_duration]);
+      }
+
+      let offre_reduction_value = null;
+      if (offreBool) {
+        const reductionsAutorisees = [&quot;2.5&quot;, &quot;5&quot;, &quot;10&quot;, &quot;15&quot;, &quot;20&quot;, &quot;25&quot;];
+        if (!reductionsAutorisees.includes(String(offreReduction))) {
+          return res.status(400).json({
+            error: `R&eacute;duction invalide (${reductionsAutorisees.join(&quot;, &quot;)})`,
+          });
+        }
+        offre_reduction_value = Number(offreReduction);
+      }
+
+      // Gestion image si pr&eacute;sente
+      let imageUrl = null;
+      if (req.file) {
+        const fileName = `${Date.now()}-${req.file.originalname}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from(&quot;articles-images&quot;)
+          .upload(fileName, req.file.buffer, {
+            cacheControl: &quot;3600&quot;,
+            upsert: false,
+            contentType: req.file.mimetype,
+          });
+
+        if (uploadError) {
+          console.error(&quot;Upload image error:&quot;, uploadError);
+          return res
+            .status(500)
+            .json({ error: &quot;Erreur lors de l'upload de l'image&quot; });
+        }
+
+        const { data: publicData } = supabase.storage
+          .from(&quot;articles-images&quot;)
+          .getPublicUrl(fileName);
+
+        imageUrl = publicData?.publicUrl || null;
+
+        if (!imageUrl) {
+          console.warn(&quot;Impossible de r&eacute;cup&eacute;rer l'URL publique de l'image&quot;);
+        }
+      }
+
+      const { data, error } = await supabase
+        .from(&quot;articles&quot;)
+        .insert([
+          {
+            nom,
+            description,
+            prix: prixNum,
+            etat,
+            bid: bidBool,
+            offre: offreBool,
+            offre_reduction: offreBool ? offre_reduction_value : null,
+            bidPrixDeDepart: bidBool ? bidPrixDeDepartNum : null,
+            bid_duration: bidBool ? bid_duration : null,
+            bid_end_date: bidBool ? bid_end_date : null,
+            user_id: userId,
+            image_url: imageUrl,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) {
+        console.error(&quot;Supabase error:&quot;, error);
+        throw error;
+      }
+
+      return res.status(201).json({ message: &quot;Article cr&eacute;&eacute;&quot;, data });
+    } catch (err) {
+      console.error(&quot;Create article error:&quot;, err);
+      return res.status(500).json({ error: err.message });
+    }
+  }
+);
+
+router.get(&quot;/getMesArticles&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const userId = req.user.userId;
+
+    const { data, error } = await supabase
+      .from(&quot;articles&quot;)
+      .select(&quot;*&quot;)
+      .eq(&quot;user_id&quot;, userId);
+
+    if (error) throw error;
+
+    res.status(200).json(data || []);
+  } catch (err) {
+    console.error(&quot;Error fetching user's articles:&quot;, err.message);
+    res.status(500).json({ error: &quot;Failed to fetch user's articles&quot; });
+  }
+});
+
+router.get(&quot;/getMesArticlesFavori&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const userId = req.user.userId;
+
+    const { data: favoriData, error: favoriError } = await supabase
+      .from(&quot;favori&quot;)
+      .select(&quot;article_id&quot;)
+      .eq(&quot;user_id&quot;, userId);
+
+    if (favoriError) throw favoriError;
+
+    const favoriIds = favoriData.map((f) =&gt; f.article_id);
+
+    if (favoriIds.length === 0) {
+      return res.status(200).json([]);
+    }
+
+    const { data: articlesData, error: articlesError } = await supabase
+      .from(&quot;articles&quot;)
+      .select(&quot;*&quot;)
+      .in(&quot;id_articles&quot;, favoriIds);
+
+    if (articlesError) throw articlesError;
+
+    res.status(200).json(articlesData || []);
+  } catch (err) {
+    console.error(&quot;Error fetching user's favorite articles:&quot;, err.message);
+    res.status(500).json({ error: &quot;Failed to fetch user's favorite articles&quot; });
+  }
+});
+
+// DELETE /api/articles/:id
+router.delete(&quot;/articles/:id&quot;, authMiddleware, async (req, res) =&gt; {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ error: &quot;Id invalide&quot; });
+  }
+
+  const userId = req.user.userId;
+
+  // 1) V&eacute;rifier que l&rsquo;article existe et appartient au user
+  const { data: article, error: artErr } = await supabase
+    .from(&quot;articles&quot;)
+    .select(&quot;id_articles, user_id&quot;)
+    .eq(&quot;id_articles&quot;, id)
+    .single();
+
+  if (artErr) return res.status(400).json({ error: artErr.message });
+  if (!article) return res.status(404).json({ error: &quot;Article introuvable&quot; });
+  if (article.user_id !== userId) {
+    return res.status(403).json({ error: &quot;Acc&egrave;s refus&eacute;&quot; });
+  }
+
+  // 2) Effacer d&rsquo;abord les d&eacute;pendances (g&eacute;rer les erreurs)
+  const delBids = await supabase.from(&quot;bids&quot;).delete().eq(&quot;article_id&quot;, id);
+  if (delBids.error) return res.status(400).json({ error: delBids.error.message });
+
+  const delOffers = await supabase.from(&quot;offers&quot;).delete().eq(&quot;article_id&quot;, id);
+  if (delOffers.error) return res.status(400).json({ error: delOffers.error.message });
+
+  const delFavori = await supabase.from(&quot;favori&quot;).delete().eq(&quot;article_id&quot;, id);
+  if (delFavori.error) return res.status(400).json({ error: delFavori.error.message });
+
+  // 3) Supprimer l&rsquo;article
+  const { error: delArticleErr } = await supabase
+    .from(&quot;articles&quot;)
+    .delete()
+    .eq(&quot;id_articles&quot;, id)
+    .eq(&quot;user_id&quot;, userId);
+
+  if (delArticleErr) return res.status(400).json({ error: delArticleErr.message });
+
+  return res.json({ ok: true });
+});
+
+
+router.get(&quot;/articles/:id&quot;, async (req, res) =&gt; {
+  const id = Number(req.params.id);
+  if (!Number.isFinite(id)) {
+    return res.status(400).json({ error: &quot;Param&egrave;tre 'id' invalide&quot; });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from(&quot;articles&quot;)
+      .select(
+        &quot;id_articles, user_id, nom, description, prix, etat, bid, bidPrixDeDepart, bid_duration, bid_end_date&quot;
+      )
+      .eq(&quot;id_articles&quot;, id)
+      .maybeSingle();
+
+    if (error) throw error;
+    if (!data) return res.status(404).json({ error: &quot;Article introuvable&quot; });
+
+    return res.status(200).json(data);
+  } catch (e) {
+    console.error(&quot;GET /api/articles/:id error:&quot;, e);
+    return res.status(500).json({ error: &quot;Erreur interne&quot; });
+  }
+});
+
+router.put(&quot;/articles/:id&quot;, authMiddleware, async (req, res) =&gt; {
+  const { userId } = req.user; // inject&eacute; par ton middleware JWT
+  const id = Number(req.params.id);
+  const { nom, description, prix, etat } = req.body;
+
+  // Validation simple
+  if (!nom || !description || prix == null || !etat)
+    return res
+      .status(400)
+      .json({ error: &quot;Champs manquants (nom, description, prix, etat)&quot; });
+
+  const prixNum = Number(prix);
+  if (!Number.isFinite(prixNum) || prixNum &lt;= 0)
+    return res.status(400).json({ error: &quot;Prix invalide&quot; });
+
+  const etatsAutorises = [&quot;Neuf&quot;, &quot;Disponible&quot;, &quot;Bon&quot;, &quot;Usag&eacute;&quot;];
+  if (!etatsAutorises.includes(etat))
+    return res
+      .status(400)
+      .json({ error: `&Eacute;tat invalide (${etatsAutorises.join(&quot;, &quot;)})` });
+
+  // V&eacute;rifie que l&rsquo;article appartient au user
+  const { data: article, error: artErr } = await supabase
+    .from(&quot;articles&quot;)
+    .select(&quot;id_articles, user_id&quot;)
+    .eq(&quot;id_articles&quot;, id)
+    .maybeSingle();
+
+  if (artErr) return res.status(400).json({ error: artErr.message });
+  if (!article) return res.status(404).json({ error: &quot;Article introuvable&quot; });
+  if (String(article.user_id) !== String(userId))
+    return res
+      .status(403)
+      .json({ error: &quot;Acc&egrave;s refus&eacute; (pas propri&eacute;taire de l'article)&quot; });
+
+  // Met &agrave; jour l&rsquo;article
+  const { data: updated, error: updErr } = await supabase
+    .from(&quot;articles&quot;)
+    .update({
+      nom: nom.trim(),
+      description: description.trim(),
+      prix: prixNum,
+      etat,
+    })
+    .eq(&quot;id_articles&quot;, id)
+    .select(&quot;*&quot;)
+    .single();
+
+  if (updErr) return res.status(400).json({ error: updErr.message });
+  res.json({ message: &quot;Article mis &agrave; jour&quot;, article: updated });
+});
+
+module.exports = router;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

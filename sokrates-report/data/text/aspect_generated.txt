@@ -1,0 +1,4 @@
+Path	Lines of Code
+projetApplicationWeb/backend/package-lock.json	1293
+projetApplicationWeb/frontend/package-lock.json	3806
+projetApplicationWeb/package-lock.json	94

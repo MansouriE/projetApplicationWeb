@@ -1,0 +1,51 @@
+Start of analysis
+Found 5380 files
+42 are in the main's scope  (3583 lines of code)
+  *.jsx: 18 files, (2533 lines of code)
+  *.js: 16 files, (763 lines of code)
+  *.css: 7 files, (274 lines of code)
+  *.html: 1 files, (13 lines of code)
+1 are in the test's scope  (12 lines of code)
+  *.js: 1 files, (12 lines of code)
+3 are in the generated's scope  (5193 lines of code)
+  *.json: 3 files, (5193 lines of code)
+0 are in the build and deployment's scope  (0 lines of code)
+7 are in the other's scope  (5742 lines of code)
+  *.json: 7 files, (5742 lines of code)
+Excluded from analyses 5330 files
+Analysing dependencies...
+42 are in the DECOMPOSITION_primary\projetApplicationWeb's scope  (3583 lines of code)
+  *.jsx: 18 files, (2533 lines of code)
+  *.js: 16 files, (763 lines of code)
+  *.css: 7 files, (274 lines of code)
+  *.html: 1 files, (13 lines of code)
+  - "primary", found 0 dependencies (0 component dependencies)
+0 are in the CONCERN_general\TODOs's scope  (0 lines of code)
+42 are in the CONCERN_general\Unclassified's scope  (3583 lines of code)
+  *.jsx: 18 files, (2533 lines of code)
+  *.js: 16 files, (763 lines of code)
+  *.css: 7 files, (274 lines of code)
+  *.html: 1 files, (13 lines of code)
+Analysing units...
+Basic unit metrics...
+  - found 8 units (81 lines of code in units)
+Unit size 31 / 29 / 21 / 0 / 0
+Unit size per component:
+Unit Size Component projetApplicationWeb: 31 / 29 / 21 / 0 / 0
+Unit size per extension:
+Unit Size Extension js: 31 / 29 / 21 / 0 / 0
+Conditional complexity: 81 / 0 / 0 / 0 / 0
+Conditional complexity per component:
+Conditional Complexity Component projetApplicationWeb 81 / 0 / 0 / 0 / 0
+Conditional complexity per extension:
+Conditional Complexity Component js: 81 / 0 / 0 / 0 / 0
+Analysing duplication...
+  - found 69 duplicates (698 duplicated lines vs. 3243 cleaned lines) in 19 files
+  - per component:primary
+     - "projetApplicationWeb": 698 duplicated lines vs. 3243 total lines
+  - per extension:
+     - "jsx": 480 duplicated lines vs. 2268 total lines
+     - "css": 192 duplicated lines vs. 274 total lines
+     - "js": 26 duplicated lines vs. 691 total lines
+Total analysis time: .78s
+

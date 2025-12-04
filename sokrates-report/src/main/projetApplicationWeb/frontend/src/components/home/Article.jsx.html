@@ -1,0 +1,311 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/home/Article.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/home/Article.jsx (<b>259</b> lines of code) (<a href="Article.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useState, useEffect } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+function Article(props) {
+  const {
+    id,
+    nom,
+    description,
+    prix,
+    etat,
+    bid,
+    offre,
+    offre_reduction,
+    onEdit,
+    onDelete,
+    isProfilePage,
+    image_url,
+    user_id
+  } = props;
+
+  const navigate = useNavigate();
+  const { token, isLoggedIn, userId } = useContext(AuthContext);
+  const [isFavori, setIsFavori] = useState(false);
+  const [loadingFav, setLoadingFav] = useState(false);
+  const [showOfferModal, setShowOfferModal] = useState(false);
+  const [offerAmount, setOfferAmount] = useState(&quot;&quot;);
+  const isOwner = isLoggedIn &amp;&amp; userId &amp;&amp; user_id === userId;
+
+  console.log(user_id);
+  console.log(userId);
+  console.log(isOwner)
+
+  
+
+  useEffect(() =&gt; {
+    if (!isLoggedIn) return;
+
+    const fetchFavoriteStatus = async () =&gt; {
+      try {
+        const res = await fetch(
+          `https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        setIsFavori(data.isFavori);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchFavoriteStatus();
+  }, [id, isLoggedIn]);
+
+  const bidClic = () =&gt; {
+    navigate(`/bid/${id}`, { state: { ...props } });
+  };
+
+  const toggleFavori = async () =&gt; {
+    if (!isLoggedIn || loadingFav) return;
+    setLoadingFav(true);
+
+    const newState = !isFavori;
+    setIsFavori(newState);
+
+    try {
+      const res = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/favori&quot;,
+        {
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ articleId: id, favorite: newState }),
+        }
+      );
+      const data = await res.json();
+      if (!data.success) setIsFavori(!newState);
+    } catch (err) {
+      setIsFavori(!newState);
+      console.error(err);
+    } finally {
+      setLoadingFav(false);
+    }
+  };
+
+  const submitOffer = async () =&gt; {
+    const minOffer = prix - (offre_reduction / 100) * prix;
+    if (!offerAmount || Number(offerAmount) &lt; minOffer) {
+      alert(`Le montant de l'offre doit &ecirc;tre au moins ${minOffer}`);
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `https://projetapplicationweb-1.onrender.com/api/offers/offer`,
+        {
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ article_id: id, amount: Number(offerAmount) }),
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok)
+        throw new Error(data.error || &quot;Erreur lors de l'envoi de l'offre&quot;);
+
+      setShowOfferModal(false);
+      setOfferAmount(&quot;&quot;);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    &lt;div
+      className=&quot;relative bg-white rounded-xl shadow-lg border border-gray-200 p-6 m-4 w-80 transition-all duration-300 hover:scale-105 hover:shadow-xl&quot;
+      onMouseLeave={() =&gt; {
+        setShowOfferModal(false);
+        setOfferAmount(&quot;&quot;);
+      }}
+    &gt;
+      {isLoggedIn &amp;&amp; (
+        &lt;button
+          onClick={toggleFavori}
+          className=&quot;absolute -top-0 right-0 p-1 transition-transform duration-200 hover:scale-110 z-20&quot;
+        &gt;
+          &lt;svg
+            xmlns=&quot;http://www.w3.org/2000/svg&quot;
+            viewBox=&quot;0 0 24 24&quot;
+            fill={isFavori ? &quot;red&quot; : &quot;none&quot;}
+            stroke={isFavori ? &quot;red&quot; : &quot;gray&quot;}
+            strokeWidth=&quot;2&quot;
+            className=&quot;w-6 h-7&quot;
+          &gt;
+            &lt;path
+              strokeLinecap=&quot;round&quot;
+              strokeLinejoin=&quot;round&quot;
+              d=&quot;M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5
+                 2.09C13.09 3.81 14.76 3 16.5
+                 3 19.58 3 22 5.42 22 8.5c0
+                 3.78-3.4 6.86-8.55 11.54L12
+                 21.35z&quot;
+            /&gt;
+          &lt;/svg&gt;
+        &lt;/button&gt;
+      )}
+
+      &lt;div className=&quot;relative w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden&quot;&gt;
+        {image_url ? (
+          &lt;img
+            src={image_url}
+            alt=&quot;Preview&quot;
+            className=&quot;object-cover w-full h-full&quot;
+          /&gt;
+        ) : (
+          &lt;svg
+            className=&quot;w-16 h-16 text-gray-400&quot;
+            fill=&quot;none&quot;
+            stroke=&quot;currentColor&quot;
+            viewBox=&quot;0 0 24 24&quot;
+          &gt;
+            &lt;path
+              strokeLinecap=&quot;round&quot;
+              strokeLinejoin=&quot;round&quot;
+              strokeWidth={2}
+              d=&quot;M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2&quot;
+            /&gt;
+          &lt;/svg&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;h2 className=&quot;text-2xl font-bold text-gray-800 mb-3 truncate&quot;&gt;{nom}&lt;/h2&gt;
+      &lt;p className=&quot;text-gray-600 mb-4 line-clamp-3&quot;&gt;{description}&lt;/p&gt;
+
+      &lt;div className=&quot;flex justify-between items-center mb-3&quot;&gt;
+        &lt;span className=&quot;text-lg font-semibold text-green-600&quot;&gt;{prix} $&lt;/span&gt;
+        &lt;span
+          className={`px-3 py-1 rounded-full text-sm font-medium ${
+            etat === &quot;Neuf&quot;
+              ? &quot;bg-green-100 text-green-800&quot;
+              : etat === &quot;Bon &eacute;tat&quot;
+              ? &quot;bg-blue-100 text-blue-800&quot;
+              : &quot;bg-red-100 text-red-800&quot;
+          }`}
+        &gt;
+          {etat}
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+      {isLoggedIn &amp;&amp; !isProfilePage &amp;&amp; !isOwner &amp;&amp;(
+        &lt;&gt;
+          {bid &amp;&amp; (
+            &lt;button
+              onClick={bidClic}
+              className=&quot;w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2&quot;
+            &gt;
+              Bids
+            &lt;/button&gt;
+          )}
+
+          {offre &amp;&amp; (
+            &lt;button
+              onClick={() =&gt; setShowOfferModal(true)}
+              className=&quot;w-full bg-purple-500 hover:bg-purple-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2&quot;
+            &gt;
+              Faire une offre
+            &lt;/button&gt;
+          )}
+
+          &lt;button
+            onClick={() =&gt; {}}
+            className=&quot;w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200&quot;
+          &gt;
+            Acheter
+          &lt;/button&gt;
+        &lt;/&gt;
+      )}
+
+      {isProfilePage &amp;&amp; (
+        &lt;&gt;
+          {onEdit &amp;&amp; (
+            &lt;button
+              onClick={onEdit}
+              className=&quot;w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 mb-2&quot;
+            &gt;
+              Modifier
+            &lt;/button&gt;
+          )}
+          {onDelete &amp;&amp; (
+            &lt;button
+              onClick={onDelete}
+              className=&quot;w-full bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200&quot;
+            &gt;
+              Supprimer
+            &lt;/button&gt;
+          )}
+        &lt;/&gt;
+      )}
+
+      {showOfferModal &amp;&amp; (
+        &lt;div className=&quot;fixed inset-0 flex items-center justify-center z-50&quot;&gt;
+          &lt;div className=&quot;bg-white rounded-xl p-6 w-80 shadow-lg border border-black&quot;&gt;
+            &lt;h3 className=&quot;text-lg font-bold mb-4&quot;&gt;Entrez votre offre&lt;/h3&gt;
+            &lt;input
+              type=&quot;number&quot;
+              placeholder={`Minimum: ${prix - (offre_reduction / 100) * prix}`}
+              value={offerAmount}
+              onChange={(e) =&gt; setOfferAmount(e.target.value)}
+              className=&quot;w-full border border-gray-300 rounded-lg p-2 mb-4 focus:ring-2 focus:ring-purple-500 focus:outline-none&quot;
+            /&gt;
+            &lt;div className=&quot;flex justify-end gap-2&quot;&gt;
+              &lt;button
+                onClick={() =&gt; {
+                  setShowOfferModal(false);
+                  setOfferAmount(&quot;&quot;);
+                }}
+                className=&quot;px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300&quot;
+              &gt;
+                Annuler
+              &lt;/button&gt;
+              &lt;button
+                onClick={submitOffer}
+                className=&quot;px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600&quot;
+              &gt;
+                Envoyer
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default Article;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

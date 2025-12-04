@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/App.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/App.jsx (<b>35</b> lines of code) (<a href="App.jsx">raw</a>):</h3>
+<div id="editor">import React from &quot;react&quot;;
+import { BrowserRouter as Router, Routes, Route } from &quot;react-router-dom&quot;;
+import Navbar from &quot;./components/Navbar&quot;;
+import Login from &quot;./components/login/Login&quot;;
+import Register from &quot;./components/register/Register&quot;;
+import Profile from &quot;./components/profile/Profile&quot;;
+import UpdateProfile from &quot;./components/updateProfile/UpdateProfile&quot;;
+import PageHome from &quot;./components/home/PageHome&quot;;
+import PageBid from &quot;./components/bids/PageBid&quot;;
+import CreateArticle from &quot;./components/addArticle/AddArticle&quot;;
+import Settings from &quot;./components/settings/Settings&quot;;
+import UpdateArticle from &quot;./components/updateArticle/UpdateArticle&quot;;
+import Offres from &quot;./components/offre/Offre&quot;;
+
+function App() {
+  return (
+    &lt;Router&gt;
+      &lt;Navbar /&gt;
+
+      &lt;div className=&quot;mt-24 text-center&quot;&gt;
+        &lt;Routes&gt;
+          &lt;Route path=&quot;/&quot; element={&lt;PageHome /&gt;} /&gt;
+          &lt;Route path=&quot;/login&quot; element={&lt;Login /&gt;} /&gt;
+          &lt;Route path=&quot;/register&quot; element={&lt;Register /&gt;} /&gt;
+          &lt;Route path=&quot;/profile&quot; element={&lt;Profile /&gt;} /&gt;
+          &lt;Route path=&quot;/profile/edit&quot; element={&lt;UpdateProfile /&gt;} /&gt;
+          &lt;Route path=&quot;/createArticle&quot; element={&lt;CreateArticle /&gt;} /&gt;
+          &lt;Route path=&quot;/bid/:id&quot; element={&lt;PageBid /&gt;} /&gt;
+          &lt;Route path=&quot;/settings&quot; element={&lt;Settings /&gt;} /&gt;
+          &lt;Route path=&quot;/articles/:id/edit&quot; element={&lt;UpdateArticle /&gt;} /&gt;
+          &lt;Route path=&quot;/offres&quot; element={&lt;Offres /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/div&gt;
+    &lt;/Router&gt;
+  );
+}
+
+export default App;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

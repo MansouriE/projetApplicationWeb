@@ -1,0 +1,22 @@
+[ {
+  "relativePath" : "projetApplicationWeb/backend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 1293,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 3806,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "projetApplicationWeb/package-lock.json",
+  "extension" : "json",
+  "linesOfCode" : 94,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+} ]

@@ -1,0 +1,168 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/offre/Offre.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/offre/Offre.jsx (<b>128</b> lines of code) (<a href="Offre.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useEffect, useState } from &quot;react&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+export default function Offres() {
+  const { token, isLoggedIn } = useContext(AuthContext);
+  const [receivedOffers, setReceivedOffers] = useState([]);
+  const [sentOffers, setSentOffers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() =&gt; {
+    if (!isLoggedIn) return;
+
+    const fetchOffers = async () =&gt; {
+      try {
+        const receivedRes = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/offers/received&quot;,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        const sentRes = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/offers/sent&quot;,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        const receivedData = await receivedRes.json();
+        const sentData = await sentRes.json();
+
+        setReceivedOffers(receivedData);
+        setSentOffers(sentData);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, [isLoggedIn, token]);
+
+  const handleAccept = async (offerId) =&gt; {
+    try {
+      console.log(&quot;Offre accept&eacute;e:&quot;, offerId);
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDecline = async (offerId) =&gt; {
+    try {
+      const res = await fetch(
+        `https://projetapplicationweb-1.onrender.com/api/offers/${offerId}`,
+        {
+          method: &quot;DELETE&quot;,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || &quot;Erreur lors de la suppression&quot;);
+
+      setReceivedOffers(receivedOffers.filter(o =&gt; o.id !== offerId));
+      setSentOffers(prevOffers =&gt; prevOffers.filter(o =&gt; o.id !== offerId));
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  if (!isLoggedIn) return &lt;p className=&quot;text-center mt-6&quot;&gt;Veuillez vous connecter pour voir vos offres.&lt;/p&gt;;
+  if (loading) return &lt;p className=&quot;text-center mt-6&quot;&gt;Chargement des offres...&lt;/p&gt;;
+
+  return (
+    &lt;div className=&quot;flex justify-center mt-6&quot;&gt;
+      &lt;div className=&quot;w-full max-w-2xl p-6 space-y-8 bg-gray-100 rounded-xl shadow-md&quot;&gt;
+        {/* Offres re&ccedil;ues */}
+        &lt;div&gt;
+          &lt;h2 className=&quot;text-xl font-bold mb-4 text-center&quot;&gt;Offres sur vos articles&lt;/h2&gt;
+          {receivedOffers.length === 0 ? (
+            &lt;p className=&quot;text-center text-gray-600&quot;&gt;Aucune offre sur vos articles.&lt;/p&gt;
+          ) : (
+            &lt;ul className=&quot;space-y-3&quot;&gt;
+              {receivedOffers.map((offer) =&gt; (
+                &lt;li
+                  key={offer.id}
+                  className=&quot;flex flex-col md:flex-row justify-between items-center border p-3 rounded-lg bg-white shadow hover:shadow-lg transition w-full&quot;
+                &gt;
+                  &lt;p className=&quot;text-sm md:text-base text-gray-700 mb-2 md:mb-0&quot;&gt;
+                    L'utilisateur &lt;strong&gt;{offer.sender_id}&lt;/strong&gt; a propos&eacute;{&quot; &quot;}
+                    &lt;span className=&quot;text-green-600 font-semibold&quot;&gt;{offer.amount} $&lt;/span&gt; pour l'article{&quot; &quot;}
+                    &lt;strong&gt;{offer.article_id}&lt;/strong&gt;
+                  &lt;/p&gt;
+                  &lt;div className=&quot;flex gap-2&quot;&gt;
+                    &lt;button
+                      onClick={() =&gt; handleAccept(offer.id)}
+                      className=&quot;px-3 py-1 bg-green-500 text-white text-sm rounded-lg hover:bg-green-600 transition&quot;
+                    &gt;
+                      Accepter
+                    &lt;/button&gt;
+                    &lt;button
+                      onClick={() =&gt; handleDecline(offer.id)}
+                      className=&quot;px-3 py-1 bg-red-500 text-white text-sm rounded-lg hover:bg-red-600 transition&quot;
+                    &gt;
+                      Refuser
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                &lt;/li&gt;
+              ))}
+            &lt;/ul&gt;
+          )}
+        &lt;/div&gt;
+
+        {/* Offres envoy&eacute;es */}
+        &lt;div&gt;
+          &lt;h2 className=&quot;text-xl font-bold mb-4 text-center&quot;&gt;Offres que vous avez faites&lt;/h2&gt;
+          {sentOffers.length === 0 ? (
+            &lt;p className=&quot;text-center text-gray-600&quot;&gt;Vous n'avez fait aucune offre pour le moment.&lt;/p&gt;
+          ) : (
+            &lt;ul className=&quot;space-y-3&quot;&gt;
+              {sentOffers.map((offer) =&gt; (
+                &lt;li
+                  key={offer.id}
+                  className=&quot;flex flex-col md:flex-row justify-between items-center border p-3 rounded-lg bg-white shadow hover:shadow-md transition w-full&quot;
+                &gt;
+                  &lt;p className=&quot;text-sm md:text-base text-gray-700 mb-2 md:mb-0&quot;&gt;
+                    Vous avez propos&eacute;{&quot; &quot;}
+                    &lt;span className=&quot;text-green-600 font-semibold&quot;&gt;{offer.amount} $&lt;/span&gt; pour l'article{&quot; &quot;}
+                    &lt;strong&gt;{offer.article_id}&lt;/strong&gt; (propri&eacute;taire ID : {offer.owner_id})
+                  &lt;/p&gt;
+                  &lt;button
+                    onClick={() =&gt; handleDecline(offer.id)}
+                    className=&quot;px-3 py-1 bg-gray-400 text-white text-sm rounded-lg hover:bg-gray-500 transition&quot;
+                  &gt;
+                    Annuler
+                  &lt;/button&gt;
+                &lt;/li&gt;
+              ))}
+            &lt;/ul&gt;
+          )}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

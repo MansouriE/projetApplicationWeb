@@ -1,0 +1,253 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/3d-force-graph"></script>
+</head>
+
+<body>
+<div id="3d-graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "size" : 6
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "size" : 2
+  } ],
+  "links" : [ {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "count" : 164
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "count" : 164
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 52
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 52
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 290
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 290
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "count" : 32
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "count" : 32
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 214
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 214
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "count" : 44
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 44
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 36
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 36
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "target" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "count" : 28
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "target" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "count" : 28
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 32
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 32
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 90
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 90
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 112
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 112
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 16
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 26
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 26
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 26
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "count" : 26
+  }, {
+    "source" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "target" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "count" : 14
+  }, {
+    "source" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "target" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "count" : 14
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 24
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 24
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "target" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "count" : 12
+  }, {
+    "source" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "target" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "count" : 12
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 12
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => { return {source: l.target, target: l.source, count: l.count} });
+
+    const Graph = ForceGraph3D()
+    (document.getElementById('3d-graph'))
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => n.id.startsWith("[") ? "skyblue" : "")
+        .linkDirectionalParticles(6)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

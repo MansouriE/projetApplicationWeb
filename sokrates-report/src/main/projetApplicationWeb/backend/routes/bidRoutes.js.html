@@ -1,0 +1,157 @@
+<html>
+<head>
+    <title>projetApplicationWeb/backend/routes/bidRoutes.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/backend/routes/bidRoutes.js (<b>106</b> lines of code) (<a href="bidRoutes.js">raw</a>):</h3>
+<div id="editor">const express = require(&quot;express&quot;);
+const router = express.Router();
+const supabase = require(&quot;../config/supabaseClient&quot;);
+const { verifyToken } = require(&quot;../config/jwt&quot;);
+
+// 💰 POST /api/bids
+router.post(&quot;/bids&quot;, async (req, res) =&gt; {
+  try {
+    // --- Auth
+    const authHeader = req.headers.authorization || &quot;&quot;;
+    const token = authHeader.split(&quot; &quot;)[1];
+    if (!token) return res.status(401).json({ error: &quot;Token manquant&quot; });
+
+    let decoded;
+    try {
+      decoded = verifyToken(token);
+    } catch {
+      return res.status(403).json({ error: &quot;Token invalide ou expir&eacute;&quot; });
+    }
+    const usrId = decoded.userId;
+
+    // --- Inputs
+    const article_id = Number(req.body.article_id);
+    const amount = Number(req.body.amount);
+
+    if (
+      !Number.isFinite(article_id) ||
+      !Number.isFinite(amount) ||
+      amount &lt;= 0
+    ) {
+      return res
+        .status(400)
+        .json({ error: &quot;Param&egrave;tres invalides (article_id, amount)&quot; });
+    }
+
+    // --- R&eacute;cup&egrave;re l'article
+    const { data: article, error: artErr } = await supabase
+      .from(&quot;articles&quot;)
+      .select(&quot;id_articles, prix, bid, bidPrixDeDepart, bid_end_date&quot;)
+      .eq(&quot;id_articles&quot;, article_id)
+      .single();
+
+    if (artErr || !article)
+      return res.status(404).json({ error: &quot;Article introuvable&quot; });
+    if (!article.bid)
+      return res
+        .status(400)
+        .json({ error: &quot;Les ench&egrave;res ne sont pas activ&eacute;es pour cet article&quot; });
+
+    if (
+      article.bid_end_date &amp;&amp;
+      new Date(article.bid_end_date).getTime() &lt;= Date.now()
+    ) {
+      return res.status(400).json({ error: &quot;Ench&egrave;re termin&eacute;e&quot; });
+    }
+
+    const prixDepart = Number(article.bidPrixDeDepart ?? article.prix) || 0;
+
+    // --- Max actuel
+    const { data: topBid, error: topErr } = await supabase
+      .from(&quot;bids&quot;)
+      .select(&quot;amount&quot;)
+      .eq(&quot;article_id&quot;, article_id)
+      .order(&quot;amount&quot;, { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (topErr) {
+      console.error(&quot;Top bid error:&quot;, topErr);
+      return res
+        .status(500)
+        .json({ error: &quot;Erreur v&eacute;rification du prix courant&quot; });
+    }
+
+    const currentMax = Math.max(prixDepart, Number(topBid?.amount ?? 0));
+    if (amount &lt;= currentMax) {
+      return res
+        .status(400)
+        .json({ error: `Le bid doit &ecirc;tre &gt; ${currentMax}` });
+    }
+
+    // --- Insertion du bid
+    const { data: inserted, error: insErr } = await supabase
+      .from(&quot;bids&quot;)
+      .insert([{ article_id, usr_id: usrId, amount }])
+      .select(&quot;id, article_id, usr_id, amount, created_at&quot;)
+      .single();
+
+    if (insErr) throw insErr;
+
+    return res.status(201).json({ message: &quot;Bid cr&eacute;&eacute;&quot;, bid: inserted });
+  } catch (e) {
+    console.error(&quot;POST /api/bids error:&quot;, e);
+    return res.status(500).json({ error: &quot;Erreur interne&quot; });
+  }
+});
+
+router.get(&quot;/bids&quot;, async (req, res) =&gt; {
+  const articleId = Number(req.query.article_id);
+  if (!Number.isFinite(articleId)) {
+    return res.status(400).json({ error: &quot;Param&egrave;tre 'article_id' invalide&quot; });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from(&quot;bids&quot;)
+      .select(
+        `
+        id,
+        article_id,
+        usr_id,
+        amount,
+        created_at,
+        user:usr_id ( pseudo )
+      `
+      )
+      .eq(&quot;article_id&quot;, articleId)
+      .order(&quot;amount&quot;, { ascending: false });
+
+    if (error) throw error;
+
+    return res.status(200).json(data || []);
+  } catch (e) {
+    console.error(&quot;GET /api/bids error:&quot;, e);
+    return res
+      .status(500)
+      .json({ error: &quot;Erreur lors du chargement des bids&quot; });
+  }
+});
+
+module.exports = router;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

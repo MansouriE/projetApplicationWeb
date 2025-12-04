@@ -1,0 +1,72 @@
+id: 1
+unit: async function createUser()
+file: projetApplicationWeb/backend/controllers/users-controller.js
+start line: 12
+end line: 33
+size: 21 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 2
+unit: async function createArticle()
+file: projetApplicationWeb/backend/controllers/article-controller.js
+start line: 12
+end line: 30
+size: 18 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 3
+unit: function authMiddleware()
+file: projetApplicationWeb/backend/middleware/check-auth.js
+start line: 3
+end line: 14
+size: 11 LOC
+McCabe index: 4
+number of parameters: 3
+
+id: 4
+unit: export default defineConfig()
+file: projetApplicationWeb/frontend/vite.config.js
+start line: 4
+end line: 12
+size: 9 LOC
+McCabe index: 1
+number of parameters: 1
+
+id: 5
+unit: async function getArticles()
+file: projetApplicationWeb/backend/controllers/article-controller.js
+start line: 3
+end line: 10
+size: 8 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 6
+unit: async function getUers()
+file: projetApplicationWeb/backend/controllers/users-controller.js
+start line: 3
+end line: 10
+size: 8 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 7
+unit: function signToken()
+file: projetApplicationWeb/backend/config/jwt.js
+start line: 5
+end line: 7
+size: 3 LOC
+McCabe index: 1
+number of parameters: 1
+
+id: 8
+unit: function verifyToken()
+file: projetApplicationWeb/backend/config/jwt.js
+start line: 9
+end line: 11
+size: 3 LOC
+McCabe index: 1
+number of parameters: 1
+

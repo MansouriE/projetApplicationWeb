@@ -1,0 +1,165 @@
+<html>
+<head>
+    <title>projetApplicationWeb/backend/routes/offreRoutes.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/backend/routes/offreRoutes.js (<b>105</b> lines of code) (<a href="offreRoutes.js">raw</a>):</h3>
+<div id="editor">const express = require(&quot;express&quot;);
+const router = express.Router();
+const supabase = require(&quot;../config/supabaseClient&quot;);
+const authMiddleware = require(&quot;../middleware/check-auth&quot;);
+
+router.post(&quot;/offer&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const sender_id = req.user.userId;
+    const { article_id, amount } = req.body;
+
+    if (!article_id || amount === undefined) {
+      return res.status(400).json({ error: &quot;Missing article_id or amount&quot; });
+    }
+
+    const parsedAmount = parseFloat(amount);
+    if (isNaN(parsedAmount) || parsedAmount &lt;= 0) {
+      return res.status(400).json({ error: &quot;Invalid amount&quot; });
+    }
+
+    const { data: article, error } = await supabase
+      .from(&quot;articles&quot;)
+      .select(&quot;user_id, prix, offre_reduction&quot;)
+      .eq(&quot;id_articles&quot;, article_id)
+      .single();
+
+    if (error) {
+      return res.status(404).json({ error: &quot;Article not found&quot; });
+    }
+
+    const { user_id, prix, offre_reduction } = article;
+    const minOffer = prix - (offre_reduction / 100) * prix;
+
+    if (parsedAmount &lt; minOffer) {
+      return res
+        .status(400)
+        .json({ error: `Offer must be at least ${minOffer}` });
+    }
+
+    await supabase.from(&quot;offers&quot;).insert([
+      {
+        owner_id: user_id,
+        sender_id,
+        article_id,
+        amount: parsedAmount,
+      },
+    ]);
+
+    res.status(201).json({ success: true, message: &quot;Offer submitted&quot; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error&quot; });
+  }
+});
+
+router.get(&quot;/received&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const userId = req.user.userId;
+
+    const { data: offers, error } = await supabase
+      .from(&quot;offers&quot;)
+      .select(&quot;*&quot;)
+      .eq(&quot;owner_id&quot;, userId);
+
+    if (error)
+      return res.status(500).json({ error: &quot;Erreur lors de la r&eacute;cup&eacute;ration&quot; });
+
+    res.json(offers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error&quot; });
+  }
+});
+
+router.get(&quot;/sent&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const userId = req.user.userId;
+
+    const { data: offers, error } = await supabase
+      .from(&quot;offers&quot;)
+      .select(&quot;*&quot;)
+      .eq(&quot;sender_id&quot;, userId);
+
+    if (error)
+      return res.status(500).json({ error: &quot;Erreur lors de la r&eacute;cup&eacute;ration&quot; });
+
+    res.json(offers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Server error&quot; });
+  }
+});
+
+router.delete(&quot;/:id&quot;, authMiddleware, async (req, res) =&gt; {
+  try {
+    const userId = req.user.userId;
+    const offerId = req.params.id;
+
+    const {
+      data: offer,
+      error,
+      status,
+    } = await supabase.from(&quot;offers&quot;).select(&quot;*&quot;).eq(&quot;id&quot;, offerId).single();
+
+    if (error &amp;&amp; status !== 406) {
+      return res.status(500).json({ error: &quot;Erreur serveur&quot; });
+    }
+
+    if (!offer) {
+      return res.status(404).json({ error: &quot;Offre introuvable&quot; });
+    }
+
+    if (offer.sender_id !== userId &amp;&amp; offer.owner_id !== userId) {
+      return res
+        .status(403)
+        .json({
+          error:
+            &quot;Vous ne pouvez supprimer que vos offres ou celles re&ccedil;ues sur vos articles&quot;,
+        });
+    }
+
+    const { error: deleteError } = await supabase
+      .from(&quot;offers&quot;)
+      .delete()
+      .eq(&quot;id&quot;, offerId);
+
+    if (deleteError) {
+      return res
+        .status(500)
+        .json({ error: &quot;Erreur lors de la suppression de l'offre&quot; });
+    }
+
+    res.json({ success: true, message: &quot;Offre supprim&eacute;e avec succ&egrave;s&quot; });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: &quot;Erreur serveur&quot; });
+  }
+});
+
+module.exports = router;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

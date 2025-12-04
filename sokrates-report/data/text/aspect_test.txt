@@ -1,0 +1,2 @@
+Path	Lines of Code
+projetApplicationWeb/frontend/src/tests/sum.test.js	12

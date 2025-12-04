@@ -1,0 +1,414 @@
+duplicated block id: 1
+size: 82 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.css (2:102)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.css (2:102)
+
+duplicated block id: 2
+size: 18 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (81:105)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (86:109)
+
+duplicated block id: 3
+size: 16 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (57:73)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (105:120)
+
+duplicated block id: 4
+size: 16 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/login/Login.jsx (42:58)
+ - projetApplicationWeb/frontend/src/components/register/Register.jsx (117:133)
+
+duplicated block id: 5
+size: 15 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (178:196)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (98:116)
+
+duplicated block id: 6
+size: 14 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (23:37)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (23:39)
+
+duplicated block id: 7
+size: 14 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (152:165)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (193:206)
+
+duplicated block id: 8
+size: 14 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (72:86)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (51:66)
+
+duplicated block id: 9
+size: 12 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (40:52)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (91:102)
+
+duplicated block id: 10
+size: 11 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (269:279)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (302:312)
+
+duplicated block id: 11
+size: 10 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (160:169)
+ - projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx (55:64)
+
+duplicated block id: 12
+size: 10 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (168:177)
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (127:136)
+
+duplicated block id: 13
+size: 9 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (211:222)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (121:132)
+
+duplicated block id: 14
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/login/Login.css (2:9)
+ - projetApplicationWeb/frontend/src/components/register/Register.css (2:9)
+
+duplicated block id: 15
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (168:175)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (158:165)
+
+duplicated block id: 16
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (24:31)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (23:30)
+
+duplicated block id: 17
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (168:175)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (199:206)
+
+duplicated block id: 18
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (66:73)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (158:165)
+
+duplicated block id: 19
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (66:73)
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (127:134)
+
+duplicated block id: 20
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (127:134)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (158:165)
+
+duplicated block id: 21
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (66:73)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (199:206)
+
+duplicated block id: 22
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (24:31)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (23:30)
+
+duplicated block id: 23
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (168:175)
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (66:73)
+
+duplicated block id: 24
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (71:78)
+ - projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (114:122)
+
+duplicated block id: 25
+size: 8 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (127:134)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (199:206)
+
+duplicated block id: 26
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (48:55)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (43:51)
+
+duplicated block id: 27
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (42:48)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (24:30)
+
+duplicated block id: 28
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (42:48)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (25:31)
+
+duplicated block id: 29
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (103:109)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (268:274)
+
+duplicated block id: 30
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (42:48)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (59:65)
+
+duplicated block id: 31
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (107:113)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (25:31)
+
+duplicated block id: 32
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (93:99)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (107:113)
+
+duplicated block id: 33
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (107:113)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (24:30)
+
+duplicated block id: 34
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (148:155)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (86:93)
+
+duplicated block id: 35
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (178:185)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (102:109)
+
+duplicated block id: 36
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (25:31)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (107:113)
+
+duplicated block id: 37
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (102:110)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (135:143)
+
+duplicated block id: 38
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (42:48)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (107:113)
+
+duplicated block id: 39
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (93:99)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (25:31)
+
+duplicated block id: 40
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (25:31)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (93:99)
+
+duplicated block id: 41
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (59:65)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (24:30)
+
+duplicated block id: 42
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx (142:149)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (113:120)
+
+duplicated block id: 43
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (93:99)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (24:30)
+
+duplicated block id: 44
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (25:31)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (59:65)
+
+duplicated block id: 45
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (25:31)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (42:48)
+
+duplicated block id: 46
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (148:155)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (81:89)
+
+duplicated block id: 47
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (59:65)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (25:31)
+
+duplicated block id: 48
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/backend/routes/offreRoutes.js (64:72)
+ - projetApplicationWeb/backend/routes/offreRoutes.js (83:91)
+
+duplicated block id: 49
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (59:65)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (93:99)
+
+duplicated block id: 50
+size: 7 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (182:190)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (135:143)
+
+duplicated block id: 51
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/Navbar.jsx (39:46)
+ - projetApplicationWeb/frontend/src/components/Navbar.jsx (113:120)
+
+duplicated block id: 52
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (26:31)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+
+duplicated block id: 53
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (60:65)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+
+duplicated block id: 54
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (281:286)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (314:319)
+
+duplicated block id: 55
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (192:197)
+ - projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx (75:80)
+
+duplicated block id: 56
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (108:113)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+
+duplicated block id: 57
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/login/Login.css (31:36)
+ - projetApplicationWeb/frontend/src/components/register/Register.css (31:36)
+
+duplicated block id: 58
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx (117:123)
+ - projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx (116:122)
+
+duplicated block id: 59
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (41:48)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (70:77)
+
+duplicated block id: 60
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/backend/controllers/article-controller.js (22:28)
+ - projetApplicationWeb/backend/controllers/users-controller.js (25:31)
+
+duplicated block id: 61
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx (114:120)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (84:90)
+
+duplicated block id: 62
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/Navbar.jsx (54:61)
+ - projetApplicationWeb/frontend/src/components/Navbar.jsx (130:137)
+
+duplicated block id: 63
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (94:99)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+
+duplicated block id: 64
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (73:78)
+ - projetApplicationWeb/frontend/src/components/home/Article.jsx (102:107)
+
+duplicated block id: 65
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (255:262)
+ - projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx (114:121)
+
+duplicated block id: 66
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+ - projetApplicationWeb/frontend/src/components/settings/Settings.jsx (26:31)
+
+duplicated block id: 67
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/home/PageHome.jsx (104:109)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (302:307)
+
+duplicated block id: 68
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (43:48)
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+
+duplicated block id: 69
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/frontend/src/components/profile/Profile.jsx (137:142)
+ - projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (25:30)
+

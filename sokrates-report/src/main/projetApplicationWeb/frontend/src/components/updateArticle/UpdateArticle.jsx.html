@@ -1,0 +1,280 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx (<b>229</b> lines of code) (<a href="UpdateArticle.jsx">raw</a>):</h3>
+<div id="editor">// src/pages/articles/EditArticle.jsx
+import React, { useContext, useEffect, useState } from &quot;react&quot;;
+import { useLocation, useNavigate, useParams } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+const API_BASE = &quot;https://projetapplicationweb-1.onrender.com&quot;;
+
+export default function EditArticle() {
+  const { token: ctxToken, isLoggedIn } = useContext(AuthContext) || {};
+  const token = ctxToken || localStorage.getItem(&quot;token&quot;) || &quot;&quot;;
+  const { id } = useParams();
+  const { state } = useLocation(); // article pass&eacute; depuis Profile via navigate(..., { state: article })
+  const navigate = useNavigate();
+  const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
+
+  const [form, setForm] = useState({
+    nom: &quot;&quot;,
+    description: &quot;&quot;,
+    prix: &quot;&quot;,
+    etat: &quot;Disponible&quot;,
+    // Ench&egrave;res (facultatifs)
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+
+  // Pr&eacute;remplir depuis location.state sinon fetch /api/articles/:id
+  useEffect(() =&gt; {
+    const bootstrap = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(&quot;&quot;);
+
+        if (state) {
+          setForm({
+            nom: state.nom ?? &quot;&quot;,
+            description: state.description ?? &quot;&quot;,
+            prix: String(state.prix ?? &quot;&quot;),
+            etat: state.etat ?? &quot;Disponible&quot;,
+          });
+          setLoading(false);
+          return;
+        }
+
+        // Sinon on charge l&rsquo;article par l&rsquo;id
+        const res = await fetch(`${API_BASE}/api/articles/${id}`, {
+          headers: {
+            Accept: &quot;application/json&quot;,
+            ...authHeaders,
+          },
+        });
+        const data = await res.json();
+        if (!res.ok)
+          throw new Error(data?.error || &quot;Impossible de charger l&rsquo;article&quot;);
+
+        setForm({
+          nom: data.nom ?? &quot;&quot;,
+          description: data.description ?? &quot;&quot;,
+          prix: String(data.prix ?? &quot;&quot;),
+          etat: data.etat ?? &quot;Disponible&quot;,
+        });
+        setLoading(false);
+      } catch (e) {
+        setError(e.message || &quot;Erreur au chargement&quot;);
+        setLoading(false);
+      }
+    };
+
+    bootstrap();
+  }, [id, state]);
+
+  const onChange = (e) =&gt; {
+    const { name, type, checked, value } = e.target;
+    setForm((f) =&gt; ({ ...f, [name]: type === &quot;checkbox&quot; ? checked : value }));
+  };
+
+  const onSubmit = async (e) =&gt; {
+    e.preventDefault();
+    setError(&quot;&quot;);
+
+    // Validations simples
+    if (!form.nom.trim() || !form.description.trim()) {
+      return setError(&quot;Nom et description sont requis.&quot;);
+    }
+    const prixNum = Number(form.prix);
+    if (!Number.isFinite(prixNum) || prixNum &lt;= 0) {
+      return setError(&quot;Prix invalide.&quot;);
+    }
+
+    setSaving(true);
+    try {
+      const payload = {
+        nom: form.nom.trim(),
+        description: form.description.trim(),
+        prix: prixNum,
+        etat: form.etat,
+      };
+
+      const res = await fetch(`${API_BASE}/api/articles/${id}`, {
+        method: &quot;PUT&quot;,
+        headers: {
+          &quot;Content-Type&quot;: &quot;application/json&quot;,
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() =&gt; ({}));
+      if (!res.ok) throw new Error(data?.error || &quot;Mise &agrave; jour &eacute;chou&eacute;e&quot;);
+
+      navigate(&quot;/profile&quot;, { replace: true });
+    } catch (e) {
+      setError(e.message || &quot;Erreur lors de l&rsquo;enregistrement&quot;);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!isLoggedIn) {
+    return (
+      &lt;div className=&quot;min-h-screen flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;
+            Acc&egrave;s non autoris&eacute;
+          &lt;/h3&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;
+            Connectez-vous pour modifier un article.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (loading) {
+    return (
+      &lt;div className=&quot;min-h-screen flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4&quot;&gt;&lt;/div&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Chargement de l&rsquo;article&hellip;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8&quot;&gt;
+      &lt;div className=&quot;max-w-2xl mx-auto&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg overflow-hidden&quot;&gt;
+          &lt;div className=&quot;bg-gradient-to-r from-indigo-900 to-purple-800 px-6 py-8&quot;&gt;
+            &lt;h1 className=&quot;text-2xl font-bold text-white&quot;&gt;
+              Modifier l&rsquo;article #{id}
+            &lt;/h1&gt;
+            &lt;p className=&quot;text-purple-200&quot;&gt;
+              Mettez &agrave; jour les informations de votre article
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;p-6&quot;&gt;
+            {error &amp;&amp; (
+              &lt;div className=&quot;mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700&quot;&gt;
+                {error}
+              &lt;/div&gt;
+            )}
+
+            &lt;form onSubmit={onSubmit} className=&quot;space-y-6&quot;&gt;
+              &lt;div className=&quot;space-y-2&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;
+                  Nom *
+                &lt;/label&gt;
+                &lt;input
+                  name=&quot;nom&quot;
+                  type=&quot;text&quot;
+                  value={form.nom}
+                  onChange={onChange}
+                  className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500&quot;
+                  required
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-2&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;
+                  Description *
+                &lt;/label&gt;
+                &lt;textarea
+                  name=&quot;description&quot;
+                  value={form.description}
+                  onChange={onChange}
+                  rows={4}
+                  className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500&quot;
+                  required
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;grid grid-cols-1 md:grid-cols-3 gap-4&quot;&gt;
+                &lt;div className=&quot;space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;
+                    Prix *
+                  &lt;/label&gt;
+                  &lt;input
+                    name=&quot;prix&quot;
+                    type=&quot;number&quot;
+                    step=&quot;0.01&quot;
+                    min=&quot;0&quot;
+                    value={form.prix}
+                    onChange={onChange}
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500&quot;
+                    required
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;space-y-2 md:col-span-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;
+                    &Eacute;tat *
+                  &lt;/label&gt;
+                  &lt;select
+                    name=&quot;etat&quot;
+                    value={form.etat}
+                    onChange={onChange}
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500&quot;
+                    required
+                  &gt;
+                    {/* Doit matcher la validation backend */}
+                    &lt;option value=&quot;Neuf&quot;&gt;Neuf&lt;/option&gt;
+                    &lt;option value=&quot;Disponible&quot;&gt;Disponible&lt;/option&gt;
+                    &lt;option value=&quot;Bon&quot;&gt;Bon&lt;/option&gt;
+                    &lt;option value=&quot;Usag&eacute;&quot;&gt;Usag&eacute;&lt;/option&gt;
+                  &lt;/select&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;flex flex-col sm:flex-row gap-4 pt-6 border-t&quot;&gt;
+                &lt;button
+                  type=&quot;submit&quot;
+                  disabled={saving}
+                  className=&quot;bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors disabled:opacity-50&quot;
+                &gt;
+                  {saving ? &quot;Enregistrement&hellip;&quot; : &quot;Enregistrer&quot;}
+                &lt;/button&gt;
+
+                &lt;button
+                  type=&quot;button&quot;
+                  onClick={() =&gt; navigate(&quot;/profile&quot;)}
+                  className=&quot;bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-8 rounded-lg border border-gray-300&quot;
+                &gt;
+                  Annuler
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

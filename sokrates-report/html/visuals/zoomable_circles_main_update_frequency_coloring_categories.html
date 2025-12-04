@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node {
+        cursor: pointer;
+    }
+
+    .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .node--leaf {
+        fill: white;
+    }
+
+    .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+
+    .label,
+    .node--root,
+    .node--leaf {
+        pointer-events: none;
+    }
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+    var svg = d3.select("svg"),
+        margin = 20,
+        diameter = +svg.attr("width"),
+        g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+    var color = d3.scaleLinear()
+        .domain([-1, 5])
+        .range(["hsl(152,80%,100%)", "hsl(228,30%,40%)"])
+        .interpolate(d3.interpolateHcl);
+
+    var pack = d3.pack()
+        .size([diameter - margin, diameter - margin])
+        .padding(2);
+
+
+    var root = {
+        "name": "cluster",
+        "children": [ {
+  "name" : "1-5 (42)",
+  "color" : "",
+  "size" : 0,
+  "children" : [ {
+    "name" : "projetApplicationWeb/backend/config/jwt.js",
+    "color" : "#6192c3",
+    "size" : 9,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/config/supabaseClient.js",
+    "color" : "#6192c3",
+    "size" : 7,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/controllers/article-controller.js",
+    "color" : "#6192c3",
+    "size" : 27,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/controllers/users-controller.js",
+    "color" : "#6192c3",
+    "size" : 30,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/index.js",
+    "color" : "#6192c3",
+    "size" : 25,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/middleware/check-auth.js",
+    "color" : "#6192c3",
+    "size" : 13,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/articleRoutes.js",
+    "color" : "#6192c3",
+    "size" : 284,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/authRoutes.js",
+    "color" : "#6192c3",
+    "size" : 53,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/bidRoutes.js",
+    "color" : "#6192c3",
+    "size" : 106,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/favoriRoutes.js",
+    "color" : "#6192c3",
+    "size" : 42,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+    "color" : "#6192c3",
+    "size" : 105,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/routes/userRoutes.js",
+    "color" : "#6192c3",
+    "size" : 30,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/backend/supabaseClient.js",
+    "color" : "#6192c3",
+    "size" : 5,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/index.html",
+    "color" : "#6192c3",
+    "size" : 13,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/postcss.config.js",
+    "color" : "#6192c3",
+    "size" : 6,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/App.jsx",
+    "color" : "#6192c3",
+    "size" : 35,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx",
+    "color" : "#6192c3",
+    "size" : 247,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+    "color" : "#6192c3",
+    "size" : 106,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+    "color" : "#6192c3",
+    "size" : 234,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+    "color" : "#6192c3",
+    "size" : 259,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+    "color" : "#6192c3",
+    "size" : 146,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+    "color" : "#6192c3",
+    "size" : 35,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/login/Login.jsx",
+    "color" : "#6192c3",
+    "size" : 57,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/Navbar.css",
+    "color" : "#6192c3",
+    "size" : 36,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+    "color" : "#6192c3",
+    "size" : 149,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/offre/Offre.jsx",
+    "color" : "#6192c3",
+    "size" : 128,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/profile/Profile.css",
+    "color" : "#6192c3",
+    "size" : 82,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+    "color" : "#6192c3",
+    "size" : 308,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+    "color" : "#6192c3",
+    "size" : 35,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/register/Register.jsx",
+    "color" : "#6192c3",
+    "size" : 125,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/settings/Settings.css",
+    "color" : "#6192c3",
+    "size" : 82,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+    "color" : "#6192c3",
+    "size" : 215,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+    "color" : "#6192c3",
+    "size" : 229,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.css",
+    "color" : "#6192c3",
+    "size" : 1,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+    "color" : "#6192c3",
+    "size" : 229,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/Containers/Login.jsx",
+    "color" : "#6192c3",
+    "size" : 1,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/Containers/Signup.jsx",
+    "color" : "#6192c3",
+    "size" : 1,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/context/AuthContext.jsx",
+    "color" : "#6192c3",
+    "size" : 52,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/index.css",
+    "color" : "#6192c3",
+    "size" : 3,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/src/main.jsx",
+    "color" : "#6192c3",
+    "size" : 12,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/tailwind.config.js",
+    "color" : "#6192c3",
+    "size" : 10,
+    "children" : [ ]
+  }, {
+    "name" : "projetApplicationWeb/frontend/vite.config.js",
+    "color" : "#6192c3",
+    "size" : 11,
+    "children" : [ ]
+  } ]
+}, {
+  "name" : "6-20 (0)",
+  "color" : "",
+  "size" : 0,
+  "children" : [ ]
+}, {
+  "name" : "21-50 (0)",
+  "color" : "",
+  "size" : 0,
+  "children" : [ ]
+}, {
+  "name" : "51-100 (0)",
+  "color" : "",
+  "size" : 0,
+  "children" : [ ]
+}, {
+  "name" : "101+ (0)",
+  "color" : "",
+  "size" : 0,
+  "children" : [ ]
+} ]
+    }
+
+    root = d3.hierarchy(root)
+        .sum(function (d) {
+            return d.size;
+        })
+        .sort(function (a, b) {
+            return b.value - a.value;
+        });
+
+    var focus = root,
+        nodes = pack(root).descendants(),
+        view;
+
+    var circle = g.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("class", function (d) {
+            return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+        })
+        .style("fill", function (d) {
+            return d.children ? color(d.depth) : (d.data.color ? d.data.color : null);
+        })
+        .on("click", function (d) {
+            if (focus !== d) zoom(d), d3.event.stopPropagation();
+        });
+
+    var text = g.selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .attr("class", "label")
+        .style("fill-opacity", function (d) {
+            return d.parent === root ? 1 : 0;
+        })
+        .style("display", function (d) {
+            return d.parent === root ? "inline" : "none";
+        })
+        .text(function (d) {
+            return d.data.name.length > 33 ? (d.data.name.substr(0, 14) + "..." + d.data.name.substr(d.data.name.length - 14))  : d.data.name;
+        });
+
+    var node = g.selectAll("circle,text");
+
+    svg
+        .style("background", color(-1))
+        .on("click", function () {
+            zoom(root);
+        });
+
+    zoomTo([root.x, root.y, root.r * 2 + margin]);
+
+    function zoom(d) {
+        var focus0 = focus;
+        focus = d;
+
+        var transition = d3.transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .tween("zoom", function (d) {
+                var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+                return function (t) {
+                    zoomTo(i(t));
+                };
+            });
+
+        transition.selectAll("text")
+            .filter(function (d) {
+                return d.parent === focus || this.style.display === "inline";
+            })
+            .style("fill-opacity", function (d) {
+                return d.parent === focus ? 1 : 0;
+            })
+            .on("start", function (d) {
+                if (d.parent === focus) this.style.display = "inline";
+            })
+            .on("end", function (d) {
+                if (d.parent !== focus) this.style.display = "none";
+            });
+    }
+
+    function zoomTo(v) {
+        var k = diameter / v[2];
+        view = v;
+        node.attr("transform", function (d) {
+            return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        });
+        circle.attr("r", function (d) {
+            return d.r * k;
+        });
+    }
+
+</script>

@@ -1,0 +1,184 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/home/PageHome.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/home/PageHome.jsx (<b>146</b> lines of code) (<a href="PageHome.jsx">raw</a>):</h3>
+<div id="editor">import React, { useEffect, useState, useContext } from &quot;react&quot;;
+import Article from &quot;./Article&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+function HomePage() {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { isLoggedIn } = useContext(AuthContext);
+
+  const [search, setSearch] = useState(&quot;&quot;);
+
+  useEffect(() =&gt; {
+    async function fetchArticles() {
+      try {
+        setLoading(true);
+        const url = search.trim()
+          ? `https://projetapplicationweb-1.onrender.com/api/getArticles?search=${encodeURIComponent(
+              search
+            )}`
+          : `https://projetapplicationweb-1.onrender.com/api/getArticles`;
+
+        const response = await fetch(url);
+        if (!response.ok)
+          throw new Error(&quot;Erreur lors du chargement des articles&quot;);
+
+        const data = await response.json();
+        setArticles(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    const debounce = setTimeout(fetchArticles, 400);
+    return () =&gt; clearTimeout(debounce);
+  }, [search]);
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto&quot;&gt;
+        &lt;div className=&quot;text-center mb-12&quot;&gt;
+          &lt;h1 className=&quot;text-4xl font-bold text-slate-800 mb-3&quot;&gt;
+            MARKETPLACE
+          &lt;/h1&gt;
+          &lt;p className=&quot;text-lg text-slate-600 max-w-2xl mx-auto&quot;&gt;
+            D&eacute;couvrez les s&eacute;lections exclusive d'articles
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div className=&quot;flex flex-col sm:flex-row justify-between items-center gap-4 mb-10 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20&quot;&gt;
+          &lt;div className=&quot;text-center sm:text-left&quot;&gt;
+            &lt;h2 className=&quot;text-xl font-semibold text-slate-800&quot;&gt;
+              {articles.length} articles disponibles
+            &lt;/h2&gt;
+            &lt;p className=&quot;text-slate-500 text-sm mt-1&quot;&gt;
+              Trouvez ce qui vous correspond
+            &lt;/p&gt;
+          &lt;/div&gt;
+          {isLoggedIn &amp;&amp; (
+            &lt;Link to=&quot;/createArticle&quot; className=&quot;w-full sm:w-auto&quot;&gt;
+              &lt;button className=&quot;w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3&quot;&gt;
+                &lt;svg
+                  className=&quot;w-5 h-5&quot;
+                  fill=&quot;none&quot;
+                  stroke=&quot;currentColor&quot;
+                  viewBox=&quot;0 0 24 24&quot;
+                &gt;
+                  &lt;path
+                    strokeLinecap=&quot;round&quot;
+                    strokeLinejoin=&quot;round&quot;
+                    strokeWidth={2}
+                    d=&quot;M12 4v16m8-8H4&quot;
+                  /&gt;
+                &lt;/svg&gt;
+                Ajouter un article
+              &lt;/button&gt;
+            &lt;/Link&gt;
+          )}
+        &lt;/div&gt;
+
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Rechercher un article...&quot;
+          value={search}
+          onChange={(e) =&gt; setSearch(e.target.value)}
+          className=&quot;border p-2 rounded w-full mb-6&quot;
+        /&gt;
+
+        {loading &amp;&amp; &lt;p&gt;Chargement...&lt;/p&gt;}
+        {error &amp;&amp; &lt;p style={{ color: &quot;red&quot; }}&gt;{error}&lt;/p&gt;}
+
+        {!loading &amp;&amp; !error &amp;&amp; articles.length === 0 &amp;&amp; (
+          &lt;p&gt;Aucun article trouv&eacute;.&lt;/p&gt;
+        )}
+
+        &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8&quot;&gt;
+          {!loading &amp;&amp;
+            !error &amp;&amp;
+            articles.map((article, index) =&gt; (
+              &lt;div key={index} className=&quot;flex justify-center&quot;&gt;
+                &lt;Article
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                  image_url={article.image_url}
+                  user_id={article.user_id}
+                /&gt;
+              &lt;/div&gt;
+            ))}
+        &lt;/div&gt;
+        {articles.length === 0 &amp;&amp; (
+          &lt;div className=&quot;text-center py-16&quot;&gt;
+            &lt;div className=&quot;bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20 p-12 max-w-md mx-auto&quot;&gt;
+              &lt;div className=&quot;w-20 h-20 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6&quot;&gt;
+                &lt;svg
+                  className=&quot;w-10 h-10 text-purple-500&quot;
+                  fill=&quot;none&quot;
+                  stroke=&quot;currentColor&quot;
+                  viewBox=&quot;0 0 24 24&quot;
+                &gt;
+                  &lt;path
+                    strokeLinecap=&quot;round&quot;
+                    strokeLinejoin=&quot;round&quot;
+                    strokeWidth={2}
+                    d=&quot;M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2&quot;
+                  /&gt;
+                &lt;/svg&gt;
+              &lt;/div&gt;
+              &lt;h3 className=&quot;text-2xl font-bold text-slate-800 mb-3&quot;&gt;
+                Aucun article disponible
+              &lt;/h3&gt;
+              &lt;p className=&quot;text-slate-600 mb-6 leading-relaxed&quot;&gt;
+                Soyez le premier &agrave; partager un article avec la communaut&eacute;
+              &lt;/p&gt;
+              &lt;Link to=&quot;/createArticle&quot;&gt;
+                &lt;button className=&quot;bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium py-3 px-8 rounded-xl transition-all duration-200&quot;&gt;
+                  Commencer maintenant
+                &lt;/button&gt;
+              &lt;/Link&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default HomePage;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>
