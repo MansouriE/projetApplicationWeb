@@ -1,0 +1,184 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/Navbar.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/Navbar.jsx (<b>149</b> lines of code) (<a href="Navbar.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useState } from &quot;react&quot;;
+import { Link, useNavigate } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../context/AuthContext&quot;;
+
+function Navbar() {
+  const { isLoggedIn, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleLogout = () =&gt; {
+    logout();
+    navigate(&quot;/login&quot;);
+    setIsMobileMenuOpen(false);
+  };
+
+  const closeMobileMenu = () =&gt; {
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    &lt;nav className=&quot;bg-gradient-to-r from-indigo-900 to-purple-800 shadow-xl border-b border-purple-600 fixed top-0 w-full z-50&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8&quot;&gt;
+        &lt;div className=&quot;flex justify-between items-center h-16&quot;&gt;
+          &lt;Link 
+            to=&quot;/&quot; 
+            className=&quot;flex items-center space-x-3&quot;
+            onClick={closeMobileMenu}
+          &gt;
+            &lt;div className=&quot;w-10 h-10 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg&quot;&gt;
+              &lt;span className=&quot;text-white font-bold text-lg&quot;&gt;M&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;span className=&quot;text-white text-xl font-bold&quot;&gt;Market&lt;/span&gt;
+          &lt;/Link&gt;
+
+          &lt;div className=&quot;hidden md:flex items-center space-x-6&quot;&gt;
+            &lt;Link 
+              to=&quot;/&quot; 
+              className=&quot;text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60&quot;
+            &gt;
+              Accueil
+            &lt;/Link&gt;
+            
+            {!isLoggedIn ? (
+              &lt;&gt;
+                &lt;Link 
+                  to=&quot;/login&quot; 
+                  className=&quot;text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60&quot;
+                &gt;
+                  Connexion
+                &lt;/Link&gt;
+                &lt;Link 
+                  to=&quot;/register&quot; 
+                  className=&quot;bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-medium px-5 py-2.5 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg&quot;
+                &gt;
+                  S'inscrire
+                &lt;/Link&gt;
+              &lt;/&gt;
+            ) : (
+              &lt;&gt;
+                &lt;Link 
+                  to=&quot;/profile&quot; 
+                  className=&quot;text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60&quot;
+                &gt;
+                  Profil
+                &lt;/Link&gt;
+                &lt;Link 
+                  to=&quot;/offres&quot; 
+                  className=&quot;text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60&quot;
+                &gt;
+                  Offres
+                &lt;/Link&gt;
+                &lt;Link 
+                  to=&quot;/settings&quot; 
+                  className=&quot;text-purple-100 hover:text-white font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60&quot;
+                &gt;
+                  Settings
+                &lt;/Link&gt;
+                &lt;button 
+                  onClick={handleLogout}
+                  className=&quot;text-purple-100 hover:text-rose-200 font-medium transition-all duration-200 px-4 py-2 rounded-lg hover:bg-purple-700/60 border border-purple-500 hover:border-rose-400&quot;
+                &gt;
+                  D&eacute;connexion
+                &lt;/button&gt;
+              &lt;/&gt;
+            )}
+          &lt;/div&gt;
+
+          &lt;div className=&quot;md:hidden&quot;&gt;
+            &lt;button 
+              onClick={() =&gt; setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className=&quot;text-purple-100 p-2 rounded-lg hover:bg-purple-700/60 transition-all duration-200&quot;
+            &gt;
+              {isMobileMenuOpen ? (
+                &lt;svg className=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M6 18L18 6M6 6l12 12&quot; /&gt;
+                &lt;/svg&gt;
+              ) : (
+                &lt;svg className=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M4 6h16M4 12h16M4 18h16&quot; /&gt;
+                &lt;/svg&gt;
+              )}
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {isMobileMenuOpen &amp;&amp; (
+          &lt;div className=&quot;md:hidden bg-purple-800/95 border-t border-purple-600 shadow-2xl&quot;&gt;
+            &lt;div className=&quot;px-2 pt-2 pb-4 space-y-2&quot;&gt;
+              &lt;Link 
+                to=&quot;/&quot; 
+                className=&quot;text-purple-100 block px-4 py-3 rounded-lg hover:bg-purple-700/60 transition-all duration-200 font-medium&quot;
+                onClick={closeMobileMenu}
+              &gt;
+                Accueil
+              &lt;/Link&gt;
+              
+              {!isLoggedIn ? (
+                &lt;&gt;
+                  &lt;Link 
+                    to=&quot;/login&quot; 
+                    className=&quot;text-purple-100 block px-4 py-3 rounded-lg hover:bg-purple-700/60 transition-all duration-200 font-medium&quot;
+                    onClick={closeMobileMenu}
+                  &gt;
+                    Connexion
+                  &lt;/Link&gt;
+                  &lt;Link 
+                    to=&quot;/register&quot; 
+                    className=&quot;bg-gradient-to-r from-rose-400 to-pink-500 text-white block px-4 py-3 rounded-lg font-medium text-center shadow-lg&quot;
+                    onClick={closeMobileMenu}
+                  &gt;
+                    S'inscrire
+                  &lt;/Link&gt;
+                &lt;/&gt;
+              ) : (
+                &lt;&gt;
+                  &lt;Link 
+                    to=&quot;/profile&quot; 
+                    className=&quot;text-purple-100 block px-4 py-3 rounded-lg hover:bg-purple-700/60 transition-all duration-200 font-medium&quot;
+                    onClick={closeMobileMenu}
+                  &gt;
+                    Profil
+                  &lt;/Link&gt;
+                  &lt;button 
+                    onClick={handleLogout}
+                    className=&quot;text-rose-200 block w-full text-left px-4 py-3 rounded-lg hover:bg-rose-500/20 transition-all duration-200 font-medium border border-rose-400/30&quot;
+                  &gt;
+                    D&eacute;connexion
+                  &lt;/button&gt;
+                &lt;/&gt;
+              )}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  );
+}
+
+export default Navbar;</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

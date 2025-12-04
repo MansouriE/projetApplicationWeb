@@ -1,0 +1,353 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/profile/Profile.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/profile/Profile.jsx (<b>308</b> lines of code) (<a href="Profile.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useEffect, useState } from &quot;react&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import Article from &quot;../home/Article.jsx&quot;; // Adjust path if needed
+
+function Profile() {
+  const { token, isLoggedIn } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+  const [allArticles, setAllArticles] = useState([]);
+  const [allArticlesFavoris, setAllArticlesFavoris] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(&quot;&quot;);
+  const navigate = useNavigate();
+
+  // Fetch profile and articles
+  useEffect(() =&gt; {
+    const fetchProfileAndArticles = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(&quot;&quot;);
+
+        // Fetch user profile
+        const userResponse = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/users/me&quot;,
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const userData = await userResponse.json();
+        if (!userResponse.ok) {
+          throw new Error(userData.error || &quot;Impossible de charger le profil&quot;);
+        }
+        setUser(userData.user || userData);
+
+        // Fetch all articles
+        const articlesResponse = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/getMesArticles&quot;,
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const articlesData = await articlesResponse.json();
+
+        if (articlesResponse.ok) {
+          setAllArticles(articlesData || []);
+        } else {
+          setAllArticles([]);
+        }
+        // Fetch favorite articles
+        const favorisResponse = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori&quot;,
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const favorisData = await favorisResponse.json();
+
+        if (favorisResponse.ok) {
+          setAllArticlesFavoris(favorisData || []);
+        } else {
+          setAllArticlesFavoris([]);
+        }
+      } catch (err) {
+        console.error(&quot;Erreur:&quot;, err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (isLoggedIn &amp;&amp; token) {
+      fetchProfileAndArticles();
+    } else {
+      setLoading(false);
+    }
+  }, [token, isLoggedIn]);
+
+  // Reload articles manually
+  const reloadArticles = async () =&gt; {
+    try {
+      const articlesResponse = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/getMesArticles&quot;,
+        {
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const articlesData = await articlesResponse.json();
+      if (articlesResponse.ok) {
+        setAllArticles(articlesData || []);
+      }
+
+      const favorisResponse = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori&quot;,
+        {
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const favorisData = await favorisResponse.json();
+      if (favorisResponse.ok) {
+        setAllArticlesFavoris(favorisData || []);
+      } else {
+        setAllArticlesFavoris([]);
+      }
+    } catch (err) {
+      console.error(&quot;Erreur rechargement:&quot;, err);
+    }
+  };
+  // --- Handlers pour Modifier / Supprimer ---
+  const handleEdit = (article) =&gt; {
+    // &agrave; toi de cr&eacute;er la page d&rsquo;&eacute;dition si besoin
+    navigate(`/articles/${article.id_articles}/edit`, { state: article });
+  };
+
+  const handleDelete = async (idArticles) =&gt; {
+    if (!confirm(&quot;Supprimer cet article ?&quot;)) return;
+    try {
+      const res = await fetch(
+        `https://projetapplicationweb-1.onrender.com/api/articles/${idArticles}`,
+        {
+          method: &quot;DELETE&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = await res.json().catch(() =&gt; ({}));
+      if (!res.ok) throw new Error(data.error || &quot;Suppression &eacute;chou&eacute;e&quot;);
+      await reloadArticles();
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
+  if (!isLoggedIn) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4&quot;&gt;
+            &lt;svg
+              className=&quot;w-8 h-8 text-red-500&quot;
+              fill=&quot;none&quot;
+              stroke=&quot;currentColor&quot;
+              viewBox=&quot;0 0 24 24&quot;
+            &gt;
+              &lt;path
+                strokeLinecap=&quot;round&quot;
+                strokeLinejoin=&quot;round&quot;
+                strokeWidth={2}
+                d=&quot;M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;
+            Acc&egrave;s non autoris&eacute;
+          &lt;/h3&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;
+            Vous devez &ecirc;tre connect&eacute; pour acc&eacute;der &agrave; cette page.
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (loading) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4&quot;&gt;&lt;/div&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Chargement du profil&hellip;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (error) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4&quot;&gt;
+            &lt;svg
+              className=&quot;w-8 h-8 text-red-500&quot;
+              fill=&quot;none&quot;
+              stroke=&quot;currentColor&quot;
+              viewBox=&quot;0 0 24 24&quot;
+            &gt;
+              &lt;path
+                strokeLinecap=&quot;round&quot;
+                strokeLinejoin=&quot;round&quot;
+                strokeWidth={2}
+                d=&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot;
+              /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Erreur&lt;/h3&gt;
+          &lt;p className=&quot;text-red-600 mb-4&quot;&gt;{error}&lt;/p&gt;
+          &lt;button
+            onClick={() =&gt; window.location.reload()}
+            className=&quot;bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200&quot;
+          &gt;
+            R&eacute;essayer
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (!user) return null;
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8&quot;&gt;
+      &lt;div className=&quot;max-w-6xl mx-auto&quot;&gt;
+        {/* Profile Header */}
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg overflow-hidden mb-8&quot;&gt;
+          &lt;div className=&quot;bg-gradient-to-r from-indigo-900 to-purple-800 px-6 py-8&quot;&gt;
+            &lt;div className=&quot;flex items-center space-x-4&quot;&gt;
+              &lt;div className=&quot;w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg&quot;&gt;
+                &lt;span className=&quot;text-white font-bold text-xl&quot;&gt;
+                  {user.prenom?.[0]?.toUpperCase() ||
+                    user.nom?.[0]?.toUpperCase() ||
+                    &quot;U&quot;}
+                &lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;h1 className=&quot;text-2xl font-bold text-white&quot;&gt;Profile&lt;/h1&gt;
+                &lt;p className=&quot;text-white/80&quot;&gt;
+                  {user.prenom} {user.nom}
+                &lt;/p&gt;
+                &lt;button
+                  onClick={reloadArticles}
+                  className=&quot;mt-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-1 px-3 rounded-lg transition-colors duration-200&quot;
+                &gt;
+                  Recharger mes articles
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Articles Grid */}
+        &lt;div className=&quot;mt-8&quot;&gt;
+          &lt;h2 className=&quot;text-2xl font-bold text-gray-800 mb-4&quot;&gt;
+            Mes Articles
+          &lt;/h2&gt;
+          &lt;div className=&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+            {allArticles.length === 0 ? (
+              &lt;p className=&quot;text-gray-500 col-span-full text-center&quot;&gt;
+                Aucun article disponible.
+              &lt;/p&gt;
+            ) : (
+              allArticles.map((article) =&gt; (
+                &lt;Article
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
+                  isProfilePage={true}
+                  onEdit={() =&gt; handleEdit(article)}
+                  onDelete={() =&gt; handleDelete(article.id_articles)}
+                  image_url={article.image_url}
+                /&gt;
+              ))
+            )}
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        {/* Favorite Articles */}
+        &lt;div className=&quot;mt-12&quot;&gt;
+          &lt;h2 className=&quot;text-2xl font-bold text-gray-800 mb-4&quot;&gt;Mes Favoris&lt;/h2&gt;
+          &lt;div className=&quot;grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+            {allArticlesFavoris.length === 0 ? (
+              &lt;p className=&quot;text-gray-500 col-span-full text-center&quot;&gt;
+                Aucun favori.
+              &lt;/p&gt;
+            ) : (
+              allArticlesFavoris.map((article) =&gt; (
+                &lt;Article
+                  key={article.id_articles}
+                  id={article.id_articles}
+                  nom={article.nom}
+                  description={article.description}
+                  prix={article.prix}
+                  etat={article.etat}
+                  bid={article.bid}
+                  bidPrixDeDepart={article.bidPrixDeDepart}
+                  bid_duration={article.bid_duration}
+                  bid_end_date={article.bid_end_date}
+                  offre={article.offre}
+                  offre_reduction={article.offre_reduction}
+                  isProfilePage={false}
+                  onEdit={() =&gt; handleEdit(article)}
+                  onDelete={() =&gt; handleDelete(article.id_articles)}
+                  image_url={article.image_url}
+                /&gt;
+              ))
+            )}
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Profile;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

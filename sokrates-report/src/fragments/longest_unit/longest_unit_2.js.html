@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>async function createArticle()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">async function createArticle()</h3>
+<p style="margin-top: 4px">in <i>projetApplicationWeb/backend/controllers/article-controller.js [12:30]</i></p>
+<ul>
+    <li><b>18</b> lines of code</li>
+    <li><b>3</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+async function createArticle() {
+  try {
+    const { data, error } = await supabase
+      .from(&quot;articles&quot;)
+      .insert({
+        id_articles: id_articles,
+        nom: nom,
+        description: description,
+        prix: prix,
+        etat: etat,
+      })
+      .single();
+
+    if (error) throw error;
+    window.location.reload();
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

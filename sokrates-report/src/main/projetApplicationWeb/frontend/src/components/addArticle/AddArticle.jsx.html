@@ -1,0 +1,303 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx (<b>247</b> lines of code) (<a href="AddArticle.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useState } from &quot;react&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+
+function AddArticle() {
+  const [nom, setNom] = useState(&quot;&quot;);
+  const [description, setDescription] = useState(&quot;&quot;);
+  const [prix, setPrix] = useState(&quot;&quot;);
+  const [etat, setEtat] = useState(&quot;&quot;);
+  const [acceptsBids, setAcceptsBids] = useState(false);
+  const [acceptsOffers, setAcceptsOffers] = useState(false);
+  const [startingBid, setStartingBid] = useState(&quot;&quot;);
+  const [bidDuration, setBidDuration] = useState(&quot;&quot;);
+  const [offreReduction, setOffreReduction] = useState(&quot;&quot;);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+  const [imageFile, setImageFile] = useState(null);
+
+  const { token, isLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) =&gt; {
+    e.preventDefault();
+    setError(&quot;&quot;);
+
+    if (!isLoggedIn || !token) {
+      setError(&quot;Vous devez &ecirc;tre connect&eacute;.&quot;);
+      return;
+    }
+
+    if (!nom || !description || !prix || !etat) {
+      setError(&quot;Veuillez remplir tous les champs !&quot;);
+      return;
+    }
+
+    const prixNum = Number(prix);
+    if (Number.isNaN(prixNum) || prixNum &lt;= 0) {
+      setError(&quot;Le prix doit &ecirc;tre un nombre positif.&quot;);
+      return;
+    }
+
+    if (acceptsBids) {
+      if (!startingBid) {
+        setError(&quot;Veuillez entrer un prix de d&eacute;part pour les bids !&quot;);
+        return;
+      }
+      const startingBidNum = Number(startingBid);
+      if (Number.isNaN(startingBidNum) || startingBidNum &lt;= 0) {
+        setError(&quot;Le prix de d&eacute;part doit &ecirc;tre un nombre positif !&quot;);
+        return;
+      }
+
+      if (!bidDuration) {
+        setError(&quot;Veuillez s&eacute;lectionner une dur&eacute;e pour le bid !&quot;);
+        return;
+      }
+    }
+
+    const etatsAutorises = [&quot;Neuf&quot;, &quot;Usag&eacute;&quot;];
+    if (!etatsAutorises.includes(etat)) {
+      setError(`L'&eacute;tat doit &ecirc;tre parmi: ${etatsAutorises.join(&quot;, &quot;)}`);
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append(&quot;nom&quot;, nom);
+      formData.append(&quot;description&quot;, description);
+      formData.append(&quot;prix&quot;, prixNum);
+      formData.append(&quot;etat&quot;, etat);
+      formData.append(&quot;bid&quot;, acceptsBids);
+      formData.append(&quot;offre&quot;, acceptsOffers);
+      formData.append(&quot;offreReduction&quot;, acceptsOffers ? offreReduction : &quot;&quot;);
+      formData.append(&quot;bidPrixDepart&quot;, acceptsBids ? startingBid : &quot;&quot;);
+      formData.append(&quot;durerBid&quot;, acceptsBids ? bidDuration : &quot;&quot;);
+      if (imageFile) formData.append(&quot;image&quot;, imageFile);
+
+      const response = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/createArticle&quot;,
+        {
+          method: &quot;POST&quot;,
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        }
+      );
+
+      const contentType = response.headers.get(&quot;content-type&quot;) || &quot;&quot;;
+      const rawText = await response.text();
+      const data = contentType.includes(&quot;application/json&quot;)
+        ? JSON.parse(rawText)
+        : null;
+
+      if (!response.ok) {
+        const msg = data?.error || rawText || `HTTP ${response.status}`;
+        throw new Error(msg);
+      }
+
+      setNom(&quot;&quot;);
+      setDescription(&quot;&quot;);
+      setPrix(&quot;&quot;);
+      setEtat(&quot;&quot;);
+      setAcceptsBids(false);
+      setStartingBid(&quot;&quot;);
+      setBidDuration(&quot;&quot;);
+      setOffreReduction(&quot;&quot;);
+      setAcceptsOffers(false);
+      setImageFile(null);
+
+      navigate(&quot;/profile&quot;);
+    } catch (err) {
+      console.error(err);
+      setError(err.message || &quot;Erreur lors de la cr&eacute;ation de l'article&quot;);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (!isLoggedIn) {
+    return (
+      &lt;div className=&quot;min-h-screen flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Acc&egrave;s non autoris&eacute;&lt;/h3&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Vous devez &ecirc;tre connect&eacute; pour ajouter un article.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;flex items-center justify-center min-h-screen bg-gray-100 px-4&quot;&gt;
+      &lt;form
+        onSubmit={handleSubmit}
+        className=&quot;bg-white shadow-lg rounded-2xl p-8 w-full max-w-md space-y-4&quot;
+      &gt;
+        &lt;h2 className=&quot;text-2xl font-semibold text-gray-800 text-center mb-6&quot;&gt;
+          Ajouter un article
+        &lt;/h2&gt;
+
+        {error &amp;&amp; (
+          &lt;div className=&quot;p-3 bg-red-100 text-red-700 rounded&quot;&gt;{error}&lt;/div&gt;
+        )}
+
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Nom&quot;
+          value={nom}
+          onChange={(e) =&gt; setNom(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+        /&gt;
+
+        &lt;textarea
+          placeholder=&quot;Description&quot;
+          value={description}
+          onChange={(e) =&gt; setDescription(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none h-28 resize-none&quot;
+        /&gt;
+
+        &lt;label className=&quot;block&quot;&gt;
+          &lt;input
+            type=&quot;file&quot;
+            accept=&quot;image/*&quot;
+            onChange={(e) =&gt; setImageFile(e.target.files[0])}
+            className=&quot;mt-1 block w-full&quot;
+          /&gt;
+        &lt;/label&gt;
+
+        &lt;input
+          type=&quot;number&quot;
+          placeholder=&quot;Prix&quot;
+          value={prix}
+          onChange={(e) =&gt; setPrix(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+        /&gt;
+
+        &lt;select
+          value={etat}
+          onChange={(e) =&gt; setEtat(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+        &gt;
+          &lt;option value=&quot;&quot;&gt;S&eacute;lectionner l'&eacute;tat&lt;/option&gt;
+          &lt;option value=&quot;Neuf&quot;&gt;Neuf&lt;/option&gt;
+          &lt;option value=&quot;Usag&eacute;&quot;&gt;Usag&eacute;&lt;/option&gt;
+        &lt;/select&gt;
+
+        &lt;label className=&quot;flex items-center space-x-2 cursor-pointer&quot;&gt;
+          &lt;input
+            type=&quot;checkbox&quot;
+            checked={acceptsBids}
+            onChange={(e) =&gt; {
+              setAcceptsBids(e.target.checked);
+              if (e.target.checked) {
+                setAcceptsOffers(false);
+                setOffreReduction(&quot;&quot;);
+              }
+            }}
+            className=&quot;h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500&quot;
+          /&gt;
+          &lt;span className=&quot;text-gray-700&quot;&gt;Autoriser les bids pour cet article&lt;/span&gt;
+        &lt;/label&gt;
+
+        &lt;label className=&quot;flex items-center space-x-2 cursor-pointer&quot;&gt;
+          &lt;input
+            type=&quot;checkbox&quot;
+            checked={acceptsOffers}
+            onChange={(e) =&gt; {
+              setAcceptsOffers(e.target.checked);
+              if (e.target.checked) {
+                setAcceptsBids(false);
+                setBidDuration(&quot;&quot;);
+                setStartingBid(&quot;&quot;);
+              }
+            }}
+            className=&quot;h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500&quot;
+          /&gt;
+          &lt;span className=&quot;text-gray-700&quot;&gt;Autoriser les offres pour cet article&lt;/span&gt;
+        &lt;/label&gt;
+
+        {acceptsBids &amp;&amp; (
+          &lt;&gt;
+            &lt;input
+              type=&quot;number&quot;
+              placeholder=&quot;Prix de d&eacute;part des bids&quot;
+              value={startingBid}
+              onChange={(e) =&gt; setStartingBid(e.target.value)}
+              className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+            /&gt;
+            &lt;select
+              value={bidDuration}
+              onChange={(e) =&gt; setBidDuration(e.target.value)}
+              className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+            &gt;
+              &lt;option value=&quot;&quot;&gt;Dur&eacute;e du bid&lt;/option&gt;
+              &lt;option value=&quot;12h&quot;&gt;12 heures&lt;/option&gt;
+              &lt;option value=&quot;1d&quot;&gt;1 jour&lt;/option&gt;
+              &lt;option value=&quot;2d&quot;&gt;2 jours&lt;/option&gt;
+              &lt;option value=&quot;7d&quot;&gt;7 jours&lt;/option&gt;
+              &lt;option value=&quot;14d&quot;&gt;14 jours&lt;/option&gt;
+              &lt;option value=&quot;30d&quot;&gt;30 jours&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/&gt;
+        )}
+
+        {acceptsOffers &amp;&amp; (
+          &lt;select
+            value={offreReduction}
+            onChange={(e) =&gt; setOffreReduction(e.target.value)}
+            className=&quot;w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none&quot;
+          &gt;
+            &lt;option value=&quot;&quot;&gt;R&eacute;duction %&lt;/option&gt;
+            &lt;option value=&quot;2.5&quot;&gt;2.5 %&lt;/option&gt;
+            &lt;option value=&quot;5&quot;&gt;5 %&lt;/option&gt;
+            &lt;option value=&quot;10&quot;&gt;10 %&lt;/option&gt;
+            &lt;option value=&quot;15&quot;&gt;15 %&lt;/option&gt;
+            &lt;option value=&quot;20&quot;&gt;20 %&lt;/option&gt;
+            &lt;option value=&quot;25&quot;&gt;25 %&lt;/option&gt;
+          &lt;/select&gt;
+        )}
+
+        &lt;button
+          type=&quot;submit&quot;
+          disabled={submitting}
+          className={`w-full py-3 rounded-lg text-white font-semibold transition-all duration-300 ${
+            submitting
+              ? &quot;bg-gray-400 cursor-not-allowed&quot;
+              : &quot;bg-blue-600 hover:bg-blue-700&quot;
+          }`}
+        &gt;
+          {submitting ? &quot;Cr&eacute;ation...&quot; : &quot;Cr&eacute;er l'article&quot;}
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default AddArticle;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

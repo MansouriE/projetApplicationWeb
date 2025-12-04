@@ -1,0 +1,6 @@
+duplicated block id: 1
+size: 6 cleaned lines of code
+in 2 files:
+ - projetApplicationWeb/backend/controllers/article-controller.js (3:10)
+ - projetApplicationWeb/backend/controllers/users-controller.js (3:10)
+

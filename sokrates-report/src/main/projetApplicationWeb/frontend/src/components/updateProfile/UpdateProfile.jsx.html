@@ -1,0 +1,273 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx (<b>229</b> lines of code) (<a href="UpdateProfile.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useEffect, useState } from &quot;react&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+export default function EditProfile() {
+  const { token, isLoggedIn } = useContext(AuthContext);
+  const [form, setForm] = useState({
+    prenom: &quot;&quot;,
+    nom: &quot;&quot;,
+    adresse: &quot;&quot;,
+    code_postal: &quot;&quot;,
+    courriel: &quot;&quot;,
+  });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(&quot;&quot;);
+  const navigate = useNavigate();
+
+  useEffect(() =&gt; {
+    const run = async () =&gt; {
+      try {
+        const res = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/users/me&quot;,
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await res.json();
+        if (!res.ok)
+          throw new Error(data.error || &quot;Impossible de charger le profil&quot;);
+
+        const u = data.user || data;
+        setForm({
+          prenom: u.prenom || &quot;&quot;,
+          nom: u.nom || &quot;&quot;,
+          adresse: u.adresse || &quot;&quot;,
+          code_postal: u.code_postal || &quot;&quot;,
+          courriel: u.courriel || &quot;&quot;,
+        });
+        setLoading(false);
+      } catch (e) {
+        setError(e.message || &quot;Une erreur est survenue&quot;);
+        setLoading(false);
+      }
+    };
+    if (isLoggedIn) run();
+  }, [isLoggedIn, token]);
+
+  const onChange = (e) =&gt; {
+    const { name, value } = e.target;
+    setForm((f) =&gt; ({ ...f, [name]: value }));
+  };
+
+  const onSubmit = async (e) =&gt; {
+    e.preventDefault();
+    setError(&quot;&quot;);
+    setSaving(true);
+
+    const payload = Object.fromEntries(
+      Object.entries(form).filter(([, v]) =&gt; String(v ?? &quot;&quot;).trim() !== &quot;&quot;)
+    );
+
+    try {
+      const res = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/users/me&quot;,
+        {
+          method: &quot;PATCH&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || &quot;Mise &agrave; jour &eacute;chou&eacute;e&quot;);
+
+      navigate(&quot;/profile&quot;, { replace: true });
+    } catch (e) {
+      setError(e.message || &quot;Une erreur est survenue&quot;);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!isLoggedIn) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4&quot;&gt;
+            &lt;svg className=&quot;w-8 h-8 text-red-500&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+              &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z&quot; /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Acc&egrave;s non autoris&eacute;&lt;/h3&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Vous devez &ecirc;tre connect&eacute; pour acc&eacute;der &agrave; cette page.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (loading) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4&quot;&gt;&lt;/div&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Chargement&hellip;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8&quot;&gt;
+      &lt;div className=&quot;max-w-2xl mx-auto&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg overflow-hidden&quot;&gt;
+          &lt;div className=&quot;bg-gradient-to-r from-indigo-900 to-purple-800 px-6 py-8&quot;&gt;
+            &lt;div className=&quot;flex items-center space-x-4&quot;&gt;
+              &lt;div className=&quot;w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg&quot;&gt;
+                &lt;span className=&quot;text-white font-bold text-xl&quot;&gt;
+                  {form.prenom?.[0]?.toUpperCase() || form.nom?.[0]?.toUpperCase() || &quot;U&quot;}
+                &lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;h1 className=&quot;text-2xl font-bold text-white&quot;&gt;Modifier le profil&lt;/h1&gt;
+                &lt;p className=&quot;text-purple-200&quot;&gt;Mettez &agrave; jour vos informations personnelles&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;p-6&quot;&gt;
+            {error &amp;&amp; (
+              &lt;div className=&quot;mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3&quot;&gt;
+                &lt;svg className=&quot;w-5 h-5 text-red-500 flex-shrink-0&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+                &lt;/svg&gt;
+                &lt;p className=&quot;text-red-700&quot;&gt;{error}&lt;/p&gt;
+              &lt;/div&gt;
+            )}
+
+            &lt;form onSubmit={onSubmit} className=&quot;space-y-6&quot;&gt;
+              &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+                &lt;div className=&quot;space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;Pr&eacute;nom *&lt;/label&gt;
+                  &lt;input
+                    name=&quot;prenom&quot;
+                    type=&quot;text&quot;
+                    value={form.prenom}
+                    onChange={onChange}
+                    placeholder=&quot;Votre pr&eacute;nom&quot;
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200&quot;
+                    required
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;Nom *&lt;/label&gt;
+                  &lt;input
+                    name=&quot;nom&quot;
+                    type=&quot;text&quot;
+                    value={form.nom}
+                    onChange={onChange}
+                    placeholder=&quot;Votre nom&quot;
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200&quot;
+                    required
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;Email *&lt;/label&gt;
+                  &lt;input
+                    name=&quot;courriel&quot;
+                    type=&quot;email&quot;
+                    value={form.courriel}
+                    onChange={onChange}
+                    placeholder=&quot;exemple@mail.com&quot;
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200&quot;
+                    required
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;Code postal&lt;/label&gt;
+                  &lt;input
+                    name=&quot;code_postal&quot;
+                    type=&quot;text&quot;
+                    value={form.code_postal}
+                    onChange={onChange}
+                    placeholder=&quot;H0H 0H0&quot;
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200&quot;
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;md:col-span-2 space-y-2&quot;&gt;
+                  &lt;label className=&quot;text-sm font-medium text-gray-700&quot;&gt;Adresse&lt;/label&gt;
+                  &lt;input
+                    name=&quot;adresse&quot;
+                    type=&quot;text&quot;
+                    value={form.adresse}
+                    onChange={onChange}
+                    placeholder=&quot;Votre adresse compl&egrave;te&quot;
+                    className=&quot;w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200&quot;&gt;
+                &lt;button
+                  type=&quot;submit&quot;
+                  disabled={saving}
+                  className=&quot;bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none&quot;
+                &gt;
+                  {saving ? (
+                    &lt;&gt;
+                      &lt;div className=&quot;animate-spin rounded-full h-4 w-4 border-b-2 border-white&quot;&gt;&lt;/div&gt;
+                      Enregistrement...
+                    &lt;/&gt;
+                  ) : (
+                    &lt;&gt;
+                      &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                        &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M5 13l4 4L19 7&quot; /&gt;
+                      &lt;/svg&gt;
+                      Enregistrer les modifications
+                    &lt;/&gt;
+                  )}
+                &lt;/button&gt;
+                
+                &lt;button
+                  type=&quot;button&quot;
+                  onClick={() =&gt; navigate(&quot;/profile&quot;)}
+                  className=&quot;bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-8 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2&quot;
+                &gt;
+                  &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                    &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M6 18L18 6M6 6l12 12&quot; /&gt;
+                  &lt;/svg&gt;
+                  Annuler
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

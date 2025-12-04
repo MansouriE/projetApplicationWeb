@@ -1,0 +1,147 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx (<b>106</b> lines of code) (<a href="oldPageBid.jsx">raw</a>):</h3>
+<div id="editor">import React, { useState } from &quot;react&quot;;
+import { useLocation, useParams } from &quot;react-router-dom&quot;;
+
+function PageBid() {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const article = state;
+
+  const [bids, setBids] = useState([]);
+  const [bidMontant, setBidMontant] = useState(&quot;&quot;);
+  const [message, setMessage] = useState(&quot;&quot;);
+
+  const faireUnBid = (e) =&gt; {
+    e.preventDefault();
+
+    if (!bidMontant || isNaN(bidMontant)) {
+      setMessage(&quot;Entrez un nombre valide&quot;);
+      return;
+    }
+
+    const currentMax = Math.max(article.prix, ...bids.map((b) =&gt; b.amount));
+
+    if (Number(bidMontant) &lt;= currentMax) {
+      setMessage(&quot;💡 Le bid doit &ecirc;tre plus grand que le prix actuel&quot;);
+      return;
+    }
+
+    const newBid = {
+      id: bids.length + 1,
+      itemId: id,
+      bidder: &quot;Vous&quot;,
+      amount: Number(bidMontant),
+    };
+
+    setBids((prev) =&gt; [...prev, newBid]);
+    setMessage(`✅ Bid de $${bidMontant} plac&eacute; avec succ&egrave;s`);
+    setBidMontant(&quot;&quot;);
+  };
+
+  if (!article) {
+    return (
+      &lt;p className=&quot;text-center mt-10 text-gray-600&quot;&gt;Aucun article trouv&eacute;.&lt;/p&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200&quot;&gt;
+      &lt;h1 className=&quot;text-3xl font-bold text-gray-800 mb-4&quot;&gt;{article.nom}&lt;/h1&gt;
+      &lt;p className=&quot;text-gray-600 mb-4&quot;&gt;{article.description}&lt;/p&gt;
+
+      &lt;div className=&quot;flex justify-between items-center mb-6&quot;&gt;
+        &lt;span className=&quot;text-2xl font-semibold text-green-600&quot;&gt;
+          Prix de d&eacute;part : {article.prix} $
+        &lt;/span&gt;
+        &lt;span
+          className={`px-3 py-1 rounded-full text-sm font-medium ${
+            article.etat === &quot;Neuf&quot;
+              ? &quot;bg-green-100 text-green-800&quot;
+              : article.etat === &quot;Bon &eacute;tat&quot;
+              ? &quot;bg-blue-100 text-blue-800&quot;
+              : &quot;bg-red-100 text-red-800&quot;
+          }`}
+        &gt;
+          {article.etat}
+        &lt;/span&gt;
+      &lt;/div&gt;
+         
+      {/* Liste des bids */}
+      &lt;div className=&quot;mb-8&quot;&gt;
+        &lt;h2 className=&quot;text-xl font-semibold text-gray-800 mb-3&quot;&gt;Bids:&lt;/h2&gt;
+        {bids.length &gt; 0 ? (
+          &lt;ul className=&quot;space-y-2&quot;&gt;
+            {bids
+              .sort((a, b) =&gt; b.amount - a.amount)
+              .map((bid) =&gt; (
+                &lt;li
+                  key={bid.id}
+                  className=&quot;flex justify-between bg-gray-50 p-3 rounded-lg border border-gray-200&quot;
+                &gt;
+                  &lt;span className=&quot;font-medium text-gray-700&quot;&gt;
+                    {bid.bidder}
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-green-600 font-semibold&quot;&gt;
+                    {bid.amount} $
+                  &lt;/span&gt;
+                &lt;/li&gt;
+              ))}
+          &lt;/ul&gt;
+        ) : (
+          &lt;p className=&quot;text-gray-500 italic&quot;&gt;Aucun bid pour l&rsquo;instant&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      {/* Placer un bid */}
+      &lt;form onSubmit={faireUnBid} className=&quot;space-y-4&quot;&gt;
+        &lt;label className=&quot;block text-gray-700 font-medium&quot;&gt;
+          Faire un nouveau bid :
+        &lt;/label&gt;
+        &lt;input
+          type=&quot;number&quot;
+          value={bidMontant}
+          onChange={(e) =&gt; setBidMontant(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot;
+          placeholder=&quot;Entrez un montant sup&eacute;rieur&quot;
+        /&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          className=&quot;w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200&quot;
+        &gt;
+          Placer le bid
+        &lt;/button&gt;
+      &lt;/form&gt;
+
+      {message &amp;&amp; (
+        &lt;p className=&quot;mt-4 text-center text-gray-700 font-medium&quot;&gt;{message}&lt;/p&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default PageBid;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

@@ -1,0 +1,253 @@
+[ {
+  "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+  "extension" : "js",
+  "linesOfCode" : 9,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/config/supabaseClient.js",
+  "extension" : "js",
+  "linesOfCode" : 7,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+  "extension" : "js",
+  "linesOfCode" : 27,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+  "extension" : "js",
+  "linesOfCode" : 30,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/index.js",
+  "extension" : "js",
+  "linesOfCode" : 25,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/middleware/check-auth.js",
+  "extension" : "js",
+  "linesOfCode" : 13,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/articleRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 284,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/authRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 53,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/bidRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 106,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/favoriRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 42,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 105,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/routes/userRoutes.js",
+  "extension" : "js",
+  "linesOfCode" : 30,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/backend/supabaseClient.js",
+  "extension" : "js",
+  "linesOfCode" : 5,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/index.html",
+  "extension" : "html",
+  "linesOfCode" : 13,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/postcss.config.js",
+  "extension" : "js",
+  "linesOfCode" : 6,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/App.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 35,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 247,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 106,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 234,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 259,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 146,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+  "extension" : "css",
+  "linesOfCode" : 35,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 57,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.css",
+  "extension" : "css",
+  "linesOfCode" : 36,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 149,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/offre/Offre.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 128,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.css",
+  "extension" : "css",
+  "linesOfCode" : 82,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 308,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+  "extension" : "css",
+  "linesOfCode" : 35,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 125,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.css",
+  "extension" : "css",
+  "linesOfCode" : 82,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 215,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 229,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.css",
+  "extension" : "css",
+  "linesOfCode" : 1,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 229,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/Containers/Login.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 1,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/Containers/Signup.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 1,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/context/AuthContext.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 52,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/index.css",
+  "extension" : "css",
+  "linesOfCode" : 3,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/src/main.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 12,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/tailwind.config.js",
+  "extension" : "js",
+  "linesOfCode" : 10,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "projetApplicationWeb/frontend/vite.config.js",
+  "extension" : "js",
+  "linesOfCode" : 11,
+  "components" : [ "primary::projetApplicationWeb" ],
+  "concerns" : [ "::Unclassified" ]
+} ]

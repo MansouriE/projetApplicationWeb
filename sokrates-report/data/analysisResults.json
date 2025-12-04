@@ -1,0 +1,4286 @@
+{
+  "metadata" : {
+    "name" : "Projet Web",
+    "description" : "Analyse Sokrates",
+    "tooltip" : "",
+    "logoLink" : "",
+    "links" : [ ]
+  },
+  "metricsList" : {
+    "metrics" : [ {
+      "id" : "TOTAL_NUMBER_OF_FILES",
+      "value" : 5380,
+      "description" : "Total number of files in the source folder"
+    }, {
+      "id" : "NUMBER_OF_FILES_MAIN",
+      "value" : 42,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_MAIN",
+      "value" : 3583,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_MAIN_EXT_JSX",
+      "value" : 18,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_MAIN_EXT_JSX",
+      "value" : 2533,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_MAIN_EXT_JS",
+      "value" : 16,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_MAIN_EXT_JS",
+      "value" : 763,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_MAIN_EXT_CSS",
+      "value" : 7,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_MAIN_EXT_CSS",
+      "value" : 274,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_MAIN_EXT_HTML",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_MAIN_EXT_HTML",
+      "value" : 13,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_TEST",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_TEST",
+      "value" : 12,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_TEST_EXT_JS",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_TEST_EXT_JS",
+      "value" : 12,
+      "description" : null
+    }, {
+      "id" : "TEST_VS_MAIN_LINES_OF_CODE_PERCENTAGE",
+      "value" : 0.33,
+      "description" : "Test / main code ratio"
+    }, {
+      "id" : "NUMBER_OF_FILES_GENERATED",
+      "value" : 3,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_GENERATED",
+      "value" : 5193,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_GENERATED_EXT_JSON",
+      "value" : 3,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_GENERATED_EXT_JSON",
+      "value" : 5193,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_BUILD_AND_DEPLOYMENT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_BUILD_AND_DEPLOYMENT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_OTHER",
+      "value" : 7,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_OTHER",
+      "value" : 5742,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_OTHER_EXT_JSON",
+      "value" : 7,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_OTHER_EXT_JSON",
+      "value" : 5742,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB",
+      "value" : 42,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB",
+      "value" : 3583,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_JSX",
+      "value" : 18,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_JSX",
+      "value" : 2533,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_JS",
+      "value" : 16,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_JS",
+      "value" : 763,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_CSS",
+      "value" : 7,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_CSS",
+      "value" : 274,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_HTML",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_DECOMPOSITION_PRIMARY_PROJETAPPLICATIONWEB_EXT_HTML",
+      "value" : 13,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_DEPENDENCY_LINKS_DECOMPOSITION_PRIMARY",
+      "value" : 0,
+      "description" : "Number of anchor dependencies"
+    }, {
+      "id" : "NUMBER_OF_DEPENDENCIES_DECOMPOSITION_PRIMARY",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_PLACES_WITH_CYCLIC_DEPENDENCIES_DECOMPOSITION_PRIMARY",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_TODOS",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_TODOS",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_UNCLASSIFIED",
+      "value" : 42,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_UNCLASSIFIED",
+      "value" : 3583,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_UNCLASSIFIED_EXT_JSX",
+      "value" : 18,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_UNCLASSIFIED_EXT_JSX",
+      "value" : 2533,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_UNCLASSIFIED_EXT_JS",
+      "value" : 16,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_UNCLASSIFIED_EXT_JS",
+      "value" : 763,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_UNCLASSIFIED_EXT_CSS",
+      "value" : 7,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_UNCLASSIFIED_EXT_CSS",
+      "value" : 274,
+      "description" : null
+    }, {
+      "id" : "NUMBER_OF_FILES_CONCERN_GENERAL_UNCLASSIFIED_EXT_HTML",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "LINES_OF_CODE_CONCERN_GENERAL_UNCLASSIFIED_EXT_HTML",
+      "value" : 13,
+      "description" : null
+    }, {
+      "id" : "NEGLIGIBLE_RISK_FILE_SIZE_COUNT",
+      "value" : 27,
+      "description" : "Number of  files with 100 or less lines of code"
+    }, {
+      "id" : "LOW_RISK_FILE_SIZE_COUNT",
+      "value" : 7,
+      "description" : "Number of  files with 100 to 200 lines of code"
+    }, {
+      "id" : "MEDIUM_RISK_FILE_SIZE_COUNT",
+      "value" : 8,
+      "description" : "Number of  files with 200 to 500 lines of code"
+    }, {
+      "id" : "HIGH_RISK_FILE_SIZE_COUNT",
+      "value" : 0,
+      "description" : "Number of  files with 500 to 1000 lines of code"
+    }, {
+      "id" : "VERY_HIGH_RISK_FILE_SIZE_COUNT",
+      "value" : 0,
+      "description" : "Number of  files with more than 1000 lines of code"
+    }, {
+      "id" : "NEGLIGIBLE_RISK_FILE_SIZE_LOC",
+      "value" : 713,
+      "description" : "Lines of code in  files with 100 or less lines of code"
+    }, {
+      "id" : "LOW_RISK_FILE_SIZE_LOC",
+      "value" : 865,
+      "description" : "Lines of code in  files with 100 to 200 lines of code"
+    }, {
+      "id" : "MEDIUM_RISK_FILE_SIZE_LOC",
+      "value" : 2005,
+      "description" : "Lines of code in  files with 200 to 500 lines of code"
+    }, {
+      "id" : "HIGH_RISK_FILE_SIZE_LOC",
+      "value" : 0,
+      "description" : "Lines of code in  files with 500 to 1000 lines of code"
+    }, {
+      "id" : "VERY_HIGH_RISK_FILE_SIZE_LOC",
+      "value" : 0,
+      "description" : "Lines of code in  files with more than 1000 lines of code"
+    }, {
+      "id" : "NUMBER_OF_UNITS",
+      "value" : 8,
+      "description" : "Number of units"
+    }, {
+      "id" : "LINES_OF_CODE_IN_UNITS",
+      "value" : 81,
+      "description" : "Lines of code in units"
+    }, {
+      "id" : "LINES_OF_CODE_OUTSIDE_UNITS",
+      "value" : 3502,
+      "description" : "Lines of code in units"
+    }, {
+      "id" : "UNIT_SIZE_NEGLIGIBLE_RISK_LOC",
+      "value" : 31,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 38.27160493827161,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_NEGLIGIBLE_RISK_COUNT",
+      "value" : 5,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_LOW_RISK_LOC",
+      "value" : 29,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_LOW_RISK_PERCENTAGE",
+      "value" : 35.80246913580247,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_LOW_RISK_COUNT",
+      "value" : 2,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_MEDIUM_RISK_LOC",
+      "value" : 21,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_MEDIUM_RISK_PERCENTAGE",
+      "value" : 25.925925925925927,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_MEDIUM_RISK_COUNT",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_LOC",
+      "value" : 31,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 38.27160493827161,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_COUNT",
+      "value" : 5,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_LOC",
+      "value" : 29,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_PERCENTAGE",
+      "value" : 35.80246913580247,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_COUNT",
+      "value" : 2,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_LOC",
+      "value" : 21,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_PERCENTAGE",
+      "value" : 25.925925925925927,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_COUNT",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_NEGLIGIBLE_RISK_LOC",
+      "value" : 31,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 38.27160493827161,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_NEGLIGIBLE_RISK_COUNT",
+      "value" : 5,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_LOW_RISK_LOC",
+      "value" : 29,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_LOW_RISK_PERCENTAGE",
+      "value" : 35.80246913580247,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_LOW_RISK_COUNT",
+      "value" : 2,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_MEDIUM_RISK_LOC",
+      "value" : 21,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_MEDIUM_RISK_PERCENTAGE",
+      "value" : 25.925925925925927,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_MEDIUM_RISK_COUNT",
+      "value" : 1,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "UNIT_SIZE_EXTENSION_JS_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_NEGLIGIBLE_RISK_LOC",
+      "value" : 81,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 100.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_NEGLIGIBLE_RISK_COUNT",
+      "value" : 8,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_LOW_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_LOW_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_LOW_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_MEDIUM_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_MEDIUM_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_MEDIUM_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_HIGH_PLUS_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_HIGH_PLUS_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_LOC",
+      "value" : 81,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 100.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_NEGLIGIBLE_RISK_COUNT",
+      "value" : 8,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_LOW_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_MEDIUM_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_PROJETAPPLICATIONWEB_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_NEGLIGIBLE_RISK_LOC",
+      "value" : 81,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_NEGLIGIBLE_RISK_PERCENTAGE",
+      "value" : 100.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_NEGLIGIBLE_RISK_COUNT",
+      "value" : 8,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_LOW_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_LOW_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_LOW_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_MEDIUM_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_MEDIUM_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_MEDIUM_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_VERY_HIGH_RISK_LOC",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_VERY_HIGH_RISK_PERCENTAGE",
+      "value" : 0.0,
+      "description" : null
+    }, {
+      "id" : "CONDITIONAL_COMPLEXITY_COMPONENT_JS_VERY_HIGH_RISK_COUNT",
+      "value" : 0,
+      "description" : null
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATES",
+      "value" : 69,
+      "description" : "Number of duplicates"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_FILES_WITH_DUPLICATES",
+      "value" : 19,
+      "description" : "Number of files with duplicates"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATED_LINES",
+      "value" : 698,
+      "description" : "Number of duplicated lines"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_CLEANED_LINES",
+      "value" : 3243,
+      "description" : "Number of lines after cleaning for duplication calculations"
+    }, {
+      "id" : "DUPLICATION_PERCENTAGE",
+      "value" : 21.52328091273512,
+      "description" : "Duplication percentage"
+    }, {
+      "id" : "UNIT_DUPLICATES_COUNT",
+      "value" : 1,
+      "description" : "Unit duplicates"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATED_LINES_PRIMARY_PROJETAPPLICATIONWEB",
+      "value" : 698,
+      "description" : "Number of duplicated lines"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_CLEANED_LINES_PRIMARY_PROJETAPPLICATIONWEB",
+      "value" : 698,
+      "description" : "Number of lines after cleaning for duplication calculations"
+    }, {
+      "id" : "DUPLICATION_PERCENTAGE_PRIMARY_PROJETAPPLICATIONWEB",
+      "value" : 100.0,
+      "description" : "Duplication percentage"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATED_LINES_JSX",
+      "value" : 480,
+      "description" : "Number of duplicated lines"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_CLEANED_LINES_JSX",
+      "value" : 2268,
+      "description" : "Number of lines after cleaning for duplication calculations"
+    }, {
+      "id" : "DUPLICATION_PERCENTAGE_JSX",
+      "value" : 21.164021164021165,
+      "description" : "Duplication percentage"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATED_LINES_CSS",
+      "value" : 192,
+      "description" : "Number of duplicated lines"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_CLEANED_LINES_CSS",
+      "value" : 274,
+      "description" : "Number of lines after cleaning for duplication calculations"
+    }, {
+      "id" : "DUPLICATION_PERCENTAGE_CSS",
+      "value" : 70.07299270072993,
+      "description" : "Duplication percentage"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_DUPLICATED_LINES_JS",
+      "value" : 26,
+      "description" : "Number of duplicated lines"
+    }, {
+      "id" : "DUPLICATION_NUMBER_OF_CLEANED_LINES_JS",
+      "value" : 691,
+      "description" : "Number of lines after cleaning for duplication calculations"
+    }, {
+      "id" : "DUPLICATION_PERCENTAGE_JS",
+      "value" : 3.7626628075253254,
+      "description" : "Duplication percentage"
+    }, {
+      "id" : "TOTAL_ANALYSIS_TIME_IN_MILLIS",
+      "value" : 784,
+      "description" : "Total analysis time in milliseconds"
+    } ]
+  },
+  "controlResults" : {
+    "goalsAnalysisResults" : [ {
+      "metricsWithGoal" : {
+        "goal" : "Keep the system simple and easy to change",
+        "description" : "Aim at keeping the system size modest (less than 200,000 LOC is good), duplication low (less than 5% is good), files small (no files longer than 1000 LOC is good), and units simple (no units with more than 25 decision points is good).",
+        "controls" : [ {
+          "metric" : "LINES_OF_CODE_MAIN",
+          "description" : "Total number of lines of main code",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "200000",
+            "tolerance" : "20000"
+          }
+        }, {
+          "metric" : "DUPLICATION_PERCENTAGE",
+          "description" : "System duplication",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "5",
+            "tolerance" : "1"
+          }
+        }, {
+          "metric" : "VERY_HIGH_RISK_FILE_SIZE_COUNT",
+          "description" : "The number of very large files",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "0",
+            "tolerance" : "1"
+          }
+        }, {
+          "metric" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_COUNT",
+          "description" : "Number of very complex units",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "0",
+            "tolerance" : "1"
+          }
+        } ]
+      },
+      "controlStatuses" : [ {
+        "control" : {
+          "metric" : "LINES_OF_CODE_MAIN",
+          "description" : "Total number of lines of main code",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "200000",
+            "tolerance" : "20000"
+          }
+        },
+        "metric" : {
+          "id" : "LINES_OF_CODE_MAIN",
+          "value" : 3583,
+          "description" : null
+        },
+        "status" : "OK"
+      }, {
+        "control" : {
+          "metric" : "DUPLICATION_PERCENTAGE",
+          "description" : "System duplication",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "5",
+            "tolerance" : "1"
+          }
+        },
+        "metric" : {
+          "id" : "DUPLICATION_PERCENTAGE",
+          "value" : 21.52328091273512,
+          "description" : "Duplication percentage"
+        },
+        "status" : "FAILED"
+      }, {
+        "control" : {
+          "metric" : "VERY_HIGH_RISK_FILE_SIZE_COUNT",
+          "description" : "The number of very large files",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "0",
+            "tolerance" : "1"
+          }
+        },
+        "metric" : {
+          "id" : "VERY_HIGH_RISK_FILE_SIZE_COUNT",
+          "value" : 0,
+          "description" : "Number of  files with more than 1000 lines of code"
+        },
+        "status" : "OK"
+      }, {
+        "control" : {
+          "metric" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_COUNT",
+          "description" : "Number of very complex units",
+          "desiredRange" : {
+            "min" : "0",
+            "max" : "0",
+            "tolerance" : "1"
+          }
+        },
+        "metric" : {
+          "id" : "CONDITIONAL_COMPLEXITY_VERY_HIGH_RISK_COUNT",
+          "value" : 0,
+          "description" : null
+        },
+        "status" : "OK"
+      } ]
+    } ]
+  },
+  "totalNumberOfFilesInScope" : 5380,
+  "mainAspectAnalysisResults" : {
+    "name" : null,
+    "filesCount" : 42,
+    "linesOfCode" : 3583,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 18,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 16,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 7,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 1,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 2533,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 763,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 274,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 13,
+      "description" : [ ]
+    } ]
+  },
+  "testAspectAnalysisResults" : {
+    "name" : null,
+    "filesCount" : 1,
+    "linesOfCode" : 12,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 1,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 12,
+      "description" : [ ]
+    } ]
+  },
+  "generatedAspectAnalysisResults" : {
+    "name" : null,
+    "filesCount" : 3,
+    "linesOfCode" : 5193,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.json",
+      "value" : 3,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.json",
+      "value" : 5193,
+      "description" : [ ]
+    } ]
+  },
+  "buildAndDeployAspectAnalysisResults" : {
+    "name" : null,
+    "filesCount" : 0,
+    "linesOfCode" : 0,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ ],
+    "linesOfCodePerExtension" : [ ]
+  },
+  "otherAspectAnalysisResults" : {
+    "name" : null,
+    "filesCount" : 7,
+    "linesOfCode" : 5742,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.json",
+      "value" : 7,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.json",
+      "value" : 5742,
+      "description" : [ ]
+    } ]
+  },
+  "logicalDecompositionsAnalysisResults" : [ {
+    "key" : "primary",
+    "components" : [ {
+      "name" : "projetApplicationWeb",
+      "filesCount" : 42,
+      "linesOfCode" : 3583,
+      "numberOfRegexLineMatches" : 0,
+      "fileCountPerExtension" : [ {
+        "name" : "  *.jsx",
+        "value" : 18,
+        "description" : [ ]
+      }, {
+        "name" : "  *.js",
+        "value" : 16,
+        "description" : [ ]
+      }, {
+        "name" : "  *.css",
+        "value" : 7,
+        "description" : [ ]
+      }, {
+        "name" : "  *.html",
+        "value" : 1,
+        "description" : [ ]
+      } ],
+      "linesOfCodePerExtension" : [ {
+        "name" : "  *.jsx",
+        "value" : 2533,
+        "description" : [ ]
+      }, {
+        "name" : "  *.js",
+        "value" : 763,
+        "description" : [ ]
+      }, {
+        "name" : "  *.css",
+        "value" : 274,
+        "description" : [ ]
+      }, {
+        "name" : "  *.html",
+        "value" : 13,
+        "description" : [ ]
+      } ]
+    } ],
+    "componentDependencies" : [ ],
+    "componentDependenciesErrors" : [ ],
+    "logicalDecomposition" : {
+      "name" : "primary",
+      "scope" : "main",
+      "filters" : [ ],
+      "componentsFolderDepth" : 1,
+      "minComponentsCount" : 0,
+      "components" : [ {
+        "name" : "projetApplicationWeb",
+        "sourceFileFilters" : [ {
+          "pathPattern" : "R:\\projetcsweb/projetApplicationWeb/.*",
+          "contentPattern" : "",
+          "exception" : false,
+          "note" : ""
+        } ],
+        "files" : [ ]
+      } ],
+      "metaComponents" : [ ],
+      "groups" : [ ],
+      "includeRemainingFiles" : true,
+      "dependenciesFinder" : {
+        "useBuiltInDependencyFinders" : true,
+        "rules" : [ ],
+        "metaRules" : [ ]
+      },
+      "renderingOptions" : {
+        "orientation" : "TB",
+        "maxNumberOfDependencies" : 100,
+        "renderComponentsWithoutDependencies" : true,
+        "renderIndirectDependencies" : false,
+        "renderInternalIndirectDependencies" : false,
+        "reverseDirection" : false
+      },
+      "includeExternalComponents" : true,
+      "dependencyLinkThreshold" : 1,
+      "duplicationLinkThreshold" : 50,
+      "temporalLinkThreshold" : 1,
+      "maxSearchDepthLines" : 200
+    },
+    "linesOfCodePerComponent" : [ {
+      "name" : "projetApplicationWeb",
+      "value" : 3583,
+      "description" : [ ]
+    } ],
+    "fileCountPerComponent" : [ {
+      "name" : "projetApplicationWeb",
+      "value" : 42,
+      "description" : [ ]
+    } ]
+  } ],
+  "concernsAnalysisResults" : [ {
+    "key" : "general",
+    "concerns" : [ {
+      "name" : "TODOs",
+      "filesCount" : 0,
+      "linesOfCode" : 0,
+      "numberOfRegexLineMatches" : 0,
+      "fileCountPerExtension" : [ ],
+      "linesOfCodePerExtension" : [ ]
+    }, {
+      "name" : "Unclassified",
+      "filesCount" : 42,
+      "linesOfCode" : 3583,
+      "numberOfRegexLineMatches" : 0,
+      "fileCountPerExtension" : [ {
+        "name" : "  *.jsx",
+        "value" : 18,
+        "description" : [ ]
+      }, {
+        "name" : "  *.js",
+        "value" : 16,
+        "description" : [ ]
+      }, {
+        "name" : "  *.css",
+        "value" : 7,
+        "description" : [ ]
+      }, {
+        "name" : "  *.html",
+        "value" : 1,
+        "description" : [ ]
+      } ],
+      "linesOfCodePerExtension" : [ {
+        "name" : "  *.jsx",
+        "value" : 2533,
+        "description" : [ ]
+      }, {
+        "name" : "  *.js",
+        "value" : 763,
+        "description" : [ ]
+      }, {
+        "name" : "  *.css",
+        "value" : 274,
+        "description" : [ ]
+      }, {
+        "name" : "  *.html",
+        "value" : 13,
+        "description" : [ ]
+      } ]
+    } ],
+    "concernsGroup" : null,
+    "fileCountPerConcern" : [ {
+      "name" : "TODOs",
+      "value" : 0,
+      "description" : [ ]
+    }, {
+      "name" : "Unclassified",
+      "value" : 42,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerConcern" : [ {
+      "name" : "TODOs",
+      "value" : 0,
+      "description" : [ ]
+    }, {
+      "name" : "Unclassified",
+      "value" : 3583,
+      "description" : [ ]
+    } ]
+  } ],
+  "foundTags" : [ {
+    "tagRule" : {
+      "tag" : "travis",
+      "color" : "#7CB9E8",
+      "pathPatterns" : [ "(|.*/)[.]travis[.]ya?ml" ],
+      "excludePathPatterns" : [ ]
+    },
+    "evidence" : "projetApplicationWeb/frontend/node_modules/siginfo/.travis.yml\nprojetApplicationWeb/frontend/node_modules/stackback/.travis.yml"
+  }, {
+    "tagRule" : {
+      "tag" : "github actions",
+      "color" : "#7CB9E8",
+      "pathPatterns" : [ "(|.*/)[.]github[/]workflows[/].*" ],
+      "excludePathPatterns" : [ ]
+    },
+    "evidence" : "projetApplicationWeb/frontend/node_modules/fastq/.github/workflows/ci.yml\nprojetApplicationWeb/frontend/node_modules/reusify/.github/workflows/ci.yml"
+  }, {
+    "tagRule" : {
+      "tag" : "npm",
+      "color" : "#B9D9EB",
+      "pathPatterns" : [ "(|.*/)package[.]json" ],
+      "excludePathPatterns" : [ ]
+    },
+    "evidence" : "projetApplicationWeb/backend/package.json\nprojetApplicationWeb/frontend/node_modules/@adobe/css-tools/package.json\nprojetApplicationWeb/frontend/node_modules/@alloc/quick-lru/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/code-frame/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/compat-data/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/core/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/generator/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-compilation-targets/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-globals/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-module-imports/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-module-transforms/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-plugin-utils/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-string-parser/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-validator-identifier/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helper-validator-option/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/helpers/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/parser/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/plugin-transform-react-jsx-self/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/plugin-transform-react-jsx-source/package.json\nprojetApplicationWeb/frontend/node_modules/@babel/runtime/helpers/esm/package.json\n...\n(found 248 more files)"
+  }, {
+    "tagRule" : {
+      "tag" : "jest",
+      "color" : "#B9D9EB",
+      "pathPatterns" : [ "(|.*/)jest[.].*" ],
+      "excludePathPatterns" : [ ]
+    },
+    "evidence" : "projetApplicationWeb/frontend/node_modules/@testing-library/jest-dom/types/jest.d.ts"
+  }, {
+    "tagRule" : {
+      "tag" : "dependabot",
+      "color" : "#B9D9EB",
+      "pathPatterns" : [ "(|.*/)dependabot[.]ya?ml" ],
+      "excludePathPatterns" : [ ]
+    },
+    "evidence" : "projetApplicationWeb/frontend/node_modules/fastq/.github/dependabot.yml\nprojetApplicationWeb/frontend/node_modules/reusify/.github/dependabot.yml"
+  } ],
+  "filesAnalysisResults" : {
+    "overallFileSizeDistribution" : {
+      "key" : "",
+      "lowRiskThreshold" : 100,
+      "mediumRiskThreshold" : 200,
+      "highRiskThreshold" : 500,
+      "veryHighRiskThreshold" : 1000,
+      "negligibleRiskValue" : 713,
+      "lowRiskValue" : 865,
+      "mediumRiskValue" : 2005,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 7,
+      "negligibleRiskCount" : 27,
+      "mediumRiskCount" : 8,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-100",
+      "lowRiskLabel" : "101-200",
+      "mediumRiskLabel" : "201-500",
+      "highRiskLabel" : "501-1000",
+      "veryHighRiskLabel" : "1001+",
+      "mediumRiskPercentage" : 55.95869383198437,
+      "lowRiskPercentage" : 24.14178063075635,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 19.89952553725928,
+      "totalValue" : 3583,
+      "totalCount" : 42
+    },
+    "fileSizeDistributionPerExtension" : [ {
+      "key" : "js",
+      "lowRiskThreshold" : 100,
+      "mediumRiskThreshold" : 200,
+      "highRiskThreshold" : 500,
+      "veryHighRiskThreshold" : 1000,
+      "negligibleRiskValue" : 268,
+      "lowRiskValue" : 211,
+      "mediumRiskValue" : 284,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 2,
+      "negligibleRiskCount" : 13,
+      "mediumRiskCount" : 1,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-100",
+      "lowRiskLabel" : "101-200",
+      "mediumRiskLabel" : "201-500",
+      "highRiskLabel" : "501-1000",
+      "veryHighRiskLabel" : "1001+",
+      "mediumRiskPercentage" : 37.22149410222805,
+      "lowRiskPercentage" : 27.65399737876802,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 35.12450851900393,
+      "totalValue" : 763,
+      "totalCount" : 16
+    }, {
+      "key" : "html",
+      "lowRiskThreshold" : 100,
+      "mediumRiskThreshold" : 200,
+      "highRiskThreshold" : 500,
+      "veryHighRiskThreshold" : 1000,
+      "negligibleRiskValue" : 13,
+      "lowRiskValue" : 0,
+      "mediumRiskValue" : 0,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 0,
+      "negligibleRiskCount" : 1,
+      "mediumRiskCount" : 0,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-100",
+      "lowRiskLabel" : "101-200",
+      "mediumRiskLabel" : "201-500",
+      "highRiskLabel" : "501-1000",
+      "veryHighRiskLabel" : "1001+",
+      "mediumRiskPercentage" : 0.0,
+      "lowRiskPercentage" : 0.0,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 100.0,
+      "totalValue" : 13,
+      "totalCount" : 1
+    }, {
+      "key" : "jsx",
+      "lowRiskThreshold" : 100,
+      "mediumRiskThreshold" : 200,
+      "highRiskThreshold" : 500,
+      "veryHighRiskThreshold" : 1000,
+      "negligibleRiskValue" : 158,
+      "lowRiskValue" : 654,
+      "mediumRiskValue" : 1721,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 5,
+      "negligibleRiskCount" : 6,
+      "mediumRiskCount" : 7,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-100",
+      "lowRiskLabel" : "101-200",
+      "mediumRiskLabel" : "201-500",
+      "highRiskLabel" : "501-1000",
+      "veryHighRiskLabel" : "1001+",
+      "mediumRiskPercentage" : 67.94315041452823,
+      "lowRiskPercentage" : 25.819186735096725,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 6.23766285037505,
+      "totalValue" : 2533,
+      "totalCount" : 18
+    }, {
+      "key" : "css",
+      "lowRiskThreshold" : 100,
+      "mediumRiskThreshold" : 200,
+      "highRiskThreshold" : 500,
+      "veryHighRiskThreshold" : 1000,
+      "negligibleRiskValue" : 274,
+      "lowRiskValue" : 0,
+      "mediumRiskValue" : 0,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 0,
+      "negligibleRiskCount" : 7,
+      "mediumRiskCount" : 0,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-100",
+      "lowRiskLabel" : "101-200",
+      "mediumRiskLabel" : "201-500",
+      "highRiskLabel" : "501-1000",
+      "veryHighRiskLabel" : "1001+",
+      "mediumRiskPercentage" : 0.0,
+      "lowRiskPercentage" : 0.0,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 100.0,
+      "totalValue" : 274,
+      "totalCount" : 7
+    } ],
+    "fileSizeDistributionPerLogicalDecomposition" : [ {
+      "name" : "primary",
+      "fileSizeDistributionPerComponent" : [ {
+        "key" : "projetApplicationWeb",
+        "lowRiskThreshold" : 100,
+        "mediumRiskThreshold" : 200,
+        "highRiskThreshold" : 500,
+        "veryHighRiskThreshold" : 1000,
+        "negligibleRiskValue" : 713,
+        "lowRiskValue" : 865,
+        "mediumRiskValue" : 2005,
+        "highRiskValue" : 0,
+        "veryHighRiskValue" : 0,
+        "lowRiskCount" : 7,
+        "negligibleRiskCount" : 27,
+        "mediumRiskCount" : 8,
+        "highRiskCount" : 0,
+        "veryHighRiskCount" : 0,
+        "negligibleRiskLabel" : "1-100",
+        "lowRiskLabel" : "101-200",
+        "mediumRiskLabel" : "201-500",
+        "highRiskLabel" : "501-1000",
+        "veryHighRiskLabel" : "1001+",
+        "mediumRiskPercentage" : 55.95869383198437,
+        "lowRiskPercentage" : 24.14178063075635,
+        "highRiskPercentage" : 0.0,
+        "veryHighRiskPercentage" : 0.0,
+        "negligibleRiskPercentage" : 19.89952553725928,
+        "totalValue" : 3583,
+        "totalCount" : 42
+      } ]
+    } ],
+    "longestFiles" : [ {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 308,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/articleRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 284,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 259,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 247,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 234,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 229,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 229,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 215,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 149,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 146,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/offre/Offre.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 128,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 125,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/bidRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 106,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 106,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 105,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.css",
+      "extension" : "css",
+      "linesOfCode" : 82,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.css",
+      "extension" : "css",
+      "linesOfCode" : 82,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 57,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/authRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 53,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/context/AuthContext.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 52,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/favoriRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 42,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.css",
+      "extension" : "css",
+      "linesOfCode" : 36,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/App.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 35,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+      "extension" : "css",
+      "linesOfCode" : 35,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+      "extension" : "css",
+      "linesOfCode" : 35,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+      "extension" : "js",
+      "linesOfCode" : 30,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 6,
+      "linesOfCodeInUnits" : 29
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/routes/userRoutes.js",
+      "extension" : "js",
+      "linesOfCode" : 30,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+      "extension" : "js",
+      "linesOfCode" : 27,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 6,
+      "linesOfCodeInUnits" : 26
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/index.js",
+      "extension" : "js",
+      "linesOfCode" : 25,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/middleware/check-auth.js",
+      "extension" : "js",
+      "linesOfCode" : 13,
+      "unitsCount" : 1,
+      "unitsMcCabeIndexSum" : 4,
+      "linesOfCodeInUnits" : 11
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/index.html",
+      "extension" : "html",
+      "linesOfCode" : 13,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/main.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 12,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/vite.config.js",
+      "extension" : "js",
+      "linesOfCode" : 11,
+      "unitsCount" : 1,
+      "unitsMcCabeIndexSum" : 1,
+      "linesOfCodeInUnits" : 9
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/tailwind.config.js",
+      "extension" : "js",
+      "linesOfCode" : 10,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+      "extension" : "js",
+      "linesOfCode" : 9,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 2,
+      "linesOfCodeInUnits" : 6
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/config/supabaseClient.js",
+      "extension" : "js",
+      "linesOfCode" : 7,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/postcss.config.js",
+      "extension" : "js",
+      "linesOfCode" : 6,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/supabaseClient.js",
+      "extension" : "js",
+      "linesOfCode" : 5,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/index.css",
+      "extension" : "css",
+      "linesOfCode" : 3,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.css",
+      "extension" : "css",
+      "linesOfCode" : 1,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/Containers/Login.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 1,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/src/Containers/Signup.jsx",
+      "extension" : "jsx",
+      "linesOfCode" : 1,
+      "unitsCount" : 0,
+      "unitsMcCabeIndexSum" : 0,
+      "linesOfCodeInUnits" : 0
+    } ],
+    "filesWithMostUnits" : [ {
+      "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+      "extension" : "js",
+      "linesOfCode" : 9,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 2,
+      "linesOfCodeInUnits" : 6
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+      "extension" : "js",
+      "linesOfCode" : 27,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 6,
+      "linesOfCodeInUnits" : 26
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+      "extension" : "js",
+      "linesOfCode" : 30,
+      "unitsCount" : 2,
+      "unitsMcCabeIndexSum" : 6,
+      "linesOfCodeInUnits" : 29
+    }, {
+      "relativePath" : "projetApplicationWeb/backend/middleware/check-auth.js",
+      "extension" : "js",
+      "linesOfCode" : 13,
+      "unitsCount" : 1,
+      "unitsMcCabeIndexSum" : 4,
+      "linesOfCodeInUnits" : 11
+    }, {
+      "relativePath" : "projetApplicationWeb/frontend/vite.config.js",
+      "extension" : "js",
+      "linesOfCode" : 11,
+      "unitsCount" : 1,
+      "unitsMcCabeIndexSum" : 1,
+      "linesOfCodeInUnits" : 9
+    } ]
+  },
+  "filesHistoryAnalysisResults" : {
+    "overallFileLastModifiedDistribution" : null,
+    "overallFileFirstModifiedDistribution" : null,
+    "overallFileChangeDistribution" : null,
+    "overallContributorsCountDistribution" : null,
+    "filesWithoutCommitHistoryCount" : 0,
+    "filesWithoutCommitHistoryLinesOfCode" : 0,
+    "changeDistributionPerExtension" : [ ],
+    "lastModifiedDistributionPerExtension" : [ ],
+    "firstModifiedDistributionPerExtension" : [ ],
+    "changeDistributionPerLogicalDecomposition" : [ ],
+    "firstModifiedDistributionPerLogicalDecomposition" : [ ],
+    "lastModifiedDistributionPerLogicalDecomposition" : [ ],
+    "oldestFiles" : [ ],
+    "youngestFiles" : [ ],
+    "mostRecentlyChangedFiles" : [ ],
+    "mostPreviouslyChangedFiles" : [ ],
+    "mostChangedFiles" : [ ],
+    "filesWithMostContributors" : [ ],
+    "filesWithLeastContributors" : [ ],
+    "firstDate" : "",
+    "latestDate" : "",
+    "daysBetweenFirstAndLastDate" : 0,
+    "weeks" : 0,
+    "estimatedWorkindDays" : 0,
+    "activeDays" : 0,
+    "ageInDays" : 0,
+    "historyPerExtensionPerYear" : [ ]
+  },
+  "unitsAnalysisResults" : {
+    "totalNumberOfUnits" : 8,
+    "linesOfCodeInUnits" : 81,
+    "unitSizeRiskDistribution" : {
+      "key" : "",
+      "lowRiskThreshold" : 10,
+      "mediumRiskThreshold" : 20,
+      "highRiskThreshold" : 50,
+      "veryHighRiskThreshold" : 100,
+      "negligibleRiskValue" : 31,
+      "lowRiskValue" : 29,
+      "mediumRiskValue" : 21,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 2,
+      "negligibleRiskCount" : 5,
+      "mediumRiskCount" : 1,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-10",
+      "lowRiskLabel" : "11-20",
+      "mediumRiskLabel" : "21-50",
+      "highRiskLabel" : "51-100",
+      "veryHighRiskLabel" : "101+",
+      "mediumRiskPercentage" : 25.925925925925927,
+      "lowRiskPercentage" : 35.80246913580247,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 38.27160493827161,
+      "totalValue" : 81,
+      "totalCount" : 8
+    },
+    "conditionalComplexityRiskDistribution" : {
+      "key" : "",
+      "lowRiskThreshold" : 5,
+      "mediumRiskThreshold" : 10,
+      "highRiskThreshold" : 25,
+      "veryHighRiskThreshold" : 50,
+      "negligibleRiskValue" : 81,
+      "lowRiskValue" : 0,
+      "mediumRiskValue" : 0,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 0,
+      "negligibleRiskCount" : 8,
+      "mediumRiskCount" : 0,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-5",
+      "lowRiskLabel" : "6-10",
+      "mediumRiskLabel" : "11-25",
+      "highRiskLabel" : "26-50",
+      "veryHighRiskLabel" : "51+",
+      "mediumRiskPercentage" : 0.0,
+      "lowRiskPercentage" : 0.0,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 100.0,
+      "totalValue" : 81,
+      "totalCount" : 8
+    },
+    "unitSizeRiskDistributionPerExtension" : [ {
+      "key" : "js",
+      "lowRiskThreshold" : 10,
+      "mediumRiskThreshold" : 20,
+      "highRiskThreshold" : 50,
+      "veryHighRiskThreshold" : 100,
+      "negligibleRiskValue" : 31,
+      "lowRiskValue" : 29,
+      "mediumRiskValue" : 21,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 2,
+      "negligibleRiskCount" : 5,
+      "mediumRiskCount" : 1,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-10",
+      "lowRiskLabel" : "11-20",
+      "mediumRiskLabel" : "21-50",
+      "highRiskLabel" : "51-100",
+      "veryHighRiskLabel" : "101+",
+      "mediumRiskPercentage" : 25.925925925925927,
+      "lowRiskPercentage" : 35.80246913580247,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 38.27160493827161,
+      "totalValue" : 81,
+      "totalCount" : 8
+    } ],
+    "unitSizeRiskDistributionPerComponent" : [ [ {
+      "key" : "projetApplicationWeb",
+      "lowRiskThreshold" : 10,
+      "mediumRiskThreshold" : 20,
+      "highRiskThreshold" : 50,
+      "veryHighRiskThreshold" : 100,
+      "negligibleRiskValue" : 31,
+      "lowRiskValue" : 29,
+      "mediumRiskValue" : 21,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 2,
+      "negligibleRiskCount" : 5,
+      "mediumRiskCount" : 1,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-10",
+      "lowRiskLabel" : "11-20",
+      "mediumRiskLabel" : "21-50",
+      "highRiskLabel" : "51-100",
+      "veryHighRiskLabel" : "101+",
+      "mediumRiskPercentage" : 25.925925925925927,
+      "lowRiskPercentage" : 35.80246913580247,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 38.27160493827161,
+      "totalValue" : 81,
+      "totalCount" : 8
+    } ] ],
+    "longestUnits" : [ {
+      "shortName" : "async function createUser()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 30,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 29
+      },
+      "startLine" : 12,
+      "endLine" : 33,
+      "linesOfCode" : 21,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function createArticle()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 26
+      },
+      "startLine" : 12,
+      "endLine" : 30,
+      "linesOfCode" : 18,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "function authMiddleware()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/middleware/check-auth.js",
+        "extension" : "js",
+        "linesOfCode" : 13,
+        "unitsCount" : 1,
+        "unitsMcCabeIndexSum" : 4,
+        "linesOfCodeInUnits" : 11
+      },
+      "startLine" : 3,
+      "endLine" : 14,
+      "linesOfCode" : 11,
+      "mcCabeIndex" : 4,
+      "numberOfParameters" : 3,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "export default defineConfig()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/frontend/vite.config.js",
+        "extension" : "js",
+        "linesOfCode" : 11,
+        "unitsCount" : 1,
+        "unitsMcCabeIndexSum" : 1,
+        "linesOfCodeInUnits" : 9
+      },
+      "startLine" : 4,
+      "endLine" : 12,
+      "linesOfCode" : 9,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function getArticles()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 26
+      },
+      "startLine" : 3,
+      "endLine" : 10,
+      "linesOfCode" : 8,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function getUers()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 30,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 29
+      },
+      "startLine" : 3,
+      "endLine" : 10,
+      "linesOfCode" : 8,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "function signToken()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+        "extension" : "js",
+        "linesOfCode" : 9,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 2,
+        "linesOfCodeInUnits" : 6
+      },
+      "startLine" : 5,
+      "endLine" : 7,
+      "linesOfCode" : 3,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "function verifyToken()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+        "extension" : "js",
+        "linesOfCode" : 9,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 2,
+        "linesOfCodeInUnits" : 6
+      },
+      "startLine" : 9,
+      "endLine" : 11,
+      "linesOfCode" : 3,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    } ],
+    "conditionalComplexityRiskDistributionPerExtension" : [ {
+      "key" : "js",
+      "lowRiskThreshold" : 5,
+      "mediumRiskThreshold" : 10,
+      "highRiskThreshold" : 25,
+      "veryHighRiskThreshold" : 50,
+      "negligibleRiskValue" : 81,
+      "lowRiskValue" : 0,
+      "mediumRiskValue" : 0,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 0,
+      "negligibleRiskCount" : 8,
+      "mediumRiskCount" : 0,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-5",
+      "lowRiskLabel" : "6-10",
+      "mediumRiskLabel" : "11-25",
+      "highRiskLabel" : "26-50",
+      "veryHighRiskLabel" : "51+",
+      "mediumRiskPercentage" : 0.0,
+      "lowRiskPercentage" : 0.0,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 100.0,
+      "totalValue" : 81,
+      "totalCount" : 8
+    } ],
+    "conditionalComplexityRiskDistributionPerComponent" : [ [ {
+      "key" : "projetApplicationWeb",
+      "lowRiskThreshold" : 5,
+      "mediumRiskThreshold" : 10,
+      "highRiskThreshold" : 25,
+      "veryHighRiskThreshold" : 50,
+      "negligibleRiskValue" : 81,
+      "lowRiskValue" : 0,
+      "mediumRiskValue" : 0,
+      "highRiskValue" : 0,
+      "veryHighRiskValue" : 0,
+      "lowRiskCount" : 0,
+      "negligibleRiskCount" : 8,
+      "mediumRiskCount" : 0,
+      "highRiskCount" : 0,
+      "veryHighRiskCount" : 0,
+      "negligibleRiskLabel" : "1-5",
+      "lowRiskLabel" : "6-10",
+      "mediumRiskLabel" : "11-25",
+      "highRiskLabel" : "26-50",
+      "veryHighRiskLabel" : "51+",
+      "mediumRiskPercentage" : 0.0,
+      "lowRiskPercentage" : 0.0,
+      "highRiskPercentage" : 0.0,
+      "veryHighRiskPercentage" : 0.0,
+      "negligibleRiskPercentage" : 100.0,
+      "totalValue" : 81,
+      "totalCount" : 8
+    } ] ],
+    "mostComplexUnits" : [ {
+      "shortName" : "function authMiddleware()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/middleware/check-auth.js",
+        "extension" : "js",
+        "linesOfCode" : 13,
+        "unitsCount" : 1,
+        "unitsMcCabeIndexSum" : 4,
+        "linesOfCodeInUnits" : 11
+      },
+      "startLine" : 3,
+      "endLine" : 14,
+      "linesOfCode" : 11,
+      "mcCabeIndex" : 4,
+      "numberOfParameters" : 3,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function getArticles()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 26
+      },
+      "startLine" : 3,
+      "endLine" : 10,
+      "linesOfCode" : 8,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function createArticle()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 26
+      },
+      "startLine" : 12,
+      "endLine" : 30,
+      "linesOfCode" : 18,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function getUers()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 30,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 29
+      },
+      "startLine" : 3,
+      "endLine" : 10,
+      "linesOfCode" : 8,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "async function createUser()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 30,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 6,
+        "linesOfCodeInUnits" : 29
+      },
+      "startLine" : 12,
+      "endLine" : 33,
+      "linesOfCode" : 21,
+      "mcCabeIndex" : 3,
+      "numberOfParameters" : 0,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "function signToken()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+        "extension" : "js",
+        "linesOfCode" : 9,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 2,
+        "linesOfCodeInUnits" : 6
+      },
+      "startLine" : 5,
+      "endLine" : 7,
+      "linesOfCode" : 3,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "function verifyToken()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/backend/config/jwt.js",
+        "extension" : "js",
+        "linesOfCode" : 9,
+        "unitsCount" : 2,
+        "unitsMcCabeIndexSum" : 2,
+        "linesOfCodeInUnits" : 6
+      },
+      "startLine" : 9,
+      "endLine" : 11,
+      "linesOfCode" : 3,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    }, {
+      "shortName" : "export default defineConfig()",
+      "longName" : "",
+      "sourceFile" : {
+        "relativePath" : "projetApplicationWeb/frontend/vite.config.js",
+        "extension" : "js",
+        "linesOfCode" : 11,
+        "unitsCount" : 1,
+        "unitsMcCabeIndexSum" : 1,
+        "linesOfCodeInUnits" : 9
+      },
+      "startLine" : 4,
+      "endLine" : 12,
+      "linesOfCode" : 9,
+      "mcCabeIndex" : 1,
+      "numberOfParameters" : 1,
+      "numberOfLiterals" : 0,
+      "numberOfStatements" : 0,
+      "numberOfExpressions" : 0,
+      "children" : [ ]
+    } ]
+  },
+  "duplicationAnalysisResults" : {
+    "overallDuplication" : {
+      "key" : "system",
+      "numberOfDuplicates" : 69,
+      "cleanedLinesOfCode" : 3243,
+      "duplicatedLinesOfCode" : 698,
+      "numberOfFilesWithDuplicates" : 19,
+      "duplicationPercentage" : 21.52328091273512
+    },
+    "duplicationPerComponent" : [ [ {
+      "key" : "projetApplicationWeb",
+      "numberOfDuplicates" : 0,
+      "cleanedLinesOfCode" : 3243,
+      "duplicatedLinesOfCode" : 698,
+      "numberOfFilesWithDuplicates" : 0,
+      "duplicationPercentage" : 21.52328091273512
+    } ] ],
+    "duplicationPerConcern" : [ ],
+    "duplicationPerExtension" : [ {
+      "key" : "jsx",
+      "numberOfDuplicates" : 0,
+      "cleanedLinesOfCode" : 2268,
+      "duplicatedLinesOfCode" : 480,
+      "numberOfFilesWithDuplicates" : 0,
+      "duplicationPercentage" : 21.164021164021165
+    }, {
+      "key" : "css",
+      "numberOfDuplicates" : 0,
+      "cleanedLinesOfCode" : 274,
+      "duplicatedLinesOfCode" : 192,
+      "numberOfFilesWithDuplicates" : 0,
+      "duplicationPercentage" : 70.07299270072993
+    }, {
+      "key" : "js",
+      "numberOfDuplicates" : 0,
+      "cleanedLinesOfCode" : 691,
+      "duplicatedLinesOfCode" : 26,
+      "numberOfFilesWithDuplicates" : 0,
+      "duplicationPercentage" : 3.7626628075253254
+    } ],
+    "longestDuplicates" : [ {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.css",
+          "extension" : "css",
+          "linesOfCode" : 82,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 82,
+        "startLine" : 2,
+        "endLine" : 102,
+        "cleanedStartLine" : 1,
+        "cleanedEndLine" : 82,
+        "percentage" : 100.0,
+        "blockSize" : 82
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.css",
+          "extension" : "css",
+          "linesOfCode" : 82,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 82,
+        "startLine" : 2,
+        "endLine" : 102,
+        "cleanedStartLine" : 1,
+        "cleanedEndLine" : 82,
+        "percentage" : 100.0,
+        "blockSize" : 82
+      } ],
+      "blockSize" : 82
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 81,
+        "endLine" : 105,
+        "cleanedStartLine" : 64,
+        "cleanedEndLine" : 81,
+        "percentage" : 10.404624277456648,
+        "blockSize" : 18
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 86,
+        "endLine" : 109,
+        "cleanedStartLine" : 78,
+        "cleanedEndLine" : 95,
+        "percentage" : 9.090909090909092,
+        "blockSize" : 18
+      } ],
+      "blockSize" : 18
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 57,
+        "endLine" : 73,
+        "cleanedStartLine" : 51,
+        "cleanedEndLine" : 66,
+        "percentage" : 5.755395683453237,
+        "blockSize" : 16
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 105,
+        "endLine" : 120,
+        "cleanedStartLine" : 95,
+        "cleanedEndLine" : 110,
+        "percentage" : 5.755395683453237,
+        "blockSize" : 16
+      } ],
+      "blockSize" : 16
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 57,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 55,
+        "startLine" : 42,
+        "endLine" : 58,
+        "cleanedStartLine" : 36,
+        "cleanedEndLine" : 51,
+        "percentage" : 29.09090909090909,
+        "blockSize" : 16
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 125,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 123,
+        "startLine" : 117,
+        "endLine" : 133,
+        "cleanedStartLine" : 104,
+        "cleanedEndLine" : 119,
+        "percentage" : 13.008130081300813,
+        "blockSize" : 16
+      } ],
+      "blockSize" : 16
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 178,
+        "endLine" : 196,
+        "cleanedStartLine" : 160,
+        "cleanedEndLine" : 174,
+        "percentage" : 5.39568345323741,
+        "blockSize" : 15
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 98,
+        "endLine" : 116,
+        "cleanedStartLine" : 75,
+        "cleanedEndLine" : 89,
+        "percentage" : 8.670520231213873,
+        "blockSize" : 15
+      } ],
+      "blockSize" : 15
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 23,
+        "endLine" : 37,
+        "cleanedStartLine" : 20,
+        "cleanedEndLine" : 33,
+        "percentage" : 5.0359712230215825,
+        "blockSize" : 14
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 23,
+        "endLine" : 39,
+        "cleanedStartLine" : 17,
+        "cleanedEndLine" : 30,
+        "percentage" : 8.092485549132949,
+        "blockSize" : 14
+      } ],
+      "blockSize" : 14
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 152,
+        "endLine" : 165,
+        "cleanedStartLine" : 140,
+        "cleanedEndLine" : 153,
+        "percentage" : 5.0359712230215825,
+        "blockSize" : 14
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 193,
+        "endLine" : 206,
+        "cleanedStartLine" : 171,
+        "cleanedEndLine" : 184,
+        "percentage" : 5.0359712230215825,
+        "blockSize" : 14
+      } ],
+      "blockSize" : 14
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 72,
+        "endLine" : 86,
+        "cleanedStartLine" : 65,
+        "cleanedEndLine" : 78,
+        "percentage" : 5.0359712230215825,
+        "blockSize" : 14
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 51,
+        "endLine" : 66,
+        "cleanedStartLine" : 39,
+        "cleanedEndLine" : 52,
+        "percentage" : 8.092485549132949,
+        "blockSize" : 14
+      } ],
+      "blockSize" : 14
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 40,
+        "endLine" : 52,
+        "cleanedStartLine" : 35,
+        "cleanedEndLine" : 46,
+        "percentage" : 4.316546762589928,
+        "blockSize" : 12
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 91,
+        "endLine" : 102,
+        "cleanedStartLine" : 82,
+        "cleanedEndLine" : 93,
+        "percentage" : 4.316546762589928,
+        "blockSize" : 12
+      } ],
+      "blockSize" : 12
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 269,
+        "endLine" : 279,
+        "cleanedStartLine" : 229,
+        "cleanedEndLine" : 239,
+        "percentage" : 3.9568345323741005,
+        "blockSize" : 11
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 302,
+        "endLine" : 312,
+        "cleanedStartLine" : 258,
+        "cleanedEndLine" : 268,
+        "percentage" : 3.9568345323741005,
+        "blockSize" : 11
+      } ],
+      "blockSize" : 11
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 234,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 218,
+        "startLine" : 160,
+        "endLine" : 169,
+        "cleanedStartLine" : 135,
+        "cleanedEndLine" : 144,
+        "percentage" : 4.587155963302752,
+        "blockSize" : 10
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 106,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 94,
+        "startLine" : 55,
+        "endLine" : 64,
+        "cleanedStartLine" : 43,
+        "cleanedEndLine" : 52,
+        "percentage" : 10.638297872340425,
+        "blockSize" : 10
+      } ],
+      "blockSize" : 10
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 259,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 240,
+        "startLine" : 168,
+        "endLine" : 177,
+        "cleanedStartLine" : 148,
+        "cleanedEndLine" : 157,
+        "percentage" : 4.166666666666667,
+        "blockSize" : 10
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 127,
+        "endLine" : 136,
+        "cleanedStartLine" : 104,
+        "cleanedEndLine" : 113,
+        "percentage" : 8.064516129032258,
+        "blockSize" : 10
+      } ],
+      "blockSize" : 10
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 211,
+        "endLine" : 222,
+        "cleanedStartLine" : 187,
+        "cleanedEndLine" : 195,
+        "percentage" : 3.237410071942446,
+        "blockSize" : 9
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 121,
+        "endLine" : 132,
+        "cleanedStartLine" : 92,
+        "cleanedEndLine" : 100,
+        "percentage" : 5.202312138728324,
+        "blockSize" : 9
+      } ],
+      "blockSize" : 9
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+          "extension" : "css",
+          "linesOfCode" : 35,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 35,
+        "startLine" : 2,
+        "endLine" : 9,
+        "cleanedStartLine" : 2,
+        "cleanedEndLine" : 9,
+        "percentage" : 22.857142857142858,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+          "extension" : "css",
+          "linesOfCode" : 35,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 35,
+        "startLine" : 2,
+        "endLine" : 9,
+        "cleanedStartLine" : 2,
+        "cleanedEndLine" : 9,
+        "percentage" : 22.857142857142858,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 259,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 240,
+        "startLine" : 168,
+        "endLine" : 175,
+        "cleanedStartLine" : 148,
+        "cleanedEndLine" : 155,
+        "percentage" : 3.3333333333333335,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 158,
+        "endLine" : 165,
+        "cleanedStartLine" : 146,
+        "cleanedEndLine" : 153,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 24,
+        "endLine" : 31,
+        "cleanedStartLine" : 18,
+        "cleanedEndLine" : 25,
+        "percentage" : 4.624277456647399,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 23,
+        "endLine" : 30,
+        "cleanedStartLine" : 21,
+        "cleanedEndLine" : 28,
+        "percentage" : 4.040404040404041,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 259,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 240,
+        "startLine" : 168,
+        "endLine" : 175,
+        "cleanedStartLine" : 148,
+        "cleanedEndLine" : 155,
+        "percentage" : 3.3333333333333335,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 199,
+        "endLine" : 206,
+        "cleanedStartLine" : 177,
+        "cleanedEndLine" : 184,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 66,
+        "endLine" : 73,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 60,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 158,
+        "endLine" : 165,
+        "cleanedStartLine" : 146,
+        "cleanedEndLine" : 153,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 66,
+        "endLine" : 73,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 60,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 127,
+        "endLine" : 134,
+        "cleanedStartLine" : 104,
+        "cleanedEndLine" : 111,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 127,
+        "endLine" : 134,
+        "cleanedStartLine" : 104,
+        "cleanedEndLine" : 111,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 158,
+        "endLine" : 165,
+        "cleanedStartLine" : 146,
+        "cleanedEndLine" : 153,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 66,
+        "endLine" : 73,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 60,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 199,
+        "endLine" : 206,
+        "cleanedStartLine" : 177,
+        "cleanedEndLine" : 184,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 24,
+        "endLine" : 31,
+        "cleanedStartLine" : 21,
+        "cleanedEndLine" : 28,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 23,
+        "endLine" : 30,
+        "cleanedStartLine" : 21,
+        "cleanedEndLine" : 28,
+        "percentage" : 4.040404040404041,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 259,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 240,
+        "startLine" : 168,
+        "endLine" : 175,
+        "cleanedStartLine" : 148,
+        "cleanedEndLine" : 155,
+        "percentage" : 3.3333333333333335,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 66,
+        "endLine" : 73,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 60,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 234,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 218,
+        "startLine" : 71,
+        "endLine" : 78,
+        "cleanedStartLine" : 59,
+        "cleanedEndLine" : 66,
+        "percentage" : 3.669724770642202,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 234,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 218,
+        "startLine" : 114,
+        "endLine" : 122,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 104,
+        "percentage" : 3.669724770642202,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 127,
+        "endLine" : 134,
+        "cleanedStartLine" : 104,
+        "cleanedEndLine" : 111,
+        "percentage" : 6.451612903225806,
+        "blockSize" : 8
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 199,
+        "endLine" : 206,
+        "cleanedStartLine" : 177,
+        "cleanedEndLine" : 184,
+        "percentage" : 2.8776978417266186,
+        "blockSize" : 8
+      } ],
+      "blockSize" : 8
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 48,
+        "endLine" : 55,
+        "cleanedStartLine" : 43,
+        "cleanedEndLine" : 49,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 43,
+        "endLine" : 51,
+        "cleanedStartLine" : 33,
+        "cleanedEndLine" : 39,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 42,
+        "endLine" : 48,
+        "cleanedStartLine" : 37,
+        "cleanedEndLine" : 43,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 24,
+        "endLine" : 30,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 42,
+        "endLine" : 48,
+        "cleanedStartLine" : 37,
+        "cleanedEndLine" : 43,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 19,
+        "cleanedEndLine" : 25,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 103,
+        "endLine" : 109,
+        "cleanedStartLine" : 82,
+        "cleanedEndLine" : 88,
+        "percentage" : 5.645161290322581,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 268,
+        "endLine" : 274,
+        "cleanedStartLine" : 228,
+        "cleanedEndLine" : 234,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 42,
+        "endLine" : 48,
+        "cleanedStartLine" : 37,
+        "cleanedEndLine" : 43,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 59,
+        "endLine" : 65,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 59,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 107,
+        "endLine" : 113,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 19,
+        "cleanedEndLine" : 25,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 93,
+        "endLine" : 99,
+        "cleanedStartLine" : 84,
+        "cleanedEndLine" : 90,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 107,
+        "endLine" : 113,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 107,
+        "endLine" : 113,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 24,
+        "endLine" : 30,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 148,
+        "endLine" : 155,
+        "cleanedStartLine" : 137,
+        "cleanedEndLine" : 143,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 86,
+        "endLine" : 93,
+        "cleanedStartLine" : 78,
+        "cleanedEndLine" : 84,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 178,
+        "endLine" : 185,
+        "cleanedStartLine" : 160,
+        "cleanedEndLine" : 166,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 102,
+        "endLine" : 109,
+        "cleanedStartLine" : 89,
+        "cleanedEndLine" : 95,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 107,
+        "endLine" : 113,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 102,
+        "endLine" : 110,
+        "cleanedStartLine" : 78,
+        "cleanedEndLine" : 84,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 135,
+        "endLine" : 143,
+        "cleanedStartLine" : 102,
+        "cleanedEndLine" : 108,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 42,
+        "endLine" : 48,
+        "cleanedStartLine" : 37,
+        "cleanedEndLine" : 43,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 107,
+        "endLine" : 113,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 93,
+        "endLine" : 99,
+        "cleanedStartLine" : 84,
+        "cleanedEndLine" : 90,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 19,
+        "cleanedEndLine" : 25,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 93,
+        "endLine" : 99,
+        "cleanedStartLine" : 84,
+        "cleanedEndLine" : 90,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 59,
+        "endLine" : 65,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 59,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 24,
+        "endLine" : 30,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 201,
+        "startLine" : 142,
+        "endLine" : 149,
+        "cleanedStartLine" : 119,
+        "cleanedEndLine" : 125,
+        "percentage" : 3.482587064676617,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 113,
+        "endLine" : 120,
+        "cleanedStartLine" : 97,
+        "cleanedEndLine" : 103,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 93,
+        "endLine" : 99,
+        "cleanedStartLine" : 84,
+        "cleanedEndLine" : 90,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 24,
+        "endLine" : 30,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 3.5353535353535355,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 59,
+        "endLine" : 65,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 59,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 22,
+        "cleanedEndLine" : 28,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 42,
+        "endLine" : 48,
+        "cleanedStartLine" : 37,
+        "cleanedEndLine" : 43,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 148,
+        "endLine" : 155,
+        "cleanedStartLine" : 137,
+        "cleanedEndLine" : 143,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 81,
+        "endLine" : 89,
+        "cleanedStartLine" : 64,
+        "cleanedEndLine" : 70,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 59,
+        "endLine" : 65,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 59,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 25,
+        "endLine" : 31,
+        "cleanedStartLine" : 19,
+        "cleanedEndLine" : 25,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+          "extension" : "js",
+          "linesOfCode" : 105,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 94,
+        "startLine" : 64,
+        "endLine" : 72,
+        "cleanedStartLine" : 46,
+        "cleanedEndLine" : 52,
+        "percentage" : 7.446808510638298,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+          "extension" : "js",
+          "linesOfCode" : 105,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 94,
+        "startLine" : 83,
+        "endLine" : 91,
+        "cleanedStartLine" : 60,
+        "cleanedEndLine" : 66,
+        "percentage" : 7.446808510638298,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 59,
+        "endLine" : 65,
+        "cleanedStartLine" : 53,
+        "cleanedEndLine" : 59,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 93,
+        "endLine" : 99,
+        "cleanedStartLine" : 84,
+        "cleanedEndLine" : 90,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 182,
+        "endLine" : 190,
+        "cleanedStartLine" : 163,
+        "cleanedEndLine" : 169,
+        "percentage" : 2.5179856115107913,
+        "blockSize" : 7
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 135,
+        "endLine" : 143,
+        "cleanedStartLine" : 102,
+        "cleanedEndLine" : 108,
+        "percentage" : 4.046242774566474,
+        "blockSize" : 7
+      } ],
+      "blockSize" : 7
+    } ],
+    "mostFrequentDuplicates" : [ {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 259,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 240,
+        "startLine" : 170,
+        "endLine" : 175,
+        "cleanedStartLine" : 150,
+        "cleanedEndLine" : 155,
+        "percentage" : 2.5,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 160,
+        "endLine" : 165,
+        "cleanedStartLine" : 148,
+        "cleanedEndLine" : 153,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 68,
+        "endLine" : 73,
+        "cleanedStartLine" : 55,
+        "cleanedEndLine" : 60,
+        "percentage" : 4.838709677419355,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 129,
+        "endLine" : 134,
+        "cleanedStartLine" : 106,
+        "cleanedEndLine" : 111,
+        "percentage" : 4.838709677419355,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 201,
+        "endLine" : 206,
+        "cleanedStartLine" : 179,
+        "cleanedEndLine" : 184,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      } ],
+      "blockSize" : 6
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 146,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 124,
+        "startLine" : 104,
+        "endLine" : 109,
+        "cleanedStartLine" : 83,
+        "cleanedEndLine" : 88,
+        "percentage" : 4.838709677419355,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 269,
+        "endLine" : 274,
+        "cleanedStartLine" : 229,
+        "cleanedEndLine" : 234,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 302,
+        "endLine" : 307,
+        "cleanedStartLine" : 258,
+        "cleanedEndLine" : 263,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      } ],
+      "blockSize" : 6
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 182,
+        "endLine" : 189,
+        "cleanedStartLine" : 163,
+        "cleanedEndLine" : 168,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 102,
+        "endLine" : 109,
+        "cleanedStartLine" : 78,
+        "cleanedEndLine" : 83,
+        "percentage" : 3.468208092485549,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 135,
+        "endLine" : 142,
+        "cleanedStartLine" : 102,
+        "cleanedEndLine" : 107,
+        "percentage" : 3.468208092485549,
+        "blockSize" : 6
+      } ],
+      "blockSize" : 6
+    }, {
+      "displayContent" : "",
+      "duplicatedFileBlocks" : [ {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 308,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 278,
+        "startLine" : 148,
+        "endLine" : 154,
+        "cleanedStartLine" : 137,
+        "cleanedEndLine" : 142,
+        "percentage" : 2.158273381294964,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 229,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 198,
+        "startLine" : 86,
+        "endLine" : 92,
+        "cleanedStartLine" : 78,
+        "cleanedEndLine" : 83,
+        "percentage" : 3.0303030303030303,
+        "blockSize" : 6
+      }, {
+        "sourceFile" : {
+          "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+          "extension" : "jsx",
+          "linesOfCode" : 215,
+          "unitsCount" : 0,
+          "unitsMcCabeIndexSum" : 0,
+          "linesOfCodeInUnits" : 0
+        },
+        "sourceFileCleanedLinesOfCode" : 173,
+        "startLine" : 81,
+        "endLine" : 88,
+        "cleanedStartLine" : 64,
+        "cleanedEndLine" : 69,
+        "percentage" : 3.468208092485549,
+        "blockSize" : 6
+      } ],
+      "blockSize" : 6
+    } ]
+  },
+  "contributorsAnalysisResults" : {
+    "latestCommitDate" : "",
+    "contributors" : [ ],
+    "contributorsPerYear" : [ ],
+    "contributorsPerMonth" : [ ],
+    "contributorsPerDay" : [ ],
+    "contributorsPerWeek" : [ ],
+    "commitsPerExtensions" : [ ]
+  },
+  "numberOfExcludedFiles" : 5330,
+  "excludedExtensions" : {
+    "" : 235,
+    "css" : 10,
+    "npmignore" : 4,
+    "js" : 3004,
+    "ps1" : 25,
+    "exe" : 1,
+    "browserslistrc" : 1,
+    "md" : 281,
+    "markdown" : 2,
+    "json" : 298,
+    "editorconfig" : 2,
+    "html" : 2,
+    "bnf" : 1,
+    "map" : 594,
+    "jshintrc" : 1,
+    "flow" : 2,
+    "yaml" : 13,
+    "cts" : 34,
+    "gitignore" : 1,
+    "babelrc" : 1,
+    "eslintrc" : 6,
+    "env" : 1,
+    "cjs" : 28,
+    "mts" : 75,
+    "nycrc" : 4,
+    "txt" : 9,
+    "node" : 1,
+    "1" : 2,
+    "license" : 1,
+    "gitkeep" : 2,
+    "mjs" : 84,
+    "coffee" : 2,
+    "cmd" : 25,
+    "ts" : 578
+  },
+  "analysisStartTimeMs" : 1763671910181,
+  "maxLinesOfCode" : 5742,
+  "maxFileCount" : 42
+}

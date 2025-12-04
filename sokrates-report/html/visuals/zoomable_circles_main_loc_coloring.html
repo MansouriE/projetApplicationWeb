@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node {
+        cursor: pointer;
+    }
+
+    .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .node--leaf {
+        fill: white;
+    }
+
+    .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+
+    .label,
+    .node--root,
+    .node--leaf {
+        pointer-events: none;
+    }
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+    var svg = d3.select("svg"),
+        margin = 20,
+        diameter = +svg.attr("width"),
+        g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+    var color = d3.scaleLinear()
+        .domain([-1, 5])
+        .range(["hsl(152,80%,100%)", "hsl(228,30%,40%)"])
+        .interpolate(d3.interpolateHcl);
+
+    var pack = d3.pack()
+        .size([diameter - margin, diameter - margin])
+        .padding(2);
+
+
+    var root = {
+        "name": "cluster",
+        "children": [ {
+  "name" : "projetApplicationWeb",
+  "color" : "#1a9641",
+  "size" : 0,
+  "children" : [ {
+    "name" : "backend",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "config",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "jwt.js (9)",
+        "color" : "#1a9641",
+        "size" : 9,
+        "children" : [ ]
+      }, {
+        "name" : "supabaseClient.js (7)",
+        "color" : "#1a9641",
+        "size" : 7,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "controllers",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "article-controller.js (27)",
+        "color" : "#1a9641",
+        "size" : 27,
+        "children" : [ ]
+      }, {
+        "name" : "users-controller.js (30)",
+        "color" : "#1a9641",
+        "size" : 30,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "index.js (25)",
+      "color" : "#1a9641",
+      "size" : 25,
+      "children" : [ ]
+    }, {
+      "name" : "middleware",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "check-auth.js (13)",
+        "color" : "#1a9641",
+        "size" : 13,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "routes",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "articleRoutes.js (284)",
+        "color" : "#ffffbf",
+        "size" : 284,
+        "children" : [ ]
+      }, {
+        "name" : "authRoutes.js (53)",
+        "color" : "#1a9641",
+        "size" : 53,
+        "children" : [ ]
+      }, {
+        "name" : "bidRoutes.js (106)",
+        "color" : "#a6d96a",
+        "size" : 106,
+        "children" : [ ]
+      }, {
+        "name" : "favoriRoutes.js (42)",
+        "color" : "#1a9641",
+        "size" : 42,
+        "children" : [ ]
+      }, {
+        "name" : "offreRoutes.js (105)",
+        "color" : "#a6d96a",
+        "size" : 105,
+        "children" : [ ]
+      }, {
+        "name" : "userRoutes.js (30)",
+        "color" : "#1a9641",
+        "size" : 30,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "supabaseClient.js (5)",
+      "color" : "#1a9641",
+      "size" : 5,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "frontend",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "index.html (13)",
+      "color" : "#1a9641",
+      "size" : 13,
+      "children" : [ ]
+    }, {
+      "name" : "postcss.config.js (6)",
+      "color" : "#1a9641",
+      "size" : 6,
+      "children" : [ ]
+    }, {
+      "name" : "src",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "App.jsx (35)",
+        "color" : "#1a9641",
+        "size" : 35,
+        "children" : [ ]
+      }, {
+        "name" : "components",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "addArticle",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "AddArticle.jsx (247)",
+            "color" : "#ffffbf",
+            "size" : 247,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "bids",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "oldPageBid.jsx (106)",
+            "color" : "#a6d96a",
+            "size" : 106,
+            "children" : [ ]
+          }, {
+            "name" : "PageBid.jsx (234)",
+            "color" : "#ffffbf",
+            "size" : 234,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "home",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Article.jsx (259)",
+            "color" : "#ffffbf",
+            "size" : 259,
+            "children" : [ ]
+          }, {
+            "name" : "PageHome.jsx (146)",
+            "color" : "#a6d96a",
+            "size" : 146,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "login",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Login.css (35)",
+            "color" : "#1a9641",
+            "size" : 35,
+            "children" : [ ]
+          }, {
+            "name" : "Login.jsx (57)",
+            "color" : "#1a9641",
+            "size" : 57,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "Navbar.css (36)",
+          "color" : "#1a9641",
+          "size" : 36,
+          "children" : [ ]
+        }, {
+          "name" : "Navbar.jsx (149)",
+          "color" : "#a6d96a",
+          "size" : 149,
+          "children" : [ ]
+        }, {
+          "name" : "offre",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Offre.jsx (128)",
+            "color" : "#a6d96a",
+            "size" : 128,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "profile",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Profile.css (82)",
+            "color" : "#1a9641",
+            "size" : 82,
+            "children" : [ ]
+          }, {
+            "name" : "Profile.jsx (308)",
+            "color" : "#ffffbf",
+            "size" : 308,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "register",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Register.css (35)",
+            "color" : "#1a9641",
+            "size" : 35,
+            "children" : [ ]
+          }, {
+            "name" : "Register.jsx (125)",
+            "color" : "#a6d96a",
+            "size" : 125,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "settings",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "Settings.css (82)",
+            "color" : "#1a9641",
+            "size" : 82,
+            "children" : [ ]
+          }, {
+            "name" : "Settings.jsx (215)",
+            "color" : "#ffffbf",
+            "size" : 215,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "updateArticle",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "UpdateArticle.jsx (229)",
+            "color" : "#ffffbf",
+            "size" : 229,
+            "children" : [ ]
+          } ]
+        }, {
+          "name" : "updateProfile",
+          "color" : "#1a9641",
+          "size" : 0,
+          "children" : [ {
+            "name" : "UpdateProfile.css (1)",
+            "color" : "#1a9641",
+            "size" : 1,
+            "children" : [ ]
+          }, {
+            "name" : "UpdateProfile.jsx (229)",
+            "color" : "#ffffbf",
+            "size" : 229,
+            "children" : [ ]
+          } ]
+        } ]
+      }, {
+        "name" : "Containers",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "Login.jsx (1)",
+          "color" : "#1a9641",
+          "size" : 1,
+          "children" : [ ]
+        }, {
+          "name" : "Signup.jsx (1)",
+          "color" : "#1a9641",
+          "size" : 1,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "context",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "AuthContext.jsx (52)",
+          "color" : "#1a9641",
+          "size" : 52,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "index.css (3)",
+        "color" : "#1a9641",
+        "size" : 3,
+        "children" : [ ]
+      }, {
+        "name" : "main.jsx (12)",
+        "color" : "#1a9641",
+        "size" : 12,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "tailwind.config.js (10)",
+      "color" : "#1a9641",
+      "size" : 10,
+      "children" : [ ]
+    }, {
+      "name" : "vite.config.js (11)",
+      "color" : "#1a9641",
+      "size" : 11,
+      "children" : [ ]
+    } ]
+  } ]
+} ]
+    }
+
+    root = d3.hierarchy(root)
+        .sum(function (d) {
+            return d.size;
+        })
+        .sort(function (a, b) {
+            return b.value - a.value;
+        });
+
+    var focus = root,
+        nodes = pack(root).descendants(),
+        view;
+
+    var circle = g.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("class", function (d) {
+            return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+        })
+        .style("fill", function (d) {
+            return d.children ? color(d.depth) : (d.data.color ? d.data.color : null);
+        })
+        .on("click", function (d) {
+            if (focus !== d) zoom(d), d3.event.stopPropagation();
+        });
+
+    var text = g.selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .attr("class", "label")
+        .style("fill-opacity", function (d) {
+            return d.parent === root ? 1 : 0;
+        })
+        .style("display", function (d) {
+            return d.parent === root ? "inline" : "none";
+        })
+        .text(function (d) {
+            return d.data.name.length > 33 ? (d.data.name.substr(0, 14) + "..." + d.data.name.substr(d.data.name.length - 14))  : d.data.name;
+        });
+
+    var node = g.selectAll("circle,text");
+
+    svg
+        .style("background", color(-1))
+        .on("click", function () {
+            zoom(root);
+        });
+
+    zoomTo([root.x, root.y, root.r * 2 + margin]);
+
+    function zoom(d) {
+        var focus0 = focus;
+        focus = d;
+
+        var transition = d3.transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .tween("zoom", function (d) {
+                var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+                return function (t) {
+                    zoomTo(i(t));
+                };
+            });
+
+        transition.selectAll("text")
+            .filter(function (d) {
+                return d.parent === focus || this.style.display === "inline";
+            })
+            .style("fill-opacity", function (d) {
+                return d.parent === focus ? 1 : 0;
+            })
+            .on("start", function (d) {
+                if (d.parent === focus) this.style.display = "inline";
+            })
+            .on("end", function (d) {
+                if (d.parent !== focus) this.style.display = "none";
+            });
+    }
+
+    function zoomTo(v) {
+        var k = diameter / v[2];
+        view = v;
+        node.attr("transform", function (d) {
+            return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        });
+        circle.attr("r", function (d) {
+            return d.r * k;
+        });
+    }
+
+</script>

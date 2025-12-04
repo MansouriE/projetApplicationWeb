@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>function authMiddleware()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">function authMiddleware()</h3>
+<p style="margin-top: 4px">in <i>projetApplicationWeb/backend/middleware/check-auth.js [3:14]</i></p>
+<ul>
+    <li><b>11</b> lines of code</li>
+    <li><b>4</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers[&quot;authorization&quot;];
+  const token = authHeader &amp;&amp; authHeader.split(&quot; &quot;)[1];
+  if (!token) return res.status(401).json({ error: &quot;Token manquant&quot; });
+
+  try {
+    req.user = verifyToken(token);
+    next();
+  } catch {
+    return res.status(403).json({ error: &quot;Token invalide ou expir&eacute;&quot; });
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

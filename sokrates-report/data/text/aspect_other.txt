@@ -1,0 +1,8 @@
+Path	Lines of Code
+projetApplicationWeb/analysis_conventions.json	507
+projetApplicationWeb/backend/package-lock.json	1293
+projetApplicationWeb/backend/package.json	13
+projetApplicationWeb/frontend/package-lock.json	3806
+projetApplicationWeb/frontend/package.json	24
+projetApplicationWeb/package-lock.json	94
+projetApplicationWeb/package.json	5

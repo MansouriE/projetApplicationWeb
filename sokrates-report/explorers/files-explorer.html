@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Files Explorer</title>
+    <style>
+        body {
+            font-family: Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+        }
+
+        .group {
+            display: inline-block;
+            border: 1px solid lightgrey;
+            border-radius: 6px;
+            margin: 8px 18px 8px 8px;
+            padding: 5px;
+            background-color: #f8f8f8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .icon {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 26px;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+        }
+
+        body {
+            margin: 40px;
+        }
+
+        ::placeholder {
+            color: lightgrey;
+            opacity: 1;
+        }
+
+        :-ms-input-placeholder {
+            color: lightgrey;
+        }
+
+        ::-ms-input-placeholder {
+            color: lightgrey;
+        }
+
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" target="_blank" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <link rel="stylesheet" target="_blank" href="https://fonts.googleapis.com/css?family=Lato">
+</head>
+<body style="margin: 12px">
+
+<div style="margin: 0; color: grey">
+    <div>
+        <div style="padding: 0px; margin-bottom: 26px; white-space: nowrap">
+            Scope: &nbsp;
+            <label><input type="checkbox" id="main" checked onchange="update()"><span
+                    id="label_main">main</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="test" checked onchange="update()"><span
+                    id="label_test">test</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="generated" checked onchange="update()"><span id="label_generated">generated</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="build" checked onchange="update()"><span
+                    id="label_build">build</span></label>&nbsp;&nbsp;
+            <label><input type="checkbox" id="other" checked onchange="update()"><span
+                    id="label_other">other</span></label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span id="scope-summary" style="background-color: #f8f8f8"></span>
+        </div>
+        <input id="filter" type="text" placeholder="search..."
+               style="font-size: 16px; height: 32px; width: 320px; margin-bottom: 10px"
+               onkeyup="update()">
+        <div id="search-summary" style="display: inline-block"></div>
+    </div>
+</div>
+
+<div id="content"></div>
+
+<script>
+    let importedFiles = [{"repository":"","path":"projetApplicationWeb/backend/config/jwt.js","scope":"main","linesOfCode":9},{"repository":"","path":"projetApplicationWeb/backend/config/supabaseClient.js","scope":"main","linesOfCode":7},{"repository":"","path":"projetApplicationWeb/backend/controllers/article-controller.js","scope":"main","linesOfCode":27},{"repository":"","path":"projetApplicationWeb/backend/controllers/users-controller.js","scope":"main","linesOfCode":30},{"repository":"","path":"projetApplicationWeb/backend/index.js","scope":"main","linesOfCode":25},{"repository":"","path":"projetApplicationWeb/backend/middleware/check-auth.js","scope":"main","linesOfCode":13},{"repository":"","path":"projetApplicationWeb/backend/routes/articleRoutes.js","scope":"main","linesOfCode":284},{"repository":"","path":"projetApplicationWeb/backend/routes/authRoutes.js","scope":"main","linesOfCode":53},{"repository":"","path":"projetApplicationWeb/backend/routes/bidRoutes.js","scope":"main","linesOfCode":106},{"repository":"","path":"projetApplicationWeb/backend/routes/favoriRoutes.js","scope":"main","linesOfCode":42},{"repository":"","path":"projetApplicationWeb/backend/routes/offreRoutes.js","scope":"main","linesOfCode":105},{"repository":"","path":"projetApplicationWeb/backend/routes/userRoutes.js","scope":"main","linesOfCode":30},{"repository":"","path":"projetApplicationWeb/backend/supabaseClient.js","scope":"main","linesOfCode":5},{"repository":"","path":"projetApplicationWeb/frontend/index.html","scope":"main","linesOfCode":13},{"repository":"","path":"projetApplicationWeb/frontend/postcss.config.js","scope":"main","linesOfCode":6},{"repository":"","path":"projetApplicationWeb/frontend/src/App.jsx","scope":"main","linesOfCode":35},{"repository":"","path":"projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx","scope":"main","linesOfCode":247},{"repository":"","path":"projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx","scope":"main","linesOfCode":106},{"repository":"","path":"projetApplicationWeb/frontend/src/components/bids/PageBid.jsx","scope":"main","linesOfCode":234},{"repository":"","path":"projetApplicationWeb/frontend/src/components/home/Article.jsx","scope":"main","linesOfCode":259},{"repository":"","path":"projetApplicationWeb/frontend/src/components/home/PageHome.jsx","scope":"main","linesOfCode":146},{"repository":"","path":"projetApplicationWeb/frontend/src/components/login/Login.css","scope":"main","linesOfCode":35},{"repository":"","path":"projetApplicationWeb/frontend/src/components/login/Login.jsx","scope":"main","linesOfCode":57},{"repository":"","path":"projetApplicationWeb/frontend/src/components/Navbar.css","scope":"main","linesOfCode":36},{"repository":"","path":"projetApplicationWeb/frontend/src/components/Navbar.jsx","scope":"main","linesOfCode":149},{"repository":"","path":"projetApplicationWeb/frontend/src/components/offre/Offre.jsx","scope":"main","linesOfCode":128},{"repository":"","path":"projetApplicationWeb/frontend/src/components/profile/Profile.css","scope":"main","linesOfCode":82},{"repository":"","path":"projetApplicationWeb/frontend/src/components/profile/Profile.jsx","scope":"main","linesOfCode":308},{"repository":"","path":"projetApplicationWeb/frontend/src/components/register/Register.css","scope":"main","linesOfCode":35},{"repository":"","path":"projetApplicationWeb/frontend/src/components/register/Register.jsx","scope":"main","linesOfCode":125},{"repository":"","path":"projetApplicationWeb/frontend/src/components/settings/Settings.css","scope":"main","linesOfCode":82},{"repository":"","path":"projetApplicationWeb/frontend/src/components/settings/Settings.jsx","scope":"main","linesOfCode":215},{"repository":"","path":"projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx","scope":"main","linesOfCode":229},{"repository":"","path":"projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.css","scope":"main","linesOfCode":1},{"repository":"","path":"projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx","scope":"main","linesOfCode":229},{"repository":"","path":"projetApplicationWeb/frontend/src/Containers/Login.jsx","scope":"main","linesOfCode":1},{"repository":"","path":"projetApplicationWeb/frontend/src/Containers/Signup.jsx","scope":"main","linesOfCode":1},{"repository":"","path":"projetApplicationWeb/frontend/src/context/AuthContext.jsx","scope":"main","linesOfCode":52},{"repository":"","path":"projetApplicationWeb/frontend/src/index.css","scope":"main","linesOfCode":3},{"repository":"","path":"projetApplicationWeb/frontend/src/main.jsx","scope":"main","linesOfCode":12},{"repository":"","path":"projetApplicationWeb/frontend/tailwind.config.js","scope":"main","linesOfCode":10},{"repository":"","path":"projetApplicationWeb/frontend/vite.config.js","scope":"main","linesOfCode":11},{"repository":"","path":"projetApplicationWeb/frontend/src/tests/sum.test.js","scope":"test","linesOfCode":12},{"repository":"","path":"projetApplicationWeb/backend/package-lock.json","scope":"generated","linesOfCode":1293},{"repository":"","path":"projetApplicationWeb/frontend/package-lock.json","scope":"generated","linesOfCode":3806},{"repository":"","path":"projetApplicationWeb/package-lock.json","scope":"generated","linesOfCode":94},{"repository":"","path":"projetApplicationWeb/analysis_conventions.json","scope":"other","linesOfCode":507},{"repository":"","path":"projetApplicationWeb/backend/package-lock.json","scope":"other","linesOfCode":1293},{"repository":"","path":"projetApplicationWeb/backend/package.json","scope":"other","linesOfCode":13},{"repository":"","path":"projetApplicationWeb/frontend/package-lock.json","scope":"other","linesOfCode":3806},{"repository":"","path":"projetApplicationWeb/frontend/package.json","scope":"other","linesOfCode":24},{"repository":"","path":"projetApplicationWeb/package-lock.json","scope":"other","linesOfCode":94},{"repository":"","path":"projetApplicationWeb/package.json","scope":"other","linesOfCode":5}];
+
+    importedFiles.forEach(file => {
+        let key = file.scope.replace('.txt', '').replace('aspect_', '').trim().toLowerCase();
+        if (key == 'build_and_deployment') {
+            key = 'build';
+        }
+        if (!document.getElementById(key)) {
+            key = 'other';
+        }
+        file.scope = key;
+    });
+
+
+    const importedFileMap = {};
+
+    let files = [];
+
+    importedFiles.forEach(file => {
+        const key = file.repository + '/' + file.path;
+        if (!importedFileMap[key]) {
+            importedFileMap[key] = true;
+            files.push(file);
+        }
+    });
+
+    function getScopes(files) {
+        const scopeMap = {};
+        const scopes = [];
+        files.forEach(file => {
+            const key = file.scope;
+            if (!scopeMap[key]) {
+                scopeMap[key] = {scope: key, filesCount: 0};
+                scopes.push(scopeMap[key]);
+            }
+
+            scopeMap[key].filesCount += 1;
+        });
+
+        scopes.sort((a, b) => b.filesCount - a.filesCount);
+        return scopes;
+    }
+
+
+    files = files.sort((a, b) => b.linesOfCode - a.linesOfCode);
+
+    function getReposCount(files) {
+        const allReposMap = {};
+        let reposCount = 0;
+
+        files.forEach(file => {
+            if (file.repository && !allReposMap[file.repository]) {
+                allReposMap[file.repository] = true;
+                reposCount++;
+            }
+        });
+
+        return reposCount;
+    }
+
+    function getLoc(files) {
+        return files.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+    }
+
+    let lastSort = 'loc';
+
+    function update(sortBy) {
+        if (!sortBy) sortBy = lastSort || 'loc';
+        lastSort = sortBy;
+        files = files.sort((a, b) => {
+            if (sortBy === 'name') {
+                return (a.repository + '/' + a.path).localeCompare(b.repository + '/' + b.path);
+            } else {
+                return b.linesOfCode - a.linesOfCode;
+            }
+        });
+        const filter = document.getElementById('filter').value.toLowerCase().trim();
+        let html = '';
+
+        const scopedData = files
+            .filter(item => document.getElementById(item.scope).checked);
+
+        let scopedCount = scopedData.length;
+        let scopedLoc = scopedData.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+        const scopedReposCount = getReposCount(scopedData)
+
+        const scopedRepoInfo = scopedReposCount ? ', ' + scopedReposCount + ' repositories' : '';
+        let totalReposCount = getReposCount(files);
+        const totalRepoInfo = totalReposCount ? ', ' + totalReposCount + ' repositories' : '';
+        document.getElementById('scope-summary').innerHTML = '[' + scopedCount.toLocaleString('en-US') + ' ' + (scopedCount === 1 ? 'file' : 'files') + '; ' + scopedLoc.toLocaleString('en-US') + ' LOC' + scopedRepoInfo + '] of ' + '[' + files.length.toLocaleString('en-US') + ' ' + (files.length === 1 ? 'file' : 'files') + '; ' + getLoc(files).toLocaleString('en-US') + ' LOC' + totalRepoInfo + ']';
+
+        const filteredData = scopedData
+            .filter(item => item.path && (!filter || (item.repository + ' ' + item.path).toLowerCase().includes(filter)));
+
+        let maxLoc = 1;
+        filteredData.forEach(item => maxLoc = Math.max(maxLoc, item.linesOfCode));
+
+        let filteredCount = filteredData.length;
+        let filteredLoc = filteredData.map(item => item.linesOfCode).reduce((a, b) => a + b, 0);
+        const filteredReposCount = getReposCount(filteredData)
+
+        const repoInfo = filteredReposCount ? ', ' + filteredReposCount + ' repositories' : '';
+
+        document.getElementById('search-summary').innerHTML = ' = ' + filteredCount.toLocaleString('en-US') + ' ' + (filteredCount === 1 ? 'file' : 'files') + ' (' + filteredLoc.toLocaleString('en-US') + ' LOC' + repoInfo + ')';
+
+        if (scopedLoc > filteredLoc) {
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+            const w1count = Math.round(100 * filteredCount / scopedCount);
+            const w2count = 100 - w1count;
+            html += '<div style="margin: 0; display: inline-block; width: ' + w1count + '%; background-color: #303030; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; width: ' + w2count + '%; background-color: #c0c0c0; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1count > 0 ? w1count : '<1') + '% of scoped files</div>';
+            html += '</div>';
+            if (filteredReposCount) {
+                html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+                const w1repo = Math.round(100 * filteredReposCount / scopedReposCount);
+                const w2repo = 100 - w1repo;
+                html += '<div style="margin: 0; display: inline-block; width: ' + w1repo + '%; background-color: #303030; height: 12px"></div>';
+                html += '<div style="margin: 0; display: inline-block; width: ' + w2repo + '%; background-color: #c0c0c0; height: 12px"></div>';
+                html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1repo > 0 ? w1repo : '<1') + '% of scoped repositories</div>';
+                html += '</div>';
+            }
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+            const w1loc = Math.round(100 * filteredLoc / scopedLoc);
+            const w2loc = 100 - w1loc;
+            html += '<div style="margin: 0; display: inline-block; width: ' + w1loc + '%; background-color: skyblue; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; width: ' + w2loc + '%; background-color: #c0c0c0; height: 12px"></div>';
+            html += '<div style="margin: 0; display: inline-block; font-size: 80%; width: 100px; color: grey; vertical-align: top">&nbsp;' + (filteredLoc == 0 || w1loc > 0 ? w1loc : '<1') + '% of scoped LOC</div>';
+            html += '</div>';
+            html += '<div style="width: 400px; margin: 0; padding: 0; white-space: nowrap">';
+
+        }
+
+        html += '<table style="width: 100%">';
+
+        html += '<tr style="color: #777777; background-color: #f8f8f8">';
+        if (filteredReposCount) {
+            html += '<td style="text-align: left">repo</td>';
+        }
+        html += '<td style="text-align: left"><a href="#" onclick="update(\'name\');">file</a></td>';
+        html += '<td style="text-align: left"><a href="#" onclick="update(\'loc\');">&nbsp;LOC</a></td>';
+        html += '<td style="text-align: center">scope</td>';
+        html += '</tr>';
+
+        let displayCounter = 0;
+
+        filteredData.forEach(item => {
+            if (displayCounter > 1000) {
+                return;
+            }
+            displayCounter++;
+            html += '<tr>';
+            if (filteredReposCount) {
+                html += '<td>';
+                html += item.repository;
+                html += '</td>';
+            }
+            html += '<td>';
+            const paths = item.path.split('/');
+            const fileName = paths[paths.length - 1];
+            const folder = paths.slice(0, paths.length - 1).join('/');
+            html += '<span style="color: #afafaf">' + (folder + folder ? folder + '/' : '') + '</span>';
+            html += '<span style="color: black; font-weight: bold">' + fileName + '</span>';
+            html += '</td>';
+
+            let scope = item.scope;
+            html += '<td style="text-align: left; padding-right: 5px; padding-left: 5px">';
+            html += '<div style=" border-radius: 4px; padding 2px;">';
+            const w = maxLoc > 0 ? Math.round(50 * item.linesOfCode / maxLoc + 1) : 0;
+            if (scope === 'main') {
+                html += '<div style="vertical-align: top; display: inline-block; height: 16px; background-color: blue; width: ' + w + 'px"></div>';
+            } else {
+                html += '<div style="vertical-align: top; display: inline-block; height: 16px; background-color: lightgrey; width: ' + w + 'px"></div>';
+            }
+            html += '<div style="margin-left: 2px; vertical-align: top; display: inline-block; font-size: 80%">' + item.linesOfCode.toLocaleString("en-US") + '</div>';
+            html += '</div>';
+            html += '</td>';
+            html += '<td style="text-align: center; padding-right: 5px; padding-left: 5px;">';
+            if (scope === 'main') {
+                html += '<div style="border: 1px solid #d0d0d0; border-radius: 4px; padding 2px; color: blue">';
+            } else {
+                html += '<div style="border: 1px solid #d0d0d0; background-color: #f4f4f4; border-radius: 4px; padding 2px;">';
+            }
+            html += scope;
+            html += '</div>';
+            html += '</td>';
+            html += '<td style="text-align: left; padding-right: 5px; padding-left: 5px;">';
+            html += '</td>';
+            html += '</tr>';
+        });
+
+        html += '</table>';
+
+        document.getElementById('content').innerHTML = html;
+    }
+
+    update();
+</script>
+</body>
+</html>

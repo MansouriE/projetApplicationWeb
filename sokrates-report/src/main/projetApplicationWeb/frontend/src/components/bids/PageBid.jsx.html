@@ -1,0 +1,288 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/bids/PageBid.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/bids/PageBid.jsx (<b>234</b> lines of code) (<a href="PageBid.jsx">raw</a>):</h3>
+<div id="editor">import React, { useEffect, useMemo, useState, useContext } from &quot;react&quot;;
+import { useLocation, useParams, useNavigate  } from &quot;react-router-dom&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+
+const API_BASE = &quot;https://projetapplicationweb-1.onrender.com&quot;;
+
+function PageBid() {
+  const { id } = useParams();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const article = state;
+
+  const { token: ctxToken } = useContext(AuthContext) || {};
+  const token = ctxToken || localStorage.getItem(&quot;token&quot;) || &quot;&quot;;
+
+  const [bids, setBids] = useState([]);
+  const [bidMontant, setBidMontant] = useState(&quot;&quot;);
+  const [message, setMessage] = useState(&quot;&quot;);
+  const [loading, setLoading] = useState(true);
+
+  // ---- Compte &agrave; rebours ----
+  const [timeLeft, setTimeLeft] = useState(&quot;&quot;);
+
+  function formatTimeLeft(endDate) {
+    if (!endDate) return &quot;Aucune dur&eacute;e&quot;;
+    const end = new Date(endDate);
+    const now = new Date();
+    const diff = end - now;
+    if (diff &lt;= 0) return &quot;⛔ Ench&egrave;re termin&eacute;e&quot;;
+
+    const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    return `${jours}j ${heures}h ${minutes}m restants`;
+  }
+
+  useEffect(() =&gt; {
+    if (!article?.bid_end_date) return;
+    // calcul imm&eacute;diat
+    setTimeLeft(formatTimeLeft(article.bid_end_date));
+    // mise &agrave; jour chaque minute
+    const timer = setInterval(() =&gt; {
+      setTimeLeft(formatTimeLeft(article.bid_end_date));
+    }, 60_000);
+    return () =&gt; clearInterval(timer);
+  }, [article?.bid_end_date]);
+
+  const prixDepart = Number(
+    (article &amp;&amp; (article.bidPrixDeDepart ?? article.prix)) || 0
+  );
+
+  const prixCourant = useMemo(() =&gt; {
+    const maxBid = bids.length
+      ? Math.max(...bids.map((b) =&gt; Number(b.amount)))
+      : 0;
+    return Math.max(prixDepart, maxBid);
+  }, [bids, prixDepart]);
+
+  const isEnded =
+    article?.bid_end_date &amp;&amp;
+    new Date(article.bid_end_date).getTime() &lt;= Date.now();
+
+  // --- util: fetch des bids pour l'article
+  const fetchBids = async () =&gt; {
+    setLoading(true);
+    setMessage(&quot;&quot;);
+    try {
+      const res = await fetch(`${API_BASE}/api/bids?article_id=${id}`, {
+        headers: { Accept: &quot;application/json&quot; },
+        cache: &quot;no-store&quot;,
+      });
+      const raw = await res.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`R&eacute;ponse non-JSON: ${raw.slice(0, 120)}`);
+      }
+      if (!res.ok) throw new Error(data?.error || &quot;Erreur chargement bids&quot;);
+      setBids(Array.isArray(data) ? data : []);
+    } catch (e) {
+      setMessage(e.message || &quot;Erreur chargement bids&quot;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() =&gt; {
+    fetchBids(); /* au mount et quand id change */
+  }, [id]);
+
+  const faireUnBid = async (e) =&gt; {
+    e.preventDefault();
+    setMessage(&quot;&quot;);
+
+    if (isEnded) return setMessage(&quot;⛔ Ench&egrave;re termin&eacute;e.&quot;);
+    const montant = Number(bidMontant);
+    if (!Number.isFinite(montant))
+      return setMessage(&quot;Entrez un nombre valide.&quot;);
+    if (montant &lt;= prixCourant)
+      return setMessage(`💡 Le bid doit &ecirc;tre &gt; ${prixCourant}.`);
+    if (!token) return setMessage(&quot;⛔ Vous devez &ecirc;tre connect&eacute;.&quot;);
+
+    try {
+
+      const articleId = Number(id);
+      const res = await fetch(`${API_BASE}/api/bids`, {
+        method: &quot;POST&quot;,
+        headers: {
+          &quot;Content-Type&quot;: &quot;application/json&quot;,
+          Authorization: `Bearer ${token}`, // usr_id d&eacute;duit du token c&ocirc;t&eacute; backend
+        },
+        body: JSON.stringify({ article_id: articleId, amount: montant }),
+      });
+
+      const raw = await res.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error(`R&eacute;ponse non-JSON: ${raw.slice(0, 120)}`);
+      }
+
+      if (res.status === 401 || res.status === 403) {
+        throw new Error(&quot;⛔ Session expir&eacute;e. Veuillez vous reconnecter.&quot;);
+      }
+      if (!res.ok) {
+        throw new Error(data?.error || &quot;Erreur lors du bid&quot;);
+      }
+
+      // ✅ re-fetch pour afficher la vraie liste tri&eacute;e par le serveur
+      await fetchBids();
+      setBidMontant(&quot;&quot;);
+      setMessage(`✅ Bid de ${montant} $ plac&eacute;.`);
+    } catch (e) {
+      setMessage(e.message || &quot;Erreur r&eacute;seau&quot;);
+    }
+  };
+
+  if (!article) {
+    return (
+      &lt;p className=&quot;text-center mt-10 text-gray-600&quot;&gt;
+        Aucun article trouv&eacute;. Ouvrez la page depuis la liste.
+      &lt;/p&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200&quot;&gt;
+      &lt;h1 className=&quot;text-3xl font-bold text-gray-800 mb-2&quot;&gt;{article.nom}&lt;/h1&gt;
+      &lt;p className=&quot;text-gray-600 mb-6&quot;&gt;{article.description}&lt;/p&gt;
+       {/*changements visuels*/}
+      &lt;div className=&quot;flex flex-wrap items-center justify-between gap-3 mb-2&quot;&gt;
+        &lt;span className=&quot;text-xl font-semibold text-green-700&quot;&gt;
+          Prix de d&eacute;part : {prixDepart} $
+        &lt;/span&gt;
+        &lt;span className=&quot;text-lg font-semibold&quot;&gt;
+          Prix actuel : {prixCourant} $
+        &lt;/span&gt;
+        &lt;span
+          className={`px-3 py-1 rounded-full text-sm font-medium ${
+            article.etat === &quot;Neuf&quot;
+              ? &quot;bg-green-100 text-green-800&quot;
+              : article.etat === &quot;Bon &eacute;tat&quot;
+              ? &quot;bg-blue-100 text-blue-800&quot;
+              : &quot;bg-red-100 text-red-800&quot;
+          }`}
+        &gt;
+          {article.etat}
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+      {/* Dur&eacute;e / temps restant */}
+      {article.bid_end_date &amp;&amp; (
+        &lt;p
+          className={`text-sm mt-1 ${
+            isEnded ? &quot;text-red-600&quot; : &quot;text-gray-600&quot;
+          } italic`}
+        &gt;
+          ⏳ {timeLeft}
+        &lt;/p&gt;
+      )}
+
+      &lt;div className=&quot;mt-6 mb-8&quot;&gt;
+        &lt;h2 className=&quot;text-xl font-semibold text-gray-800 mb-3&quot;&gt;Bids&lt;/h2&gt;
+        {loading ? (
+          &lt;p className=&quot;text-gray-500&quot;&gt;Chargement&hellip;&lt;/p&gt;
+        ) : bids.length ? (
+          &lt;ul className=&quot;space-y-2&quot;&gt;
+            {[...bids]
+              .sort((a, b) =&gt; Number(b.amount) - Number(a.amount))
+              .map((bid) =&gt; (
+                &lt;li
+                  key={bid.id}
+                  className=&quot;flex justify-between bg-gray-50 p-3 rounded-lg border border-gray-200&quot;
+                &gt;
+                  &lt;span className=&quot;font-medium text-gray-700&quot;&gt;
+                    {bid.user?.pseudo ?? &quot;Utilisateur inconnu&quot;}
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-green-700 font-semibold&quot;&gt;
+                    {Number(bid.amount)} $
+                  &lt;/span&gt;
+                &lt;/li&gt;
+              ))}
+          &lt;/ul&gt;
+        ) : (
+          &lt;p className=&quot;text-gray-500 italic&quot;&gt;Aucun bid pour l&rsquo;instant&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;form onSubmit={faireUnBid} className=&quot;space-y-3&quot;&gt;
+        &lt;label className=&quot;block text-gray-700 font-medium&quot;&gt;Nouveau bid :&lt;/label&gt;
+        &lt;input
+          type=&quot;number&quot;
+          step=&quot;0.01&quot;
+          min={0}
+          value={bidMontant}
+          onChange={(e) =&gt; setBidMontant(e.target.value)}
+          className=&quot;w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400&quot;
+          placeholder={`&gt; ${prixCourant}`}
+          disabled={isEnded}
+        /&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          disabled={
+            isEnded ||
+            !bidMontant ||
+            Number(bidMontant) &lt;= prixCourant ||
+            !Number.isFinite(Number(bidMontant))
+          }
+          className={`w-full text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200
+            ${
+              isEnded ||
+              !bidMontant ||
+              Number(bidMontant) &lt;= prixCourant ||
+              !Number.isFinite(Number(bidMontant))
+                ? &quot;bg-gray-400 cursor-not-allowed&quot;
+                : &quot;bg-blue-500 hover:bg-blue-600&quot;
+            }`}
+        &gt;
+          {isEnded ? &quot;Ench&egrave;re termin&eacute;e&quot; : &quot;Placer le bid&quot;}
+        &lt;/button&gt;
+      &lt;/form&gt;
+
+      &lt;button
+        onClick={() =&gt; navigate(&quot;/&quot;)}
+        className=&quot;mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2&quot;
+      &gt;
+        &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+          &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M10 19l-7-7m0 0l7-7m-7 7h18&quot; /&gt;
+        &lt;/svg&gt;
+        Retour &agrave; l'accueil
+      &lt;/button&gt;
+
+      {message &amp;&amp; (
+        &lt;p className=&quot;mt-4 text-center text-gray-700 font-medium&quot;&gt;{message}&lt;/p&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default PageBid;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

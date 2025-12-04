@@ -1,0 +1,2007 @@
+{
+  "title" : "Duplication",
+  "timestamp" : "2025-11-20 15:51:51",
+  "duplicates" : [ {
+    "blockSize" : 82,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.css",
+        "extension" : "css",
+        "linesOfCode" : 82,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 82,
+      "startLine" : 2,
+      "endLine" : 102,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 82
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.css",
+        "extension" : "css",
+        "linesOfCode" : 82,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 82,
+      "startLine" : 2,
+      "endLine" : 102,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 82
+    } ]
+  }, {
+    "blockSize" : 18,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 81,
+      "endLine" : 105,
+      "cleanedStartLine" : 64,
+      "cleanedEndLine" : 81
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 86,
+      "endLine" : 109,
+      "cleanedStartLine" : 78,
+      "cleanedEndLine" : 95
+    } ]
+  }, {
+    "blockSize" : 16,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 57,
+      "endLine" : 73,
+      "cleanedStartLine" : 51,
+      "cleanedEndLine" : 66
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 105,
+      "endLine" : 120,
+      "cleanedStartLine" : 95,
+      "cleanedEndLine" : 110
+    } ]
+  }, {
+    "blockSize" : 16,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 57,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 55,
+      "startLine" : 42,
+      "endLine" : 58,
+      "cleanedStartLine" : 36,
+      "cleanedEndLine" : 51
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 125,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 123,
+      "startLine" : 117,
+      "endLine" : 133,
+      "cleanedStartLine" : 104,
+      "cleanedEndLine" : 119
+    } ]
+  }, {
+    "blockSize" : 15,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 178,
+      "endLine" : 196,
+      "cleanedStartLine" : 160,
+      "cleanedEndLine" : 174
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 98,
+      "endLine" : 116,
+      "cleanedStartLine" : 75,
+      "cleanedEndLine" : 89
+    } ]
+  }, {
+    "blockSize" : 14,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 23,
+      "endLine" : 37,
+      "cleanedStartLine" : 20,
+      "cleanedEndLine" : 33
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 23,
+      "endLine" : 39,
+      "cleanedStartLine" : 17,
+      "cleanedEndLine" : 30
+    } ]
+  }, {
+    "blockSize" : 14,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 152,
+      "endLine" : 165,
+      "cleanedStartLine" : 140,
+      "cleanedEndLine" : 153
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 193,
+      "endLine" : 206,
+      "cleanedStartLine" : 171,
+      "cleanedEndLine" : 184
+    } ]
+  }, {
+    "blockSize" : 14,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 72,
+      "endLine" : 86,
+      "cleanedStartLine" : 65,
+      "cleanedEndLine" : 78
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 51,
+      "endLine" : 66,
+      "cleanedStartLine" : 39,
+      "cleanedEndLine" : 52
+    } ]
+  }, {
+    "blockSize" : 12,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 40,
+      "endLine" : 52,
+      "cleanedStartLine" : 35,
+      "cleanedEndLine" : 46
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 91,
+      "endLine" : 102,
+      "cleanedStartLine" : 82,
+      "cleanedEndLine" : 93
+    } ]
+  }, {
+    "blockSize" : 11,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 269,
+      "endLine" : 279,
+      "cleanedStartLine" : 229,
+      "cleanedEndLine" : 239
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 302,
+      "endLine" : 312,
+      "cleanedStartLine" : 258,
+      "cleanedEndLine" : 268
+    } ]
+  }, {
+    "blockSize" : 10,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 234,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 218,
+      "startLine" : 160,
+      "endLine" : 169,
+      "cleanedStartLine" : 135,
+      "cleanedEndLine" : 144
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 106,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 94,
+      "startLine" : 55,
+      "endLine" : 64,
+      "cleanedStartLine" : 43,
+      "cleanedEndLine" : 52
+    } ]
+  }, {
+    "blockSize" : 10,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 168,
+      "endLine" : 177,
+      "cleanedStartLine" : 148,
+      "cleanedEndLine" : 157
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 127,
+      "endLine" : 136,
+      "cleanedStartLine" : 104,
+      "cleanedEndLine" : 113
+    } ]
+  }, {
+    "blockSize" : 9,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 211,
+      "endLine" : 222,
+      "cleanedStartLine" : 187,
+      "cleanedEndLine" : 195
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 121,
+      "endLine" : 132,
+      "cleanedStartLine" : 92,
+      "cleanedEndLine" : 100
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+        "extension" : "css",
+        "linesOfCode" : 35,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 35,
+      "startLine" : 2,
+      "endLine" : 9,
+      "cleanedStartLine" : 2,
+      "cleanedEndLine" : 9
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+        "extension" : "css",
+        "linesOfCode" : 35,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 35,
+      "startLine" : 2,
+      "endLine" : 9,
+      "cleanedStartLine" : 2,
+      "cleanedEndLine" : 9
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 168,
+      "endLine" : 175,
+      "cleanedStartLine" : 148,
+      "cleanedEndLine" : 155
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 158,
+      "endLine" : 165,
+      "cleanedStartLine" : 146,
+      "cleanedEndLine" : 153
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 24,
+      "endLine" : 31,
+      "cleanedStartLine" : 18,
+      "cleanedEndLine" : 25
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 23,
+      "endLine" : 30,
+      "cleanedStartLine" : 21,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 168,
+      "endLine" : 175,
+      "cleanedStartLine" : 148,
+      "cleanedEndLine" : 155
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 199,
+      "endLine" : 206,
+      "cleanedStartLine" : 177,
+      "cleanedEndLine" : 184
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 66,
+      "endLine" : 73,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 60
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 158,
+      "endLine" : 165,
+      "cleanedStartLine" : 146,
+      "cleanedEndLine" : 153
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 66,
+      "endLine" : 73,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 60
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 127,
+      "endLine" : 134,
+      "cleanedStartLine" : 104,
+      "cleanedEndLine" : 111
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 127,
+      "endLine" : 134,
+      "cleanedStartLine" : 104,
+      "cleanedEndLine" : 111
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 158,
+      "endLine" : 165,
+      "cleanedStartLine" : 146,
+      "cleanedEndLine" : 153
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 66,
+      "endLine" : 73,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 60
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 199,
+      "endLine" : 206,
+      "cleanedStartLine" : 177,
+      "cleanedEndLine" : 184
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 24,
+      "endLine" : 31,
+      "cleanedStartLine" : 21,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 23,
+      "endLine" : 30,
+      "cleanedStartLine" : 21,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 168,
+      "endLine" : 175,
+      "cleanedStartLine" : 148,
+      "cleanedEndLine" : 155
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 66,
+      "endLine" : 73,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 60
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 234,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 218,
+      "startLine" : 71,
+      "endLine" : 78,
+      "cleanedStartLine" : 59,
+      "cleanedEndLine" : 66
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 234,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 218,
+      "startLine" : 114,
+      "endLine" : 122,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 104
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 127,
+      "endLine" : 134,
+      "cleanedStartLine" : 104,
+      "cleanedEndLine" : 111
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 199,
+      "endLine" : 206,
+      "cleanedStartLine" : 177,
+      "cleanedEndLine" : 184
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 48,
+      "endLine" : 55,
+      "cleanedStartLine" : 43,
+      "cleanedEndLine" : 49
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 43,
+      "endLine" : 51,
+      "cleanedStartLine" : 33,
+      "cleanedEndLine" : 39
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 42,
+      "endLine" : 48,
+      "cleanedStartLine" : 37,
+      "cleanedEndLine" : 43
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 24,
+      "endLine" : 30,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 42,
+      "endLine" : 48,
+      "cleanedStartLine" : 37,
+      "cleanedEndLine" : 43
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 19,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 103,
+      "endLine" : 109,
+      "cleanedStartLine" : 82,
+      "cleanedEndLine" : 88
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 268,
+      "endLine" : 274,
+      "cleanedStartLine" : 228,
+      "cleanedEndLine" : 234
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 42,
+      "endLine" : 48,
+      "cleanedStartLine" : 37,
+      "cleanedEndLine" : 43
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 59,
+      "endLine" : 65,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 59
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 107,
+      "endLine" : 113,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 19,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 93,
+      "endLine" : 99,
+      "cleanedStartLine" : 84,
+      "cleanedEndLine" : 90
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 107,
+      "endLine" : 113,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 107,
+      "endLine" : 113,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 24,
+      "endLine" : 30,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 148,
+      "endLine" : 155,
+      "cleanedStartLine" : 137,
+      "cleanedEndLine" : 143
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 86,
+      "endLine" : 93,
+      "cleanedStartLine" : 78,
+      "cleanedEndLine" : 84
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 178,
+      "endLine" : 185,
+      "cleanedStartLine" : 160,
+      "cleanedEndLine" : 166
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 102,
+      "endLine" : 109,
+      "cleanedStartLine" : 89,
+      "cleanedEndLine" : 95
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 107,
+      "endLine" : 113,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 102,
+      "endLine" : 110,
+      "cleanedStartLine" : 78,
+      "cleanedEndLine" : 84
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 135,
+      "endLine" : 143,
+      "cleanedStartLine" : 102,
+      "cleanedEndLine" : 108
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 42,
+      "endLine" : 48,
+      "cleanedStartLine" : 37,
+      "cleanedEndLine" : 43
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 107,
+      "endLine" : 113,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 93,
+      "endLine" : 99,
+      "cleanedStartLine" : 84,
+      "cleanedEndLine" : 90
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 19,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 93,
+      "endLine" : 99,
+      "cleanedStartLine" : 84,
+      "cleanedEndLine" : 90
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 59,
+      "endLine" : 65,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 59
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 24,
+      "endLine" : 30,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 201,
+      "startLine" : 142,
+      "endLine" : 149,
+      "cleanedStartLine" : 119,
+      "cleanedEndLine" : 125
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 113,
+      "endLine" : 120,
+      "cleanedStartLine" : 97,
+      "cleanedEndLine" : 103
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 93,
+      "endLine" : 99,
+      "cleanedStartLine" : 84,
+      "cleanedEndLine" : 90
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 24,
+      "endLine" : 30,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 59,
+      "endLine" : 65,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 59
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 22,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 42,
+      "endLine" : 48,
+      "cleanedStartLine" : 37,
+      "cleanedEndLine" : 43
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 148,
+      "endLine" : 155,
+      "cleanedStartLine" : 137,
+      "cleanedEndLine" : 143
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 81,
+      "endLine" : 89,
+      "cleanedStartLine" : 64,
+      "cleanedEndLine" : 70
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 59,
+      "endLine" : 65,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 59
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 19,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+        "extension" : "js",
+        "linesOfCode" : 105,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 94,
+      "startLine" : 64,
+      "endLine" : 72,
+      "cleanedStartLine" : 46,
+      "cleanedEndLine" : 52
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/backend/routes/offreRoutes.js",
+        "extension" : "js",
+        "linesOfCode" : 105,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 94,
+      "startLine" : 83,
+      "endLine" : 91,
+      "cleanedStartLine" : 60,
+      "cleanedEndLine" : 66
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 59,
+      "endLine" : 65,
+      "cleanedStartLine" : 53,
+      "cleanedEndLine" : 59
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 93,
+      "endLine" : 99,
+      "cleanedStartLine" : 84,
+      "cleanedEndLine" : 90
+    } ]
+  }, {
+    "blockSize" : 7,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 182,
+      "endLine" : 190,
+      "cleanedStartLine" : 163,
+      "cleanedEndLine" : 169
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 135,
+      "endLine" : 143,
+      "cleanedStartLine" : 102,
+      "cleanedEndLine" : 108
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 149,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 121,
+      "startLine" : 39,
+      "endLine" : 46,
+      "cleanedStartLine" : 32,
+      "cleanedEndLine" : 37
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 149,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 121,
+      "startLine" : 113,
+      "endLine" : 120,
+      "cleanedStartLine" : 88,
+      "cleanedEndLine" : 93
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 26,
+      "endLine" : 31,
+      "cleanedStartLine" : 23,
+      "cleanedEndLine" : 28
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 60,
+      "endLine" : 65,
+      "cleanedStartLine" : 54,
+      "cleanedEndLine" : 59
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 281,
+      "endLine" : 286,
+      "cleanedStartLine" : 241,
+      "cleanedEndLine" : 246
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 314,
+      "endLine" : 319,
+      "cleanedStartLine" : 270,
+      "cleanedEndLine" : 275
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 234,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 218,
+      "startLine" : 192,
+      "endLine" : 197,
+      "cleanedStartLine" : 162,
+      "cleanedEndLine" : 167
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 106,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 94,
+      "startLine" : 75,
+      "endLine" : 80,
+      "cleanedStartLine" : 60,
+      "cleanedEndLine" : 65
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 108,
+      "endLine" : 113,
+      "cleanedStartLine" : 98,
+      "cleanedEndLine" : 103
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/login/Login.css",
+        "extension" : "css",
+        "linesOfCode" : 35,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 35,
+      "startLine" : 31,
+      "endLine" : 36,
+      "cleanedStartLine" : 27,
+      "cleanedEndLine" : 32
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/register/Register.css",
+        "extension" : "css",
+        "linesOfCode" : 35,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 35,
+      "startLine" : 31,
+      "endLine" : 36,
+      "cleanedStartLine" : 27,
+      "cleanedEndLine" : 32
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 247,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 234,
+      "startLine" : 117,
+      "endLine" : 123,
+      "cleanedStartLine" : 101,
+      "cleanedEndLine" : 106
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 201,
+      "startLine" : 116,
+      "endLine" : 122,
+      "cleanedStartLine" : 101,
+      "cleanedEndLine" : 106
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 41,
+      "endLine" : 48,
+      "cleanedStartLine" : 31,
+      "cleanedEndLine" : 36
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 70,
+      "endLine" : 77,
+      "cleanedStartLine" : 55,
+      "cleanedEndLine" : 60
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/article-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 22,
+      "startLine" : 22,
+      "endLine" : 28,
+      "cleanedStartLine" : 17,
+      "cleanedEndLine" : 22
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/backend/controllers/users-controller.js",
+        "extension" : "js",
+        "linesOfCode" : 30,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 25,
+      "startLine" : 25,
+      "endLine" : 31,
+      "cleanedStartLine" : 20,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 201,
+      "startLine" : 114,
+      "endLine" : 120,
+      "cleanedStartLine" : 99,
+      "cleanedEndLine" : 104
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 84,
+      "endLine" : 90,
+      "cleanedStartLine" : 76,
+      "cleanedEndLine" : 81
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 149,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 121,
+      "startLine" : 54,
+      "endLine" : 61,
+      "cleanedStartLine" : 44,
+      "cleanedEndLine" : 49
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/Navbar.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 149,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 121,
+      "startLine" : 130,
+      "endLine" : 137,
+      "cleanedStartLine" : 102,
+      "cleanedEndLine" : 107
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 94,
+      "endLine" : 99,
+      "cleanedStartLine" : 85,
+      "cleanedEndLine" : 90
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 73,
+      "endLine" : 78,
+      "cleanedStartLine" : 61,
+      "cleanedEndLine" : 66
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/Article.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 259,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 240,
+      "startLine" : 102,
+      "endLine" : 107,
+      "cleanedStartLine" : 88,
+      "cleanedEndLine" : 93
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/PageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 234,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 218,
+      "startLine" : 255,
+      "endLine" : 262,
+      "cleanedStartLine" : 213,
+      "cleanedEndLine" : 218
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 106,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 94,
+      "startLine" : 114,
+      "endLine" : 121,
+      "cleanedStartLine" : 89,
+      "cleanedEndLine" : 94
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/settings/Settings.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 173,
+      "startLine" : 26,
+      "endLine" : 31,
+      "cleanedStartLine" : 20,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/home/PageHome.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 146,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 124,
+      "startLine" : 104,
+      "endLine" : 109,
+      "cleanedStartLine" : 83,
+      "cleanedEndLine" : 88
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 302,
+      "endLine" : 307,
+      "cleanedStartLine" : 258,
+      "cleanedEndLine" : 263
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 43,
+      "endLine" : 48,
+      "cleanedStartLine" : 38,
+      "cleanedEndLine" : 43
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 308,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 278,
+      "startLine" : 137,
+      "endLine" : 142,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 131
+    }, {
+      "file" : {
+        "relativePath" : "projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 229,
+        "components" : [ "primary::projetApplicationWeb" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 198,
+      "startLine" : 25,
+      "endLine" : 30,
+      "cleanedStartLine" : 23,
+      "cleanedEndLine" : 28
+    } ]
+  } ],
+  "overallDuplication" : null
+}

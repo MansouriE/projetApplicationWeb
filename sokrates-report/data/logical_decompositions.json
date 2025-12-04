@@ -1,0 +1,93 @@
+[ {
+  "key" : "primary",
+  "components" : [ {
+    "name" : "projetApplicationWeb",
+    "filesCount" : 42,
+    "linesOfCode" : 3583,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 18,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 16,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 7,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 1,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.jsx",
+      "value" : 2533,
+      "description" : [ ]
+    }, {
+      "name" : "  *.js",
+      "value" : 763,
+      "description" : [ ]
+    }, {
+      "name" : "  *.css",
+      "value" : 274,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 13,
+      "description" : [ ]
+    } ]
+  } ],
+  "componentDependencies" : [ ],
+  "componentDependenciesErrors" : [ ],
+  "logicalDecomposition" : {
+    "name" : "primary",
+    "scope" : "main",
+    "filters" : [ ],
+    "componentsFolderDepth" : 1,
+    "minComponentsCount" : 0,
+    "components" : [ {
+      "name" : "projetApplicationWeb",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "R:\\projetcsweb/projetApplicationWeb/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    } ],
+    "metaComponents" : [ ],
+    "groups" : [ ],
+    "includeRemainingFiles" : true,
+    "dependenciesFinder" : {
+      "useBuiltInDependencyFinders" : true,
+      "rules" : [ ],
+      "metaRules" : [ ]
+    },
+    "renderingOptions" : {
+      "orientation" : "TB",
+      "maxNumberOfDependencies" : 100,
+      "renderComponentsWithoutDependencies" : true,
+      "renderIndirectDependencies" : false,
+      "renderInternalIndirectDependencies" : false,
+      "reverseDirection" : false
+    },
+    "includeExternalComponents" : true,
+    "dependencyLinkThreshold" : 1,
+    "duplicationLinkThreshold" : 50,
+    "temporalLinkThreshold" : 1,
+    "maxSearchDepthLines" : 200
+  },
+  "linesOfCodePerComponent" : [ {
+    "name" : "projetApplicationWeb",
+    "value" : 3583,
+    "description" : [ ]
+  } ],
+  "fileCountPerComponent" : [ {
+    "name" : "projetApplicationWeb",
+    "value" : 42,
+    "description" : [ ]
+  } ]
+} ]

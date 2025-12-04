@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/register/Register.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/register/Register.jsx (<b>125</b> lines of code) (<a href="Register.jsx">raw</a>):</h3>
+<div id="editor">import React, { useState } from &quot;react&quot;;
+import &quot;./Register.css&quot;;
+
+function Register() {
+  const [firstName, setFirstName] = useState(&quot;&quot;);
+  const [lastName, setLastName] = useState(&quot;&quot;);
+  const [email, setEmail] = useState(&quot;&quot;);
+  const [password, setPassword] = useState(&quot;&quot;);
+  const [pseudo, setPseudo] = useState(&quot;&quot;);
+  const [adresse, setAdresse] = useState(&quot;&quot;);
+  const [codePostal, setCodePostal] = useState(&quot;&quot;);
+
+  const handleSubmit = async (e) =&gt; {
+    e.preventDefault();
+
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !pseudo ||
+      !adresse ||
+      !codePostal
+    ) {
+      alert(&quot;Veuillez remplir tous les champs !&quot;);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/createUser&quot;,
+        {
+          // adapte ce chemin selon ton backend
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+          },
+          body: JSON.stringify({
+            prenom: firstName,
+            nom: lastName,
+            courriel: email,
+            password: password,
+            pseudo: pseudo,
+            adresse: adresse,
+            code_postal: codePostal,
+          }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || &quot;Erreur lors de la cr&eacute;ation&quot;);
+      }
+
+      setFirstName(&quot;&quot;);
+      setLastName(&quot;&quot;);
+      setEmail(&quot;&quot;);
+      setPassword(&quot;&quot;);
+      setPseudo(&quot;&quot;);
+      setAdresse(&quot;&quot;);
+      setCodePostal(&quot;&quot;);
+    } catch (error) {
+      alert(&quot;Erreur : &quot; + error.message);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;register-container&quot;&gt;
+      &lt;h2&gt;Cr&eacute;er un compte&lt;/h2&gt;
+      &lt;form onSubmit={handleSubmit} className=&quot;register-form&quot;&gt;
+        &lt;label&gt;Pr&eacute;nom&lt;/label&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Entrez votre pr&eacute;nom&quot;
+          value={firstName}
+          onChange={(e) =&gt; setFirstName(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Nom&lt;/label&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Entrez votre nom&quot;
+          value={lastName}
+          onChange={(e) =&gt; setLastName(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Pseudo&lt;/label&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Entrez votre Pseudo&quot;
+          value={pseudo}
+          onChange={(e) =&gt; setPseudo(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Adresse&lt;/label&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Entrez votre Adresse&quot;
+          value={adresse}
+          onChange={(e) =&gt; setAdresse(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Code Postal&lt;/label&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Entrez votre Code Postal&quot;
+          value={codePostal}
+          onChange={(e) =&gt; setCodePostal(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input
+          type=&quot;email&quot;
+          placeholder=&quot;Entrez votre email&quot;
+          value={email}
+          onChange={(e) =&gt; setEmail(e.target.value)}
+          required
+        /&gt;
+
+        &lt;label&gt;Mot de passe&lt;/label&gt;
+        &lt;input
+          type=&quot;password&quot;
+          placeholder=&quot;Entrez votre mot de passe&quot;
+          value={password}
+          onChange={(e) =&gt; setPassword(e.target.value)}
+          required
+        /&gt;
+
+        &lt;button type=&quot;submit&quot;&gt;S'inscrire&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Register;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

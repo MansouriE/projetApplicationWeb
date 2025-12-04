@@ -1,0 +1,273 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/components/settings/Settings.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/components/settings/Settings.jsx (<b>215</b> lines of code) (<a href="Settings.jsx">raw</a>):</h3>
+<div id="editor">import React, { useContext, useEffect, useState } from &quot;react&quot;;
+import { AuthContext } from &quot;../../context/AuthContext&quot;;
+import { useNavigate } from &quot;react-router-dom&quot;;
+
+function Settings() {
+  const { token, isLoggedIn } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
+  const [allArticles, setAllArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(&quot;&quot;);
+  const navigate = useNavigate();
+
+
+  const userArticles = allArticles;
+
+  useEffect(() =&gt; {
+    const fetchProfileAndArticles = async () =&gt; {
+      try {
+        setLoading(true);
+        setError(&quot;&quot;);
+        
+
+        const userResponse = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/users/me&quot;,
+          {
+            headers: {
+              &quot;Content-Type&quot;: &quot;application/json&quot;,
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const userData = await userResponse.json();
+
+        if (!userResponse.ok) {
+          throw new Error(userData.error || &quot;Impossible de charger le profil&quot;);
+        }
+
+        setUser(userData.user || userData);
+
+        const articlesResponse = await fetch(
+          &quot;https://projetapplicationweb-1.onrender.com/api/getArticles&quot;
+        );
+
+        const articlesData = await articlesResponse.json();
+        
+        if (articlesResponse.ok) {
+          setAllArticles(articlesData || []);
+        } else {
+          setAllArticles([]);
+        }
+
+      } catch (err) {
+        console.error(&quot;Erreur:&quot;, err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (isLoggedIn &amp;&amp; token) {
+      fetchProfileAndArticles();
+    } else {
+      setLoading(false);
+    }
+  }, [token, isLoggedIn]);
+
+  const reloadArticles = async () =&gt; {
+    try {
+      const articlesResponse = await fetch(
+        &quot;https://projetapplicationweb-1.onrender.com/api/getArticles&quot;
+      );
+
+      const articlesData = await articlesResponse.json();
+      
+      if (articlesResponse.ok) {
+        setAllArticles(articlesData || []);
+      }
+    } catch (error) {
+      console.error(&quot;Erreur rechargement:&quot;, error);
+    }
+  };
+
+
+  if (!isLoggedIn) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4&quot;&gt;
+            &lt;svg className=&quot;w-8 h-8 text-red-500&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+              &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z&quot; /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Acc&egrave;s non autoris&eacute;&lt;/h3&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Vous devez &ecirc;tre connect&eacute; pour acc&eacute;der &agrave; cette page.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (loading) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4&quot;&gt;&lt;/div&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Chargement du profil&hellip;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (error) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4&quot;&gt;
+            &lt;svg className=&quot;w-8 h-8 text-red-500&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+              &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z&quot; /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3 className=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Erreur&lt;/h3&gt;
+          &lt;p className=&quot;text-red-600 mb-4&quot;&gt;{error}&lt;/p&gt;
+          &lt;button
+            onClick={() =&gt; window.location.reload()}
+            className=&quot;bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200&quot;
+          &gt;
+            R&eacute;essayer
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  if (!user) {
+    return (
+      &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4&quot;&gt;
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center&quot;&gt;
+          &lt;div className=&quot;animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4&quot;&gt;&lt;/div&gt;
+          &lt;p className=&quot;text-gray-600&quot;&gt;Chargement du profil&hellip;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8&quot;&gt;
+      &lt;div className=&quot;max-w-6xl mx-auto&quot;&gt;
+        {/* Section Profil */}
+        &lt;div className=&quot;bg-white rounded-2xl shadow-lg overflow-hidden mb-8&quot;&gt;
+          &lt;div className=&quot;bg-gradient-to-r from-indigo-900 to-purple-800 px-6 py-8&quot;&gt;
+            &lt;div className=&quot;flex items-center space-x-4&quot;&gt;
+              &lt;div className=&quot;w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg&quot;&gt;
+                &lt;span className=&quot;text-white font-bold text-xl&quot;&gt;
+                  {user.prenom?.[0]?.toUpperCase() || user.nom?.[0]?.toUpperCase() || &quot;U&quot;}
+                &lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;h1 className=&quot;text-2xl font-bold text-white&quot;&gt;Mes param&egrave;tres&lt;/h1&gt;
+                &lt;p className=&quot;text-purple-200&quot;&gt;G&eacute;rez vos informations personnelles&lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;p-6 space-y-6&quot;&gt;
+            {/* Informations utilisateur */}
+            &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 gap-6&quot;&gt;
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Pr&eacute;nom&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.prenom}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Nom&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.nom}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Email&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.courriel}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Adresse&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.adresse || &quot;Non renseign&eacute;e&quot;}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Code postal&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.code_postal || &quot;Non renseign&eacute;&quot;}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;space-y-1&quot;&gt;
+                &lt;label className=&quot;text-sm font-medium text-gray-500&quot;&gt;Pseudo&lt;/label&gt;
+                &lt;div className=&quot;p-3 bg-gray-50 rounded-lg border border-gray-200&quot;&gt;
+                  &lt;p className=&quot;text-gray-900 font-medium&quot;&gt;{user.pseudo || &quot;Non renseign&eacute;&quot;}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div className=&quot;flex flex-col sm:flex-row gap-4 pt-6&quot;&gt;
+              &lt;button
+                onClick={() =&gt; navigate(&quot;/profile/edit&quot;)}
+                className=&quot;bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2&quot;
+              &gt;
+                &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z&quot; /&gt;
+                &lt;/svg&gt;
+                Modifier mon profil
+              &lt;/button&gt;
+              
+              &lt;button
+                onClick={() =&gt; navigate(&quot;/&quot;)}
+                className=&quot;bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2&quot;
+              &gt;
+                &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M10 19l-7-7m0 0l7-7m-7 7h18&quot; /&gt;
+                &lt;/svg&gt;
+                Retour &agrave; l'accueil
+              &lt;/button&gt;
+
+              &lt;button
+                onClick={reloadArticles}
+                className=&quot;bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2&quot;
+              &gt;
+                &lt;svg className=&quot;w-5 h-5&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                  &lt;path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; strokeWidth={2} d=&quot;M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15&quot; /&gt;
+                &lt;/svg&gt;
+                Actualiser les articles
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default Settings;</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

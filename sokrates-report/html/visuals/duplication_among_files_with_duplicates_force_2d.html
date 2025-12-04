@@ -1,0 +1,1410 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "duplicate40",
+    "size" : 2
+  }, {
+    "id" : "duplicate42",
+    "size" : 2
+  }, {
+    "id" : "duplicate41",
+    "size" : 2
+  }, {
+    "id" : "duplicate44",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "size" : 2
+  }, {
+    "id" : "duplicate43",
+    "size" : 2
+  }, {
+    "id" : "duplicate46",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "size" : 12
+  }, {
+    "id" : "duplicate45",
+    "size" : 2
+  }, {
+    "id" : "duplicate48",
+    "size" : 2
+  }, {
+    "id" : "duplicate47",
+    "size" : 2
+  }, {
+    "id" : "duplicate49",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "size" : 1
+  }, {
+    "id" : "duplicate51",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "size" : 1
+  }, {
+    "id" : "duplicate50",
+    "size" : 2
+  }, {
+    "id" : "duplicate53",
+    "size" : 2
+  }, {
+    "id" : "duplicate52",
+    "size" : 2
+  }, {
+    "id" : "duplicate11",
+    "size" : 2
+  }, {
+    "id" : "duplicate55",
+    "size" : 2
+  }, {
+    "id" : "duplicate10",
+    "size" : 2
+  }, {
+    "id" : "duplicate54",
+    "size" : 2
+  }, {
+    "id" : "duplicate13",
+    "size" : 2
+  }, {
+    "id" : "duplicate57",
+    "size" : 2
+  }, {
+    "id" : "duplicate12",
+    "size" : 2
+  }, {
+    "id" : "duplicate56",
+    "size" : 2
+  }, {
+    "id" : "duplicate15",
+    "size" : 2
+  }, {
+    "id" : "duplicate59",
+    "size" : 2
+  }, {
+    "id" : "duplicate14",
+    "size" : 2
+  }, {
+    "id" : "duplicate58",
+    "size" : 2
+  }, {
+    "id" : "duplicate17",
+    "size" : 2
+  }, {
+    "id" : "duplicate16",
+    "size" : 2
+  }, {
+    "id" : "duplicate19",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "size" : 4
+  }, {
+    "id" : "duplicate18",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "size" : 18
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "size" : 3
+  }, {
+    "id" : "duplicate60",
+    "size" : 2
+  }, {
+    "id" : "duplicate62",
+    "size" : 2
+  }, {
+    "id" : "duplicate61",
+    "size" : 2
+  }, {
+    "id" : "duplicate20",
+    "size" : 2
+  }, {
+    "id" : "duplicate64",
+    "size" : 2
+  }, {
+    "id" : "duplicate63",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "size" : 1
+  }, {
+    "id" : "duplicate22",
+    "size" : 2
+  }, {
+    "id" : "duplicate66",
+    "size" : 2
+  }, {
+    "id" : "duplicate21",
+    "size" : 2
+  }, {
+    "id" : "duplicate65",
+    "size" : 2
+  }, {
+    "id" : "duplicate24",
+    "size" : 2
+  }, {
+    "id" : "duplicate68",
+    "size" : 2
+  }, {
+    "id" : "duplicate23",
+    "size" : 2
+  }, {
+    "id" : "duplicate67",
+    "size" : 2
+  }, {
+    "id" : "duplicate26",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "size" : 6
+  }, {
+    "id" : "duplicate25",
+    "size" : 2
+  }, {
+    "id" : "duplicate69",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "size" : 10
+  }, {
+    "id" : "duplicate28",
+    "size" : 2
+  }, {
+    "id" : "duplicate27",
+    "size" : 2
+  }, {
+    "id" : "duplicate29",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "size" : 1
+  }, {
+    "id" : "duplicate4",
+    "size" : 2
+  }, {
+    "id" : "duplicate3",
+    "size" : 2
+  }, {
+    "id" : "duplicate6",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "size" : 5
+  }, {
+    "id" : "duplicate5",
+    "size" : 2
+  }, {
+    "id" : "duplicate8",
+    "size" : 2
+  }, {
+    "id" : "duplicate7",
+    "size" : 2
+  }, {
+    "id" : "duplicate9",
+    "size" : 2
+  }, {
+    "id" : "duplicate31",
+    "size" : 2
+  }, {
+    "id" : "duplicate30",
+    "size" : 2
+  }, {
+    "id" : "duplicate33",
+    "size" : 2
+  }, {
+    "id" : "duplicate32",
+    "size" : 2
+  }, {
+    "id" : "duplicate35",
+    "size" : 2
+  }, {
+    "id" : "duplicate34",
+    "size" : 2
+  }, {
+    "id" : "duplicate2",
+    "size" : 2
+  }, {
+    "id" : "duplicate37",
+    "size" : 2
+  }, {
+    "id" : "duplicate1",
+    "size" : 2
+  }, {
+    "id" : "duplicate36",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "size" : 64
+  }, {
+    "id" : "duplicate39",
+    "size" : 2
+  }, {
+    "id" : "duplicate38",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "size" : 1
+  }, {
+    "id" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "size" : 2
+  }, {
+    "id" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "size" : 1
+  } ],
+  "links" : [ {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "target" : "duplicate1",
+    "count" : 1
+  }, {
+    "source" : "duplicate1",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "target" : "duplicate1",
+    "count" : 1
+  }, {
+    "source" : "duplicate1",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate2",
+    "count" : 1
+  }, {
+    "source" : "duplicate2",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate2",
+    "count" : 1
+  }, {
+    "source" : "duplicate2",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate3",
+    "count" : 1
+  }, {
+    "source" : "duplicate3",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate3",
+    "count" : 1
+  }, {
+    "source" : "duplicate3",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "target" : "duplicate4",
+    "count" : 1
+  }, {
+    "source" : "duplicate4",
+    "target" : "[projetApplicationWeb/frontend/src/components/login/Login.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "target" : "duplicate4",
+    "count" : 1
+  }, {
+    "source" : "duplicate4",
+    "target" : "[projetApplicationWeb/frontend/src/components/register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate5",
+    "count" : 1
+  }, {
+    "source" : "duplicate5",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate5",
+    "count" : 1
+  }, {
+    "source" : "duplicate5",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate6",
+    "count" : 1
+  }, {
+    "source" : "duplicate6",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate6",
+    "count" : 1
+  }, {
+    "source" : "duplicate6",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate7",
+    "count" : 1
+  }, {
+    "source" : "duplicate7",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate7",
+    "count" : 1
+  }, {
+    "source" : "duplicate7",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate8",
+    "count" : 1
+  }, {
+    "source" : "duplicate8",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate8",
+    "count" : 1
+  }, {
+    "source" : "duplicate8",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate9",
+    "count" : 1
+  }, {
+    "source" : "duplicate9",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate9",
+    "count" : 1
+  }, {
+    "source" : "duplicate9",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate10",
+    "count" : 1
+  }, {
+    "source" : "duplicate10",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate10",
+    "count" : 1
+  }, {
+    "source" : "duplicate10",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "duplicate11",
+    "count" : 1
+  }, {
+    "source" : "duplicate11",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "target" : "duplicate11",
+    "count" : 1
+  }, {
+    "source" : "duplicate11",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate12",
+    "count" : 1
+  }, {
+    "source" : "duplicate12",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate12",
+    "count" : 1
+  }, {
+    "source" : "duplicate12",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate13",
+    "count" : 1
+  }, {
+    "source" : "duplicate13",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate13",
+    "count" : 1
+  }, {
+    "source" : "duplicate13",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "target" : "duplicate14",
+    "count" : 1
+  }, {
+    "source" : "duplicate14",
+    "target" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "target" : "duplicate14",
+    "count" : 1
+  }, {
+    "source" : "duplicate14",
+    "target" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate15",
+    "count" : 1
+  }, {
+    "source" : "duplicate15",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate15",
+    "count" : 1
+  }, {
+    "source" : "duplicate15",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate16",
+    "count" : 1
+  }, {
+    "source" : "duplicate16",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate16",
+    "count" : 1
+  }, {
+    "source" : "duplicate16",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate17",
+    "count" : 1
+  }, {
+    "source" : "duplicate17",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate17",
+    "count" : 1
+  }, {
+    "source" : "duplicate17",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate18",
+    "count" : 1
+  }, {
+    "source" : "duplicate18",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate18",
+    "count" : 1
+  }, {
+    "source" : "duplicate18",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate19",
+    "count" : 1
+  }, {
+    "source" : "duplicate19",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate19",
+    "count" : 1
+  }, {
+    "source" : "duplicate19",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate20",
+    "count" : 1
+  }, {
+    "source" : "duplicate20",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate20",
+    "count" : 1
+  }, {
+    "source" : "duplicate20",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate21",
+    "count" : 1
+  }, {
+    "source" : "duplicate21",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate21",
+    "count" : 1
+  }, {
+    "source" : "duplicate21",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate22",
+    "count" : 1
+  }, {
+    "source" : "duplicate22",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate22",
+    "count" : 1
+  }, {
+    "source" : "duplicate22",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate23",
+    "count" : 1
+  }, {
+    "source" : "duplicate23",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate23",
+    "count" : 1
+  }, {
+    "source" : "duplicate23",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "duplicate24",
+    "count" : 1
+  }, {
+    "source" : "duplicate24",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "duplicate24",
+    "count" : 1
+  }, {
+    "source" : "duplicate24",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate25",
+    "count" : 1
+  }, {
+    "source" : "duplicate25",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate25",
+    "count" : 1
+  }, {
+    "source" : "duplicate25",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate26",
+    "count" : 1
+  }, {
+    "source" : "duplicate26",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate26",
+    "count" : 1
+  }, {
+    "source" : "duplicate26",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate27",
+    "count" : 1
+  }, {
+    "source" : "duplicate27",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate27",
+    "count" : 1
+  }, {
+    "source" : "duplicate27",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate28",
+    "count" : 1
+  }, {
+    "source" : "duplicate28",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate28",
+    "count" : 1
+  }, {
+    "source" : "duplicate28",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate29",
+    "count" : 1
+  }, {
+    "source" : "duplicate29",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate29",
+    "count" : 1
+  }, {
+    "source" : "duplicate29",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate30",
+    "count" : 1
+  }, {
+    "source" : "duplicate30",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate30",
+    "count" : 1
+  }, {
+    "source" : "duplicate30",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate31",
+    "count" : 1
+  }, {
+    "source" : "duplicate31",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate31",
+    "count" : 1
+  }, {
+    "source" : "duplicate31",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate32",
+    "count" : 1
+  }, {
+    "source" : "duplicate32",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate32",
+    "count" : 1
+  }, {
+    "source" : "duplicate32",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate33",
+    "count" : 1
+  }, {
+    "source" : "duplicate33",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate33",
+    "count" : 1
+  }, {
+    "source" : "duplicate33",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate34",
+    "count" : 1
+  }, {
+    "source" : "duplicate34",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate34",
+    "count" : 1
+  }, {
+    "source" : "duplicate34",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate35",
+    "count" : 1
+  }, {
+    "source" : "duplicate35",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate35",
+    "count" : 1
+  }, {
+    "source" : "duplicate35",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate36",
+    "count" : 1
+  }, {
+    "source" : "duplicate36",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate36",
+    "count" : 1
+  }, {
+    "source" : "duplicate36",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate37",
+    "count" : 1
+  }, {
+    "source" : "duplicate37",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate37",
+    "count" : 1
+  }, {
+    "source" : "duplicate37",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate38",
+    "count" : 1
+  }, {
+    "source" : "duplicate38",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate38",
+    "count" : 1
+  }, {
+    "source" : "duplicate38",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate39",
+    "count" : 1
+  }, {
+    "source" : "duplicate39",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate39",
+    "count" : 1
+  }, {
+    "source" : "duplicate39",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate40",
+    "count" : 1
+  }, {
+    "source" : "duplicate40",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate40",
+    "count" : 1
+  }, {
+    "source" : "duplicate40",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate41",
+    "count" : 1
+  }, {
+    "source" : "duplicate41",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate41",
+    "count" : 1
+  }, {
+    "source" : "duplicate41",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "target" : "duplicate42",
+    "count" : 1
+  }, {
+    "source" : "duplicate42",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate42",
+    "count" : 1
+  }, {
+    "source" : "duplicate42",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate43",
+    "count" : 1
+  }, {
+    "source" : "duplicate43",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate43",
+    "count" : 1
+  }, {
+    "source" : "duplicate43",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate44",
+    "count" : 1
+  }, {
+    "source" : "duplicate44",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate44",
+    "count" : 1
+  }, {
+    "source" : "duplicate44",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate45",
+    "count" : 1
+  }, {
+    "source" : "duplicate45",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate45",
+    "count" : 1
+  }, {
+    "source" : "duplicate45",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate46",
+    "count" : 1
+  }, {
+    "source" : "duplicate46",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate46",
+    "count" : 1
+  }, {
+    "source" : "duplicate46",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate47",
+    "count" : 1
+  }, {
+    "source" : "duplicate47",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate47",
+    "count" : 1
+  }, {
+    "source" : "duplicate47",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "target" : "duplicate48",
+    "count" : 1
+  }, {
+    "source" : "duplicate48",
+    "target" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "target" : "duplicate48",
+    "count" : 1
+  }, {
+    "source" : "duplicate48",
+    "target" : "[projetApplicationWeb/backend/routes/offreRoutes.js]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate49",
+    "count" : 1
+  }, {
+    "source" : "duplicate49",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate49",
+    "count" : 1
+  }, {
+    "source" : "duplicate49",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate50",
+    "count" : 1
+  }, {
+    "source" : "duplicate50",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate50",
+    "count" : 1
+  }, {
+    "source" : "duplicate50",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "duplicate51",
+    "count" : 1
+  }, {
+    "source" : "duplicate51",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "duplicate51",
+    "count" : 1
+  }, {
+    "source" : "duplicate51",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate52",
+    "count" : 1
+  }, {
+    "source" : "duplicate52",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate52",
+    "count" : 1
+  }, {
+    "source" : "duplicate52",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate53",
+    "count" : 1
+  }, {
+    "source" : "duplicate53",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate53",
+    "count" : 1
+  }, {
+    "source" : "duplicate53",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate54",
+    "count" : 1
+  }, {
+    "source" : "duplicate54",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate54",
+    "count" : 1
+  }, {
+    "source" : "duplicate54",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "duplicate55",
+    "count" : 1
+  }, {
+    "source" : "duplicate55",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "target" : "duplicate55",
+    "count" : 1
+  }, {
+    "source" : "duplicate55",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate56",
+    "count" : 1
+  }, {
+    "source" : "duplicate56",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate56",
+    "count" : 1
+  }, {
+    "source" : "duplicate56",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "target" : "duplicate57",
+    "count" : 1
+  }, {
+    "source" : "duplicate57",
+    "target" : "[projetApplicationWeb/frontend/src/components/login/Login.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "target" : "duplicate57",
+    "count" : 1
+  }, {
+    "source" : "duplicate57",
+    "target" : "[projetApplicationWeb/frontend/src/components/register/Register.css]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "target" : "duplicate58",
+    "count" : 1
+  }, {
+    "source" : "duplicate58",
+    "target" : "[projetApplicationWeb/frontend/src/components/addArticle/AddArticle.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "target" : "duplicate58",
+    "count" : 1
+  }, {
+    "source" : "duplicate58",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate59",
+    "count" : 1
+  }, {
+    "source" : "duplicate59",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate59",
+    "count" : 1
+  }, {
+    "source" : "duplicate59",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "target" : "duplicate60",
+    "count" : 1
+  }, {
+    "source" : "duplicate60",
+    "target" : "[projetApplicationWeb/backend/controllers/article-controller.js]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "target" : "duplicate60",
+    "count" : 1
+  }, {
+    "source" : "duplicate60",
+    "target" : "[projetApplicationWeb/backend/controllers/users-controller.js]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "target" : "duplicate61",
+    "count" : 1
+  }, {
+    "source" : "duplicate61",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateArticle/UpdateArticle.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate61",
+    "count" : 1
+  }, {
+    "source" : "duplicate61",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "duplicate62",
+    "count" : 1
+  }, {
+    "source" : "duplicate62",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "target" : "duplicate62",
+    "count" : 1
+  }, {
+    "source" : "duplicate62",
+    "target" : "[projetApplicationWeb/frontend/src/components/Navbar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate63",
+    "count" : 1
+  }, {
+    "source" : "duplicate63",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate63",
+    "count" : 1
+  }, {
+    "source" : "duplicate63",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate64",
+    "count" : 1
+  }, {
+    "source" : "duplicate64",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "target" : "duplicate64",
+    "count" : 1
+  }, {
+    "source" : "duplicate64",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/Article.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "target" : "duplicate65",
+    "count" : 1
+  }, {
+    "source" : "duplicate65",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/PageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "target" : "duplicate65",
+    "count" : 1
+  }, {
+    "source" : "duplicate65",
+    "target" : "[projetApplicationWeb/frontend/src/components/bids/oldPageBid.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate66",
+    "count" : 1
+  }, {
+    "source" : "duplicate66",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "target" : "duplicate66",
+    "count" : 1
+  }, {
+    "source" : "duplicate66",
+    "target" : "[projetApplicationWeb/frontend/src/components/settings/Settings.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "target" : "duplicate67",
+    "count" : 1
+  }, {
+    "source" : "duplicate67",
+    "target" : "[projetApplicationWeb/frontend/src/components/home/PageHome.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate67",
+    "count" : 1
+  }, {
+    "source" : "duplicate67",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate68",
+    "count" : 1
+  }, {
+    "source" : "duplicate68",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate68",
+    "count" : 1
+  }, {
+    "source" : "duplicate68",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "target" : "duplicate69",
+    "count" : 1
+  }, {
+    "source" : "duplicate69",
+    "target" : "[projetApplicationWeb/frontend/src/components/profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "target" : "duplicate69",
+    "count" : 1
+  }, {
+    "source" : "duplicate69",
+    "target" : "[projetApplicationWeb/frontend/src/components/updateProfile/UpdateProfile.jsx]",
+    "count" : 1
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>projetApplicationWeb/frontend/src/context/AuthContext.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">projetApplicationWeb/frontend/src/context/AuthContext.jsx (<b>52</b> lines of code) (<a href="AuthContext.jsx">raw</a>):</h3>
+<div id="editor">import React, { createContext, useState, useEffect, useCallback } from &quot;react&quot;;
+
+export const AuthContext = createContext({
+  isLoggedIn: false,
+  isAdmin: false,
+  userId: null,
+  token: null,
+  login: () =&gt; {},
+  logout: () =&gt; {},
+});
+
+export const AuthProvider = ({ children }) =&gt; {
+  const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const login = useCallback((token, userId, isAdmin) =&gt; {
+    setToken(token);
+    setUserId(userId);
+    setIsAdmin(isAdmin);
+
+    localStorage.setItem(&quot;token&quot;, token);
+    localStorage.setItem(&quot;userId&quot;, userId);
+    localStorage.setItem(&quot;isAdmin&quot;, isAdmin ? &quot;true&quot; : &quot;false&quot;);
+  }, []);
+
+  const logout = useCallback(() =&gt; {
+    setToken(null);
+    setUserId(null);
+    setIsAdmin(false);
+
+    localStorage.removeItem(&quot;token&quot;);
+    localStorage.removeItem(&quot;userId&quot;);
+    localStorage.removeItem(&quot;isAdmin&quot;);
+  }, []);
+
+  useEffect(() =&gt; {
+    const storedToken = localStorage.getItem(&quot;token&quot;);
+    const storedUserId = localStorage.getItem(&quot;userId&quot;);
+    const storedIsAdmin = localStorage.getItem(&quot;isAdmin&quot;) === &quot;true&quot;;
+
+    if (storedToken &amp;&amp; storedUserId) {
+      login(storedToken, storedUserId, storedIsAdmin);
+    }
+  }, [login]);
+
+  return (
+    &lt;AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        isAdmin,
+        token,
+        userId,
+        login,
+        logout,
+      }}
+    &gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+};
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>
