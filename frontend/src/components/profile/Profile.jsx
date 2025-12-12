@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Article from "../home/Article.jsx"; // Adjust path if needed
 import AccessGuard from "../acessGuard/accessGuard";
+import { fetchCurrentUser } from "../../utils/api.js";
 
 function Profile() {
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -36,21 +37,9 @@ function Profile() {
         setError("");
 
         // Fetch user profile
-        const userResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/users/me",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
 
-        const userData = await userResponse.json();
-        if (!userResponse.ok) {
-          throw new Error(userData.error || "Impossible de charger le profil");
-        }
-        setUser(userData.user || userData);
+        const userData = await fetchCurrentUser(token);
+        setUser(userData);
 
         // Fetch all articles
         const articlesResponse = await fetch(
