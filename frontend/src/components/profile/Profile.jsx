@@ -158,21 +158,11 @@ function Profile() {
               ) : (
                 allArticles.map((article) => (
                   <Article
+                    {...article}
                     id={article.id_articles}
-                    nom={article.nom}
-                    description={article.description}
-                    prix={article.prix}
-                    etat={article.etat}
-                    bid={article.bid}
-                    bidPrixDeDepart={article.bidPrixDeDepart}
-                    bid_duration={article.bid_duration}
-                    bid_end_date={article.bid_end_date}
-                    offre={article.offre}
-                    offre_reduction={article.offre_reduction}
                     isProfilePage={true}
                     onEdit={() => handleEdit(article)}
                     onDelete={() => handleDelete(article.id_articles)}
-                    image_url={article.image_url}
                   />
                 ))
               )}
@@ -192,22 +182,11 @@ function Profile() {
               ) : (
                 allArticlesFavoris.map((article) => (
                   <Article
-                    key={article.id_articles}
+                    {...article}
                     id={article.id_articles}
-                    nom={article.nom}
-                    description={article.description}
-                    prix={article.prix}
-                    etat={article.etat}
-                    bid={article.bid}
-                    bidPrixDeDepart={article.bidPrixDeDepart}
-                    bid_duration={article.bid_duration}
-                    bid_end_date={article.bid_end_date}
-                    offre={article.offre}
-                    offre_reduction={article.offre_reduction}
-                    isProfilePage={false}
+                    isProfilePage={true}
                     onEdit={() => handleEdit(article)}
                     onDelete={() => handleDelete(article.id_articles)}
-                    image_url={article.image_url}
                   />
                 ))
               )}
