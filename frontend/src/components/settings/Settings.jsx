@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import AccessGuard from "../acessGuard/accessGuard";
+import { fetchCurrentUser } from "../../utils/api.js";
 
 function Settings() {
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -29,13 +30,8 @@ function Settings() {
           }
         );
 
-        const userData = await userResponse.json();
-
-        if (!userResponse.ok) {
-          throw new Error(userData.error || "Impossible de charger le profil");
-        }
-
-        setUser(userData.user || userData);
+        const userData = await fetchCurrentUser(token);
+        setUser(userData);
 
         const articlesResponse = await fetch(
           "https://projetapplicationweb-1.onrender.com/api/getArticles"
