@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useContext } from "react";
-import { useLocation, useParams, useNavigate  } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const API_BASE = "https://projetapplicationweb-1.onrender.com";
@@ -102,7 +102,6 @@ function PageBid() {
     if (!token) return setMessage("⛔ Vous devez être connecté.");
 
     try {
-
       const articleId = Number(id);
       const res = await fetch(`${API_BASE}/api/bids`, {
         method: "POST",
@@ -149,7 +148,7 @@ function PageBid() {
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200">
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{article.nom}</h1>
       <p className="text-gray-600 mb-6">{article.description}</p>
-       {/*changements visuels*/}
+      {/*changements visuels*/}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         <span className="text-xl font-semibold text-green-700">
           Prix de départ : {prixDepart} $
@@ -246,8 +245,18 @@ function PageBid() {
         onClick={() => navigate("/")}
         className="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
         </svg>
         Retour à l'accueil
       </button>
