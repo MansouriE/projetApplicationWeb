@@ -29,6 +29,22 @@ function Profile() {
     setAllArticlesFavoris(res.ok ? data || [] : []);
   };
 
+  const fetchArticles = async () => {
+    const articlesResponse = await fetch(
+      "https://projetapplicationweb-1.onrender.com/api/getMesArticles",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const articlesData = await articlesResponse.json();
+    if (articlesResponse.ok) {
+      setAllArticles(articlesData || []);
+    }
+  };
+
   // Fetch profile and articles
   useEffect(() => {
     const fetchProfileAndArticles = async () => {
@@ -37,27 +53,12 @@ function Profile() {
         setError("");
 
         // Fetch user profile
-
         const userData = await fetchCurrentUser(token);
         setUser(userData);
 
         // Fetch all articles
-        const articlesResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getMesArticles",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const articlesData = await articlesResponse.json();
+        await fetchArticles();
 
-        if (articlesResponse.ok) {
-          setAllArticles(articlesData || []);
-        } else {
-          setAllArticles([]);
-        }
         // Fetch favorite articles
         await fetchFavoris();
       } catch (err) {
@@ -78,20 +79,7 @@ function Profile() {
   // Reload articles manually
   const reloadArticles = async () => {
     try {
-      const articlesResponse = await fetch(
-        "https://projetapplicationweb-1.onrender.com/api/getMesArticles",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const articlesData = await articlesResponse.json();
-      if (articlesResponse.ok) {
-        setAllArticles(articlesData || []);
-      }
-
+      await fetchArticles();
       await fetchFavoris();
     } catch (err) {
       console.error("Erreur rechargement:", err);

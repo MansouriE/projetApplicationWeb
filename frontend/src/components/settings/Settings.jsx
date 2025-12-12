@@ -20,30 +20,8 @@ function Settings() {
         setLoading(true);
         setError("");
 
-        const userResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/users/me",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
         const userData = await fetchCurrentUser(token);
         setUser(userData);
-
-        const articlesResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getArticles"
-        );
-
-        const articlesData = await articlesResponse.json();
-
-        if (articlesResponse.ok) {
-          setAllArticles(articlesData || []);
-        } else {
-          setAllArticles([]);
-        }
       } catch (err) {
         console.error("Erreur:", err);
         setError(err.message);
