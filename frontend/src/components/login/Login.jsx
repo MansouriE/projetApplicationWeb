@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./Login.css";
+import FormInput from "../common/FormInput";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -39,21 +40,21 @@ function Login() {
     <div className="login-container">
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit} className="login-form">
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           placeholder="Entrez votre email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmail}
           required
         />
 
-        <label>Mot de passe</label>
-        <input
+        <FormInput
+          label="Mot de passe"
           type="password"
           placeholder="Entrez votre mot de passe"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={setPassword}
           required
         />
 
