@@ -12,6 +12,21 @@ function Profile() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const fetchFavoris = async () => {
+    const res = await fetch(
+      "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await res.json();
+    setAllArticlesFavoris(res.ok ? data || [] : []);
+  };
+
   // Fetch profile and articles
   useEffect(() => {
     const fetchProfileAndArticles = async () => {
@@ -54,22 +69,7 @@ function Profile() {
           setAllArticles([]);
         }
         // Fetch favorite articles
-        const favorisResponse = await fetch(
-          "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const favorisData = await favorisResponse.json();
-
-        if (favorisResponse.ok) {
-          setAllArticlesFavoris(favorisData || []);
-        } else {
-          setAllArticlesFavoris([]);
-        }
+        await fetchFavoris();
       } catch (err) {
         console.error("Erreur:", err);
         setError(err.message);
@@ -102,21 +102,7 @@ function Profile() {
         setAllArticles(articlesData || []);
       }
 
-      const favorisResponse = await fetch(
-        "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const favorisData = await favorisResponse.json();
-      if (favorisResponse.ok) {
-        setAllArticlesFavoris(favorisData || []);
-      } else {
-        setAllArticlesFavoris([]);
-      }
+      await fetchFavoris();
     } catch (err) {
       console.error("Erreur rechargement:", err);
     }
