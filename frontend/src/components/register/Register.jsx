@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
+import FormInput from "../common/FormInput";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -114,21 +115,21 @@ function Register() {
           required
         />
 
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Email"
           type="email"
           placeholder="Entrez votre email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmail}
           required
         />
 
-        <label>Mot de passe</label>
-        <input
+        <FormInput
+          label="Mot de passe"
           type="password"
           placeholder="Entrez votre mot de passe"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={setPassword}
           required
         />
 
