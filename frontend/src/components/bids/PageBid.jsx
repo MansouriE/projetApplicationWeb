@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useContext } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import BackButton from "../common/BackButton";
 
 const API_BASE = "https://projetapplicationweb-1.onrender.com";
 
@@ -241,25 +242,7 @@ function PageBid() {
         </button>
       </form>
 
-      <button
-        onClick={() => navigate("/")}
-        className="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2"
-      >
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
-        Retour à l'accueil
-      </button>
+      <BackButton />
 
       {message && (
         <p className="mt-4 text-center text-gray-700 font-medium">{message}</p>
