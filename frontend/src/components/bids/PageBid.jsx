@@ -35,6 +35,15 @@ function PageBid() {
     return `${jours}j ${heures}h ${minutes}m restants`;
   }
 
+  async function parseJsonResponse(res) {
+    const raw = await res.text();
+    try {
+      return JSON.parse(raw);
+    } catch {
+      throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
+    }
+  }
+
   useEffect(() => {
     if (!article?.bid_end_date) return;
     // calcul immédiat
@@ -70,13 +79,7 @@ function PageBid() {
         headers: { Accept: "application/json" },
         cache: "no-store",
       });
-      const raw = await res.text();
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
-      }
+      const data = await parseJsonResponse(res);
       if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
       setBids(Array.isArray(data) ? data : []);
     } catch (e) {
@@ -113,13 +116,7 @@ function PageBid() {
         body: JSON.stringify({ article_id: articleId, amount: montant }),
       });
 
-      const raw = await res.text();
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
-      }
+      const data = await parseJsonResponse(res);
 
       if (res.status === 401 || res.status === 403) {
         throw new Error("⛔ Session expirée. Veuillez vous reconnecter.");
