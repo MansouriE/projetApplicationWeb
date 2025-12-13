@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import SvgIcon from "../common/SvgIcon";
-import fetchwithAuth from "../../utils/fetchWithAuth";
+import { fetchWithAuth } from "../../utils/fetchWithAuth.js";
 
 function Article(props) {
   const {
@@ -33,9 +33,12 @@ function Article(props) {
     if (!isLoggedIn) return;
 
     const fetchFavoriteStatus = async () => {
+      if (!isLoggedIn || !token) return;
+
       try {
         const data = await fetchWithAuth(
           `https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
+          {},
           token
         );
         setIsFavori(data.isFavori);
