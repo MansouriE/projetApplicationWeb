@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Article from "../home/Article.jsx"; // Adjust path if needed
 import AccessGuard from "../acessGuard/accessGuard";
 import { fetchCurrentUser } from "../../utils/api.js";
+import { fetchWithAuth } from "../../utils/fetchWithAuth.js";
 
 function Profile() {
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -15,34 +16,21 @@ function Profile() {
   const navigate = useNavigate();
 
   const fetchFavoris = async () => {
-    const res = await fetch(
+    const data = await fetchWithAuth(
       "https://projetapplicationweb-1.onrender.com/api/getMesArticlesFavori",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      {},
+      token
     );
-
-    const data = await res.json();
-    setAllArticlesFavoris(res.ok ? data || [] : []);
+    setAllArticlesFavoris(data || []);
   };
 
   const fetchArticles = async () => {
-    const articlesResponse = await fetch(
+    const data = await fetchWithAuth(
       "https://projetapplicationweb-1.onrender.com/api/getMesArticles",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      {},
+      token
     );
-    const articlesData = await articlesResponse.json();
-    if (articlesResponse.ok) {
-      setAllArticles(articlesData || []);
-    }
+    setAllArticles(data || []);
   };
 
   // Fetch profile and articles
@@ -93,19 +81,17 @@ function Profile() {
 
   const handleDelete = async (idArticles) => {
     if (!confirm("Supprimer cet article ?")) return;
+
     try {
-      const res = await fetch(
+      const data = await fetchWithAuth(
         `https://projetapplicationweb-1.onrender.com/api/articles/${idArticles}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { method: "DELETE" },
+        token
       );
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error || "Suppression échouée");
+
+      // If fetchWithAuth returns an error inside the JSON
+      if (data.error) throw new Error(data.error || "Suppression échouée");
+
       await reloadArticles();
     } catch (e) {
       alert(e.message);
