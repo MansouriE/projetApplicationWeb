@@ -98,6 +98,24 @@ function Profile() {
     }
   };
 
+  const renderArticles = (articles) =>
+    articles.length === 0 ? (
+      <p className="text-gray-500 col-span-full text-center">
+        Aucun article disponible.
+      </p>
+    ) : (
+      articles.map((article) => {
+        const articleProps = {
+          ...article,
+          id: article.id_articles,
+          isProfilePage: true,
+          onEdit: () => handleEdit(article),
+          onDelete: () => handleDelete(article.id_articles),
+        };
+        return <Article key={article.id_articles} {...articleProps} />;
+      })
+    );
+
   if (!user) return null;
 
   return (
@@ -137,21 +155,7 @@ function Profile() {
               Mes Articles
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allArticles.length === 0 ? (
-                <p className="text-gray-500 col-span-full text-center">
-                  Aucun article disponible.
-                </p>
-              ) : (
-                allArticles.map((article) => (
-                  <Article
-                    {...article}
-                    id={article.id_articles}
-                    isProfilePage={true}
-                    onEdit={() => handleEdit(article)}
-                    onDelete={() => handleDelete(article.id_articles)}
-                  />
-                ))
-              )}
+              {renderArticles(allArticles)}
             </div>
           </div>
 
@@ -161,21 +165,7 @@ function Profile() {
               Mes Favoris
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allArticlesFavoris.length === 0 ? (
-                <p className="text-gray-500 col-span-full text-center">
-                  Aucun favori.
-                </p>
-              ) : (
-                allArticlesFavoris.map((article) => (
-                  <Article
-                    {...article}
-                    id={article.id_articles}
-                    isProfilePage={true}
-                    onEdit={() => handleEdit(article)}
-                    onDelete={() => handleDelete(article.id_articles)}
-                  />
-                ))
-              )}
+              {renderArticles(allArticlesFavoris)}
             </div>
           </div>
         </div>
