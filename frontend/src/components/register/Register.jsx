@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
-import FormInput from "../common/FormInput";
+import EmailPasswordFields from "../common/EmailPasswordFields";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -115,22 +115,11 @@ function Register() {
           required
         />
 
-        <FormInput
-          label="Email"
-          type="email"
-          placeholder="Entrez votre email"
-          value={email}
-          onChange={setEmail}
-          required
-        />
-
-        <FormInput
-          label="Mot de passe"
-          type="password"
-          placeholder="Entrez votre mot de passe"
-          value={password}
-          onChange={setPassword}
-          required
+        <EmailPasswordFields
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
         />
 
         <button type="submit">S'inscrire</button>
