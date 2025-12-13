@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import SvgIcon from "../common/SvgIcon";
 
 function Article(props) {
   const {
@@ -16,7 +17,7 @@ function Article(props) {
     onDelete,
     isProfilePage,
     image_url,
-    user_id
+    user_id,
   } = props;
 
   const navigate = useNavigate();
@@ -26,12 +27,6 @@ function Article(props) {
   const [showOfferModal, setShowOfferModal] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
   const isOwner = isLoggedIn && userId && user_id === userId;
-
-  console.log(user_id);
-  console.log(userId);
-  console.log(isOwner)
-
-  
 
   useEffect(() => {
     if (!isLoggedIn) return;
@@ -128,17 +123,22 @@ function Article(props) {
         : "https://projetapplicationweb-1.onrender.com";
 
     try {
-      const res = await fetch(`${API_BASE}/api/payments/create-checkout-session`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ articleId: id, quantity: 1 }),
-      });
+      const res = await fetch(
+        `${API_BASE}/api/payments/create-checkout-session`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ articleId: id, quantity: 1 }),
+        }
+      );
       const data = await res.json();
       if (!res.ok || !data?.url) {
-        throw new Error(data?.error || "Erreur lors de la création du paiement");
+        throw new Error(
+          data?.error || "Erreur lors de la création du paiement"
+        );
       }
       window.location.href = data.url;
     } catch (err) {
@@ -190,19 +190,7 @@ function Article(props) {
             className="object-cover w-full h-full"
           />
         ) : (
-          <svg
-            className="w-16 h-16 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2"
-            />
-          </svg>
+          <SvgIcon pathD="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2" />
         )}
       </div>
 
@@ -224,7 +212,7 @@ function Article(props) {
         </span>
       </div>
 
-      {isLoggedIn && !isProfilePage && !isOwner &&(
+      {isLoggedIn && !isProfilePage && !isOwner && (
         <>
           {bid && (
             <button
