@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import AccessGuard from "../acessGuard/accessGuard";
+import SvgIcon from "../common/SvgIcon";
 
 export default function EditProfile() {
   const { token, isLoggedIn } = useContext(AuthContext);
@@ -116,19 +117,7 @@ export default function EditProfile() {
               <div className="p-6">
                 {error && (
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
-                    <svg
-                      className="w-5 h-5 text-red-500 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                    <SvgIcon pathD="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     <p className="text-red-700">{error}</p>
                   </div>
                 )}
@@ -222,19 +211,7 @@ export default function EditProfile() {
                         </>
                       ) : (
                         <>
-                          <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
+                          <SvgIcon pathD="M5 13l4 4L19 7" />
                           Enregistrer les modifications
                         </>
                       )}
