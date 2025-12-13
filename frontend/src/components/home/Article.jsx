@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import SvgIcon from "../common/SvgIcon";
+import fetchwithAuth from "../../utils/fetchWithAuth";
 
 function Article(props) {
   const {
@@ -33,15 +34,10 @@ function Article(props) {
 
     const fetchFavoriteStatus = async () => {
       try {
-        const res = await fetch(
+        const data = await fetchWithAuth(
           `https://projetapplicationweb-1.onrender.com/api/favori/status?articleId=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          token
         );
-        const data = await res.json();
         setIsFavori(data.isFavori);
       } catch (err) {
         console.error(err);
@@ -63,18 +59,14 @@ function Article(props) {
     setIsFavori(newState);
 
     try {
-      const res = await fetch(
+      const data = await fetchWithAuth(
         "https://projetapplicationweb-1.onrender.com/api/favori",
+        token,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ articleId: id, favorite: newState }),
+          body: { articleId: id, favorite: newState },
         }
       );
-      const data = await res.json();
       if (!data.success) setIsFavori(!newState);
     } catch (err) {
       setIsFavori(!newState);
@@ -92,18 +84,14 @@ function Article(props) {
     }
 
     try {
-      const res = await fetch(
+      const data = await fetchWithAuth(
         `https://projetapplicationweb-1.onrender.com/api/offers/offer`,
+        token,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ article_id: id, amount: Number(offerAmount) }),
+          body: { article_id: id, amount: Number(offerAmount) },
         }
       );
-      const data = await res.json();
 
       if (!res.ok)
         throw new Error(data.error || "Erreur lors de l'envoi de l'offre");
@@ -123,23 +111,15 @@ function Article(props) {
         : "https://projetapplicationweb-1.onrender.com";
 
     try {
-      const res = await fetch(
+      const data = await fetchWithAuth(
         `${API_BASE}/api/payments/create-checkout-session`,
+        token,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ articleId: id, quantity: 1 }),
+          body: { articleId: id, quantity: 1 },
         }
       );
-      const data = await res.json();
-      if (!res.ok || !data?.url) {
-        throw new Error(
-          data?.error || "Erreur lors de la création du paiement"
-        );
-      }
+      if (!data?.url) throw new Error("Erreur lors de la création du paiement");
       window.location.href = data.url;
     } catch (err) {
       console.error(err);
