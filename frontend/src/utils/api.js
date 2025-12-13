@@ -1,17 +1,13 @@
+import { fetchWithAuth } from "./fetchWithAuth";
+
 export async function fetchCurrentUser(token) {
-  const res = await fetch(
+  const data = await fetchWithAuth(
     "https://projetapplicationweb-1.onrender.com/api/users/me",
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    {},
+    token
   );
 
-  const data = await res.json();
-
-  if (!res.ok) {
+  if (!data || data.error) {
     throw new Error(data.error || "Impossible de charger le profil");
   }
 

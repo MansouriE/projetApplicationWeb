@@ -1,3 +1,5 @@
+import SvgIcon from "../common/SvgIcon";
+
 export default function GuardIcon({ type }) {
   let pathD;
 
@@ -13,19 +15,5 @@ export default function GuardIcon({ type }) {
       pathD = "";
   }
 
-  return (
-    <svg
-      className="w-8 h-8 text-red-500"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d={pathD}
-      />
-    </svg>
-  );
+  return <SvgIcon pathD={pathD} className="w-8 h-8 text-red-500" />;
 }

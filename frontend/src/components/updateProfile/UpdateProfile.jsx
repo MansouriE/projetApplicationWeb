@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { fetchWithAuth } from "../../utils/fetchWithAuth";
 import AccessGuard from "../acessGuard/accessGuard";
 import SvgIcon from "../common/SvgIcon";
 
@@ -21,18 +22,11 @@ export default function EditProfile() {
   useEffect(() => {
     const run = async () => {
       try {
-        const res = await fetch(
+        const data = await fetchWithAuth(
           "https://projetapplicationweb-1.onrender.com/api/users/me",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          {},
+          token
         );
-        const data = await res.json();
-        if (!res.ok)
-          throw new Error(data.error || "Impossible de charger le profil");
 
         const u = data.user || data;
         setForm({
@@ -42,9 +36,9 @@ export default function EditProfile() {
           code_postal: u.code_postal || "",
           courriel: u.courriel || "",
         });
-        setLoading(false);
       } catch (e) {
         setError(e.message || "Une erreur est survenue");
+      } finally {
         setLoading(false);
       }
     };
@@ -66,19 +60,16 @@ export default function EditProfile() {
     );
 
     try {
-      const res = await fetch(
+      const data = await fetchWithAuth(
         "https://projetapplicationweb-1.onrender.com/api/users/me",
         {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
           body: JSON.stringify(payload),
-        }
+        },
+        token
       );
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Mise à jour échouée");
+
+      if (data.error) throw new Error(data.error || "Mise à jour échouée");
 
       navigate("/profile", { replace: true });
     } catch (e) {
