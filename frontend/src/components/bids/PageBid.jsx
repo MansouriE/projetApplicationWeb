@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useContext } from "react";
-import { useLocation, useParams, useNavigate  } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import BackButton from "../common/BackButton";
 
 const API_BASE = "https://projetapplicationweb-1.onrender.com";
 
@@ -32,6 +33,15 @@ function PageBid() {
     const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     return `${jours}j ${heures}h ${minutes}m restants`;
+  }
+
+  async function parseJsonResponse(res) {
+    const raw = await res.text();
+    try {
+      return JSON.parse(raw);
+    } catch {
+      throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
+    }
   }
 
   useEffect(() => {
@@ -69,13 +79,7 @@ function PageBid() {
         headers: { Accept: "application/json" },
         cache: "no-store",
       });
-      const raw = await res.text();
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
-      }
+      const data = await parseJsonResponse(res);
       if (!res.ok) throw new Error(data?.error || "Erreur chargement bids");
       setBids(Array.isArray(data) ? data : []);
     } catch (e) {
@@ -102,7 +106,6 @@ function PageBid() {
     if (!token) return setMessage("⛔ Vous devez être connecté.");
 
     try {
-
       const articleId = Number(id);
       const res = await fetch(`${API_BASE}/api/bids`, {
         method: "POST",
@@ -113,13 +116,7 @@ function PageBid() {
         body: JSON.stringify({ article_id: articleId, amount: montant }),
       });
 
-      const raw = await res.text();
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        throw new Error(`Réponse non-JSON: ${raw.slice(0, 120)}`);
-      }
+      const data = await parseJsonResponse(res);
 
       if (res.status === 401 || res.status === 403) {
         throw new Error("⛔ Session expirée. Veuillez vous reconnecter.");
@@ -149,7 +146,7 @@ function PageBid() {
     <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-8 mt-10 border border-gray-200">
       <h1 className="text-3xl font-bold text-gray-800 mb-2">{article.nom}</h1>
       <p className="text-gray-600 mb-6">{article.description}</p>
-       {/*changements visuels*/}
+      {/*changements visuels*/}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         <span className="text-xl font-semibold text-green-700">
           Prix de départ : {prixDepart} $
@@ -242,15 +239,7 @@ function PageBid() {
         </button>
       </form>
 
-      <button
-        onClick={() => navigate("/")}
-        className="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 flex items-center justify-center gap-2"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Retour à l'accueil
-      </button>
+      <BackButton />
 
       {message && (
         <p className="mt-4 text-center text-gray-700 font-medium">{message}</p>

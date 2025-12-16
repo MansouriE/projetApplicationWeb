@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Register.css";
+import EmailPasswordFields from "../common/EmailPasswordFields";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -66,9 +66,9 @@ function Register() {
   };
 
   return (
-    <div className="register-container">
+    <div className="login-container">
       <h2>Créer un compte</h2>
-      <form onSubmit={handleSubmit} className="register-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <label>Prénom</label>
         <input
           type="text"
@@ -114,22 +114,11 @@ function Register() {
           required
         />
 
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Entrez votre email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <label>Mot de passe</label>
-        <input
-          type="password"
-          placeholder="Entrez votre mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
+        <EmailPasswordFields
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
         />
 
         <button type="submit">S'inscrire</button>
