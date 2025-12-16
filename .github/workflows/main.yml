@@ -35,4 +35,7 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: frontend
-        run: npx cypress run
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:5173
+          npx cypress run
