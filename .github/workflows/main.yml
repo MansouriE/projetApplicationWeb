@@ -18,28 +18,20 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install -g npm@latest
         working-directory: frontend
+        run: npm ci
 
-      - name: Cache root node_modules
-        uses: actions/cache@v3
-        with:
-          path: frontend/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Run frontend unit tests
-        working-directory: frontend
-        run: npm test
-
-      - name: Cache frontend node_modules
+      - name: Cache node_modules
         uses: actions/cache@v3
         with:
           path: frontend/node_modules
           key: ${{ runner.os }}-node-frontend-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-frontend-
+
+      - name: Run frontend unit tests
+        working-directory: frontend
+        run: npx vitest --environment=jsdom
 
       - name: Run Cypress tests
         working-directory: frontend
