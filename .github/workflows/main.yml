@@ -17,24 +17,21 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm install
+        working-directory: frontend
 
       - name: Cache root node_modules
         uses: actions/cache@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-root-${{ hashFiles('package-lock.json') }}
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-root-
+            ${{ runner.os }}-node-
 
       - name: Run frontend unit tests
         working-directory: frontend
         run: npm test
-
-      - name: Install frontend dependencies
-        working-directory: frontend
-        run: npm install
 
       - name: Cache frontend node_modules
         uses: actions/cache@v3
