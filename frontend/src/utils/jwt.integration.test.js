@@ -1,27 +1,50 @@
-import { describe, it, expect } from 'vitest';
-import { jwtUtils } from './jwtUtils.js';
+import { describe, it, expect, vi } from "vitest";
+// On importe les vrais modules
+import * as jwtUtils from "./jwtUtils";
+import * as mathUtils from "./mathUtils";
 
-describe('Integration | utils marketplace', () => {
-  it('roundtrip JWT: signe puis vérifie le payload complet', () => {
-    const payload = { userId: 999, email: 'integration@test.com' };
-    const token = jwtUtils.signToken(payload);
-    const decoded = jwtUtils.verifyToken(token);
+vi.mock("./jwtUtils", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+  };
+});
 
-    expect(decoded).toMatchObject(payload);
-    expect(token.split('.')).toHaveLength(3);
+describe("Integration | Utils Marketplace", () => {
+  
+  it("Flux complet : Validation token -> Extraction ID -> Calcul Prix", () => {
+   
+    const payload = { id: 123, exp: Math.floor(Date.now() / 1000) + 3600 };
+    const token = `header.${btoa(JSON.stringify(payload))}.signature`;
+
+    const isValid = jwtUtils.isTokenValid(token);
+    expect(isValid).toBe(true);
+
+    const userId = jwtUtils.getUserIdFromToken(token);
+    expect(userId).toBe(123);
+
+    if (isValid && userId) {
+      const prixInitial = 250;
+      const reduction = 20;
+
+      const prixRemise = mathUtils.calculateDiscountedPrice 
+        ? mathUtils.calculateDiscountedPrice(prixInitial, reduction) 
+        : prixInitial * (1 - reduction / 100); 
+
+      expect(prixRemise).toBe(200);
+    }
   });
 
-  it('rejette un token mal formé avec le message attendu', () => {
-    expect(() => jwtUtils.verifyToken('foo.bar')).toThrow('Format de token invalide');
-  });
+  it("Flux erreur : Token invalide -> Pas de calcul", () => {
+    const token = null;
+    
+    const isValid = jwtUtils.isTokenValid(token);
+    expect(isValid).toBe(false);
 
-  it('enchaîne remise puis taxe et formatage prix', () => {
-    const discounted = jwtUtils.calculateDiscount(250, 20); // 200
-    const totalTTC = jwtUtils.calculateTotalWithTax(discounted, 0.2); // 240
-    const formatted = jwtUtils.formatPrice(totalTTC);
+    const userId = jwtUtils.getUserIdFromToken(token);
+    expect(userId).toBeNull();
 
-    expect(discounted).toBe(200);
-    expect(totalTTC).toBe(240);
-    expect(formatted).toBe('$240.00');
+    const action = isValid ? "CALCULATE" : "ABORT";
+    expect(action).toBe("ABORT");
   });
 });

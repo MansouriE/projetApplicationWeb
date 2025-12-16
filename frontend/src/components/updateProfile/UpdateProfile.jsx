@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { fetchWithAuth } from "../../utils/fetchWithAuth";
-import AccessGuard from "../acessGuard/accessGuard";
+import AccessGuard from "../acessGuard/AccessGuard";
 import SvgIcon from "../common/SvgIcon";
 
 export default function EditProfile() {
