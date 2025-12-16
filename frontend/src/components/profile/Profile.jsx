@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Article from "../home/Article.jsx"; // Adjust path if needed
-import AccessGuard from "../acessGuard/accessGuard";
+import AccessGuard from "../acessGuard/AccessGuard.jsx";
 import { fetchCurrentUser } from "../../utils/api.js";
 import { fetchWithAuth } from "../../utils/fetchWithAuth.js";
 
