@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import AccessGuard from "../acessGuard/AccessGuard.jsx";
+import AccessGuard from "../acessGuard/accessGuard.jsx";
 import { fetchCurrentUser } from "../../utils/api.js";
 import BackButton from "../common/BackButton";
 import SvgIcon from "../common/SvgIcon";
