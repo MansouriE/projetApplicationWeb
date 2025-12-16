@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import AccessGuard from "./AccessGuard";
+import AccessGuard from "./accessGuard";
 
 // Mocks des composants enfants pour isoler la logique
 vi.mock("./GuardCard", () => ({
@@ -56,7 +56,9 @@ describe("AccessGuard Component", () => {
     );
     expect(screen.getByText("Erreur")).toBeInTheDocument(); // Titre
     expect(screen.getByText("Erreur Fatale")).toBeInTheDocument(); // Message
-    expect(screen.getByRole("button", { name: /Réessayer/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Réessayer/i })
+    ).toBeInTheDocument();
   });
 
   it("recharge la page au clic sur Réessayer", () => {
