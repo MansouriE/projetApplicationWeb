@@ -47,7 +47,9 @@ function Login() {
           setPassword={setPassword}
         />
 
-        <button type="submit">Se connecter</button>
+        <button type="submit" data-test="login-submit">
+          Se connecter
+        </button>
       </form>
     </div>
   );

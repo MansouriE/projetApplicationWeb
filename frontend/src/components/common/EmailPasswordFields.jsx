@@ -16,6 +16,7 @@ export default function EmailPasswordFields({
         value={email}
         onChange={setEmail}
         required
+        dataTest="email"
       />
 
       <FormInput
@@ -25,6 +26,7 @@ export default function EmailPasswordFields({
         value={password}
         onChange={setPassword}
         required
+        dataTest="password"
       />
     </>
   );
