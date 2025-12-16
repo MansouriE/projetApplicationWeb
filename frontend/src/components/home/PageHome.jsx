@@ -61,7 +61,10 @@ function HomePage() {
           </div>
           {isLoggedIn && (
             <Link to="/createArticle" className="w-full sm:w-auto">
-              <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3">
+              <button
+                data-test="add-shoe-button"
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+              >
                 <SvgIcon pathD="M12 4v16m8-8H4" />
                 Ajouter un article
               </button>

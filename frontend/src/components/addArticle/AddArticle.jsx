@@ -121,8 +121,12 @@ function AddArticle() {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Accès non autorisé</h3>
-          <p className="text-gray-600">Vous devez être connecté pour ajouter un article.</p>
+          <h3 className="text-xl font-bold text-gray-800 mb-2">
+            Accès non autorisé
+          </h3>
+          <p className="text-gray-600">
+            Vous devez être connecté pour ajouter un article.
+          </p>
         </div>
       </div>
     );
@@ -148,6 +152,7 @@ function AddArticle() {
           value={nom}
           onChange={(e) => setNom(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          data-test="shoe-name"
         />
 
         <textarea
@@ -155,6 +160,7 @@ function AddArticle() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none h-28 resize-none"
+          data-test="shoe-description"
         />
 
         <label className="block">
@@ -172,12 +178,14 @@ function AddArticle() {
           value={prix}
           onChange={(e) => setPrix(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          data-test="shoe-price"
         />
 
         <select
           value={etat}
           onChange={(e) => setEtat(e.target.value)}
           className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          data-test="shoe-condition"
         >
           <option value="">Sélectionner l'état</option>
           <option value="Neuf">Neuf</option>
@@ -197,7 +205,9 @@ function AddArticle() {
             }}
             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
-          <span className="text-gray-700">Autoriser les bids pour cet article</span>
+          <span className="text-gray-700">
+            Autoriser les bids pour cet article
+          </span>
         </label>
 
         <label className="flex items-center space-x-2 cursor-pointer">
@@ -214,7 +224,9 @@ function AddArticle() {
             }}
             className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
-          <span className="text-gray-700">Autoriser les offres pour cet article</span>
+          <span className="text-gray-700">
+            Autoriser les offres pour cet article
+          </span>
         </label>
 
         {acceptsBids && (
@@ -266,6 +278,7 @@ function AddArticle() {
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700"
           }`}
+          data-test="submit-shoe"
         >
           {submitting ? "Création..." : "Créer l'article"}
         </button>

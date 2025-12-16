@@ -10,7 +10,7 @@ import PageBid from "./components/bids/PageBid";
 import CreateArticle from "./components/addArticle/AddArticle";
 import Settings from "./components/settings/Settings";
 import UpdateArticle from "./components/updateArticle/UpdateArticle";
-import Offres from "./components/offre/Offre";
+import Offres from "./components/offre/Offres";
 
 function App() {
   return (
